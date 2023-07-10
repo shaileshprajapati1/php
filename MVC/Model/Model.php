@@ -38,36 +38,20 @@ class Model
         }
         return $ResponceData;
     }
-    function select($tbl)
+    function select($tbl, $where = "")
     {
-        $SQL = " SELECT * FROM $tbl";
-        $SQLEx = $this->connection->query($SQL);
-        // print_r($SQLEx);
-        if ($SQLEx->num_rows > 0) {
-            while ($data = $SQLEx->fetch_object()) {
-                $FatchData[] = $data;
+        $SQL = " SELECT * FROM $tbl ";
+        if ($where != "") {
+            $SQL .= " WHERE";
+            // $SQL = rtrim($SQL,"WHERE");
+            foreach ($where as $key => $value) {
+                $SQL .= " $key = '$value' AND";
+                
             }
-            // print_r($FatchData);
-            $ResponceData['Data'] = $FatchData;
-            $ResponceData['Msg'] = "Success";
-            $ResponceData['Code'] = "1";
-            // print_r($FatchData);
-        } else {
-            $ResponceData['Data'] = "0";
-            $ResponceData['Msg'] = "Try Agian";
-            $ResponceData['Code'] = "0";
+            $SQL = rtrim($SQL,"AND");
         }
-        return $ResponceData;
-    }
-    function Edit($tbl, $where)
-    {
-        $SQL = " SELECT * FROM $tbl WHERE";
 
-        foreach ($where as $key => $value) {
-            $SQL .= " $key = '$value '";
-        }
-        //         echo $SQL;
-        // exit;
+        // echo $SQL;
         $SQLEx = $this->connection->query($SQL);
         // print_r($SQLEx);
         if ($SQLEx->num_rows > 0) {
@@ -86,6 +70,33 @@ class Model
         }
         return $ResponceData;
     }
+    // function Edit($tbl, $where)
+    // {
+    //     $SQL = " SELECT * FROM $tbl WHERE";
+
+    //     foreach ($where as $key => $value) {
+    //         $SQL .= " $key = '$value '";
+    //     }
+    //     //         echo $SQL;
+    //     // exit;
+    //     $SQLEx = $this->connection->query($SQL);
+    //     // print_r($SQLEx);
+    //     if ($SQLEx->num_rows > 0) {
+    //         while ($data = $SQLEx->fetch_object()) {
+    //             $FatchData[] = $data;
+    //         }
+    //         // print_r($FatchData);
+    //         $ResponceData['Data'] = $FatchData;
+    //         $ResponceData['Msg'] = "Success";
+    //         $ResponceData['Code'] = "1";
+    //         // print_r($FatchData);
+    //     } else {
+    //         $ResponceData['Data'] = "0";
+    //         $ResponceData['Msg'] = "Try Agian";
+    //         $ResponceData['Code'] = "0";
+    //     }
+    //     return $ResponceData;
+    // }
     function Delete($tbl, $where)
     {
         $SQL = " DELETE FROM $tbl WHERE";

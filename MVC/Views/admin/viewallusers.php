@@ -114,7 +114,7 @@
                                     <td><?php echo $value->dob; ?></td>
                                     <td>
                                         <!-- <?php echo $value->id; ?> -->
-                                        <a href="eidtuser?userid=<?php echo $value->id; ?>">Edit</a>
+                                        <a href="eidituser?userid=<?php echo $value->id; ?>">Edit</a>
                                         <a href="deleteuser?userid=<?php echo $value->id; ?>">Delete</a>
                                     </td>
 

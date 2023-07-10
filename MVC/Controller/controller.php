@@ -18,7 +18,8 @@ class controller extends Model
         // print_r($StrtoArray);
         // echo "<br>";
         $this->baseURL = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] .
-            "/" . $StrtoArray[1] . "/" . $StrtoArray[2] . "/" . "Assest" . "/";
+            "/" . $StrtoArray[1] . "/" . $StrtoArray[2] . "/" . $StrtoArray[3] ."/" . "Assest" . "/";
+        // echo $this->baseURL;
 
         if (isset($_SERVER['PATH_INFO'])) {
             switch ($_SERVER['PATH_INFO']) {
@@ -43,27 +44,31 @@ class controller extends Model
                     include_once("Views/admin/footer.php");
                     break;
                 
-                case '/eidtuser':
-                    $EditRes = $this->Edit("users",array("id"=>$_GET['userid']));
+                case '/eidituser':
+                $UpdateByIdRes = $this->select("users",array("id"=>$_GET['userid'],"role_id"=>"2"));
+                $CityData = $this->select("city");
+
                     // echo "<pre>";
-                    // print_r($EditRes);
+                    // print_r($UpdateByIdRes['Data'][0]->cityid );
                     // echo "</pre>";
                     // exit;
-                    include_once("Views/admin/eidtuser.php");
-                    if(isset($_POST['update'])){
-                        array_pop($_POST);
-                        // echo "<pre>"; 
-                        // print_r($_POST);
-                        // echo "<pre>";
-                        $Data = $_POST;
-                    $UpadateRes = $this->update("users",$Data,array("id"=>$_GET['userid']));
+                    include_once("Views/admin/header.php");
+                    include_once("Views/admin/updateuser.php");
+                    include_once("Views/admin/footer.php");
+                    // if(isset($_POST['update'])){
+                    //     array_pop($_POST);
+                    //     // echo "<pre>"; 
+                    //     // print_r($_POST);
+                    //     // echo "<pre>";
+                    //     $Data = $_POST;
+                    // $UpadateRes = $this->update("users",$Data,array("id"=>$_GET['userid']));
                     
-                    if($UpadateRes['Code'] == 1 ){
-                        header("location:viewallusers");
+                    // if($UpadateRes['Code'] == 1 ){
+                    //     header("location:viewallusers");
                         
-                    }
+                    // }
                        
-                    }
+                    // }
 
                     
                     break;
@@ -74,7 +79,7 @@ class controller extends Model
                     }
                     break;
                 case '/viewallusers':
-                    $Allusers = $this->select("users");
+                    $Allusers = $this->select("users",array("role_id"=>"2"));
                     // echo "<pre>";
                     // print_r($Allusers);
                     // exit;
