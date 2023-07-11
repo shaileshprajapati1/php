@@ -125,9 +125,9 @@
             background: var(--main-purple);
         }
 
-        form input[type="radio"] {
+        /* form input[type="radio"] {
             display: none;
-        }
+        } */
 
         /* submit button */
         form .button {
@@ -175,7 +175,7 @@
                 width: 0;
             }
 
-            
+
         }
     </style>
 </head>
@@ -187,60 +187,86 @@
         <div class="user__details">
             <div class="input__box">
                 <span class="details">Full Name</span>
-                <input type="text" placeholder="Enter FullName" name="fullname" id="fullname" required>
+                <input type="text" placeholder="Enter FullName" name="fullname" id="fullname" value="<?php echo $viewuser['data'][0]->fullname; ?>" required>
             </div>
             <div class="input__box">
                 <span class="details">Username</span>
-                <input type="text" placeholder="Enter Username" name="username" id="username" required>
+                <input type="text" placeholder="Enter Username" name="username" id="username" value="<?php echo $viewuser['data'][0]->username; ?>" required>
             </div>
             <div class="input__box">
                 <span class="details">Email</span>
-                <input type="email" placeholder="Enter Email Id" name="email" id="email" required>
+                <input type="email" placeholder="Enter Email Id" name="email" id="email" value="<?php echo $viewuser['data'][0]->email; ?>" required>
             </div>
             <div class="input__box">
                 <span class="details">Phone Number</span>
-                <input type="tel" placeholder="Enter Phonenumber" name="phone" id="phone" required>
+                <input type="tel" placeholder="Enter Phonenumber" name="phone" id="phone" value="<?php echo $viewuser['data'][0]->phone; ?>" required>
             </div>
 
             <div class="input__box">
                 <span class="details">Password</span>
-                <input type="password" placeholder="********" name="password" id="password" required>
+
+                <input type="password" placeholder="********" name="password" id="password" <?php echo isset($viewuser) ? "disabled" : ""; ?> value="<?php echo $viewuser['data'][0]->password; ?>" required>
             </div>
-            <div class="input__box">
-                <span class="details">Confirm Password</span>
-                <input type="password" placeholder="********" name="cpassword" id="cpassword" required>
-            </div>
+
             <div class="input__box">
                 <span class="details">BirthDay</span>
-                <input type="date" placeholder="Enter Phonenumber" name="dob" id="dob" required>
+                <input type="date" placeholder="Enter Phonenumber" name="dob" id="dob" value="<?php echo $viewuser['data'][0]->dob; ?>" required>
             </div>
+
+
         </div>
         <div class="gender__details">
-            <input type="radio" name="gender" id="dot-1" value="Male">
-            <input type="radio" name="gender" id="dot-2" value="Female">
+            <div class="gender__title">Gender</div>
+            <div class="radio">
+                <div class="category">
 
-            <span class="gender__title">Gender</span>
-            <div class="category">
-                <label for="dot-1">
-                    <span class="dot one"></span>
-                    <span>Male</span>
-                </label>
-                <label for="dot-2">
-                    <span class="dot two"></span>
-                    <span>Female</span>
-                </label>
+                    <input type="radio" name="gender" id="Male" <?php if (isset($viewuser)) {
+                                                                    if ($viewuser['data'][0]->gender == "Male") {
+                                                                        echo "checked";
+                                                                    }
+                                                                } ?> value="Male"><label for="Male">Male</label>
+                    <input type="radio" name="gender" id="Female" <?php if (isset($viewuser)) {
+                                                                        if ($viewuser['data'][0]->gender == "Female") {
+                                                                            echo "checked";
+                                                                        }
+                                                                    } ?> value="Female"><label for="Female">Female</label>
 
+                </div>
             </div>
         </div>
         <div class="gender__details">
             <div class="gender__title">Hobby</div>
             <div class="checkbox">
                 <div class="category">
-
-                    <input type="checkbox" name="hobby[]" id="Cricket" value="Cricket"><label for="Cricket">Cricket</label>
-                    <input type="checkbox" name="hobby[]" id="Music" value="Music"><label for="Music">Music</label>
-                    <input type="checkbox" name="hobby[]" id="Reading" value="Reading"><label for="Reading">Reading</label>
-                    <input type="checkbox" name="hobby[]" id="Watching Movies" value="Watching Movies"><label for="Watching Movies">Watching Movies</label>
+                    <?php $HobbyData = explode(",", $viewuser['data'][0]->hobby);
+                    // echo "<pre>";
+                    // print_r($HobbyData);
+                    // echo "</pre>" 
+                    ?>
+                    <input type="checkbox" name="hobby[]" id="Cricket" <?php if (isset($viewuser)) {
+                                                                            if (in_array("Cricket", $HobbyData)) {
+                                                                                echo "checked";
+                                                                            }
+                                                                        }
+                                                                        ?> value="Cricket"><label for="Cricket">Cricket</label>
+                    <input type="checkbox" name="hobby[]" id="Music" <?php if (isset($viewuser)) {
+                                                                            if (in_array("Music", $HobbyData)) {
+                                                                                echo "checked";
+                                                                            }
+                                                                        }
+                                                                        ?> value="Music"><label for="Music">Music</label>
+                    <input type="checkbox" name="hobby[]" id="Reading" <?php if (isset($viewuser)) {
+                                                                            if (in_array("Reading", $HobbyData)) {
+                                                                                echo "checked";
+                                                                            }
+                                                                        }
+                                                                        ?> value="Reading"><label for="Reading">Reading</label>
+                    <input type="checkbox" name="hobby[]" id="Watching Movies" <?php if (isset($viewuser)) {
+                                                                                    if (in_array("Watching Movies", $HobbyData)) {
+                                                                                        echo "checked";
+                                                                                    }
+                                                                                }
+                                                                                ?> value="Watching Movies"><label for="Watching Movies">Watching Movies</label>
                 </div>
             </div>
         </div>
