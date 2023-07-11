@@ -70,9 +70,8 @@
                                         
                                         <option <?php  if (isset($UpdateByIdRes)) {  
                                                     if ($UpdateByIdRes['Data'][0]->cityid == $value->cityid) {
-                                                        echo "selected";
-                                                    }
-                                                }; ?> value="<?php echo $value->cityid; ?>" ><?php echo $value->city; ?></option>
+                                                        echo "selected"; }}; ?> 
+                                                        value="<?php echo $value->cityid; ?>" ><?php echo $value->city; ?></option>
                                     <?php   } ?>
                                 </select>
 

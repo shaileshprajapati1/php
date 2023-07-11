@@ -31,10 +31,21 @@ class Model{
         }
         return $ResponceData;
     }
-    function select($tbl){
+    function select($tbl,$where = ""){
         $SQL = " SELECT * FROM $tbl ";
+        
+        if($where != ""){
+            $SQL .= "WHERE";
+            foreach ($where as $key => $value) {
+                $SQL .= " $key = '$value'AND";
+            }
+        }
+        $SQL = rtrim($SQL,"AND");
+
+        
+        // echo $SQL;
+        // exit;
         $SQLEx = $this->con->query($SQL);
-       
         if($SQLEx->num_rows>0){
             while ($data = $SQLEx->fetch_object()) {
                 $FetchData[] = $data;
@@ -76,8 +87,8 @@ class Model{
         $SQL = " DELETE FROM $tbl WHERE";
         foreach ($where as $key => $value) {
             $SQL .= " $key = '$value' AND";  
-            $SQL = rtrim($SQL,"AND"); 
         }
+        $SQL = rtrim($SQL,"AND"); 
         // echo $SQL;
         $SQLEx = $this->con->query($SQL);
         // print_r($SQLEx);

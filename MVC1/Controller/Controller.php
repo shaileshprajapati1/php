@@ -79,7 +79,7 @@ class Controller extends Model
                     break;
                 case '/viewalluser':
 
-                    $Alluser = $this->select("users");
+                    $Alluser = $this->select("users",array("role_id"=>"2"));
                     // echo "<pre>";
                     // print_r($Alluser);
 
