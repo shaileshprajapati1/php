@@ -56,9 +56,24 @@
                     <div class="row my-2">
                         <div class="col-6 offset-1 ">
                             <label for="hobby">Hobby</label><br>
-                            <input type="checkbox" name="hobby[]" id="cricket" value="cricket"><label for="cricket">Cricket</label>
-                            <input type="checkbox" name="hobby[]" id="music" value="music"><label for="music">Music</label>
-                            <input type="checkbox" name="hobby[]" id="reading" value="reading"><label for="reading">Reading</label>
+                            <?php $HobbyData = explode(",", $UpdateByIdRes['Data'][0]->hobby);
+                            // print_r($HobbyData); 
+                            // print_r($UpdateByIdRes['Data'][0]->hobby); ?>
+                            <input type="checkbox" name="hobby[]" id="cricket" <?php if (isset($UpdateByIdRes)) {
+                                                                                    if (in_array("Cricket",$HobbyData)) {
+                                                                                        echo "checked";
+                                                                                    }
+                                                                                } ?> value="cricket"><label for="cricket">Cricket</label>
+                            <input type="checkbox" name="hobby[]" id="music"<?php if (isset($UpdateByIdRes)) {
+                                                                                    if (in_array("Music",$HobbyData)) {
+                                                                                        echo "checked";
+                                                                                    }
+                                                                                } ?>  value="music"><label for="music">Music</label>
+                            <input type="checkbox" name="hobby[]" id="reading" <?php if (isset($UpdateByIdRes)) {
+                                                                                    if (in_array("Reading",$HobbyData)) {
+                                                                                        echo "checked";
+                                                                                    }
+                                                                                } ?> value="reading"><label for="reading">Reading</label>
 
                         </div>
                         <div class="row my-2">
@@ -67,11 +82,12 @@
                                 <select id="city" class="form-select">
                                     <option selected>Select city</option>
                                     <?php foreach ($CityData['Data'] as $key => $value) {  ?>
-                                        
-                                        <option <?php  if (isset($UpdateByIdRes)) {  
+
+                                        <option <?php if (isset($UpdateByIdRes)) {
                                                     if ($UpdateByIdRes['Data'][0]->cityid == $value->cityid) {
-                                                        echo "selected"; }}; ?> 
-                                                        value="<?php echo $value->cityid; ?>" ><?php echo $value->city; ?></option>
+                                                        echo "selected";
+                                                    }
+                                                }; ?> value="<?php echo $value->cityid; ?>"><?php echo $value->city; ?></option>
                                     <?php   } ?>
                                 </select>
 

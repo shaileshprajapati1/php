@@ -270,7 +270,20 @@
                 </div>
             </div>
         </div>
-
+        <div class="col-md-4">
+        <div class="gender__title">City</div>
+            <select id="inputState" class="form-select">
+                <option selected>Select city</option>
+                <?php foreach ($CityData['data'] as $key => $value) { ?>
+                   
+               <option <?php if(isset($viewuser)){
+                if($viewuser['data'][0]->cityid == $value->cityid){
+                    echo "selected";
+                }
+               } ?> value="<?php echo $value->cityid ?>" ><?php echo $value->city ?></option>
+        <?php  }  ?>
+            </select>
+        </div>
 
         <div class="button">
             <input type="submit" name="update" value="Update">

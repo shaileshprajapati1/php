@@ -58,9 +58,11 @@ class Controller extends Model
                     break;
                 case '/edituser':
                    $viewuser = $this->select("users",array("id"=>$_GET['userid'],"role_id"=>"2"));
+                    $CityData = $this->select("city");
                 //    echo "<pre>";
-                //    print_r($viewuser['data'][0]);
+                //    print_r($CityData);
                 //    echo "</pre>";
+                //    exit;
                     include_once("Views/admin/edituser.php");
                 
                     break;
