@@ -31,13 +31,13 @@ class Model{
         }
         return $ResponceData;
     }
-    function select($tbl,$where = ""){
+    function select($tbl,$where = null){
         $SQL = " SELECT * FROM $tbl ";
         
         if($where != ""){
             $SQL .= "WHERE";
-            foreach ($where as $key => $value) {
-                $SQL .= " $key = '$value'AND";
+            foreach($where as $key => $value) {
+                $SQL .= " $key = '$value' AND";
             }
         }
         $SQL = rtrim($SQL,"AND");

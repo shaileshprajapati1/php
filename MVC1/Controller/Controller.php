@@ -56,6 +56,14 @@ class Controller extends Model
                     }
 
                     break;
+                case '/edituser':
+                   $viewuser = $this->select("users",array("id"=>$_GET['userid'],"role_id"=>"2"));
+                   echo "<pre>";
+                   print_r($viewuser['data'][0]);
+                   echo "</pre>";
+                    include_once("Views/admin/edituser.php");
+                
+                    break;
                 case '/adduser':
                     include_once("Views/admin/adduser.php");
                     if (isset($_POST['add'])) {
