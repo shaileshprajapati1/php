@@ -55,20 +55,25 @@ class controller extends Model
                     include_once("Views/admin/header.php");
                     include_once("Views/admin/updateuser.php");
                     include_once("Views/admin/footer.php");
-                    // if(isset($_POST['update'])){
-                    //     array_pop($_POST);
-                    //     // echo "<pre>"; 
-                    //     // print_r($_POST);
-                    //     // echo "<pre>";
-                    //     $Data = $_POST;
-                    // $UpadateRes = $this->update("users",$Data,array("id"=>$_GET['userid']));
-                    
-                    // if($UpadateRes['Code'] == 1 ){
-                    //     header("location:viewallusers");
+                    if(isset($_POST['Update'])){
+                        $HobbyData = implode(",",$_POST['hobby']);
+                        // echo $HobbyData;
+                        array_pop($_POST);
+                        array_pop($_POST);
+                        // echo "<pre>"; 
+                        // print_r($_POST);
+                        // echo "<pre>";
+                        $Data = array_merge($_POST,array("hobby"=>$HobbyData));
+                    $UpadateRes = $this->update("users",$Data,array("id"=>$_GET['userid']));
+                    // echo "<pre>"; 
+                    // print_r($UpadateRes);
+                    // echo "<pre>";
+                    if($UpadateRes['Code'] == 1 ){
+                        header("location:viewallusers");
                         
-                    // }
+                    }
                        
-                    // }
+                    }
 
                     
                     break;

@@ -38,7 +38,7 @@ class Model
         }
         return $ResponceData;
     }
-    function select($tbl, $where = "")
+    function select($tbl, $where = null)
     {
         $SQL = " SELECT * FROM $tbl ";
         if ($where != "") {
@@ -134,6 +134,7 @@ class Model
             $SQL .= " $key = '$value' AND";
         }
         $SQL = rtrim($SQL, "AND");
+        // echo $SQL;
         $SQLEx = $this->connection->query($SQL);
         if ($SQLEx > 0) {
 

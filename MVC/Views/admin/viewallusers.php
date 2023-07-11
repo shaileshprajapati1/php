@@ -112,6 +112,7 @@
                                     <td><?php echo $value->email; ?></td>
                                     <td><?php echo $value->phone; ?></td>
                                     <td><?php echo $value->dob; ?></td>
+                                
                                     <td>
                                         <!-- <?php echo $value->id; ?> -->
                                         <a href="eidituser?userid=<?php echo $value->id; ?>">Edit</a>

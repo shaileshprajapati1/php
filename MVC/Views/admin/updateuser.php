@@ -60,17 +60,17 @@
                             // print_r($HobbyData); 
                             // print_r($UpdateByIdRes['Data'][0]->hobby); ?>
                             <input type="checkbox" name="hobby[]" id="cricket" <?php if (isset($UpdateByIdRes)) {
-                                                                                    if (in_array("Cricket",$HobbyData)) {
+                                                                                    if (in_array("cricket",$HobbyData)) {
                                                                                         echo "checked";
                                                                                     }
                                                                                 } ?> value="cricket"><label for="cricket">Cricket</label>
                             <input type="checkbox" name="hobby[]" id="music"<?php if (isset($UpdateByIdRes)) {
-                                                                                    if (in_array("Music",$HobbyData)) {
+                                                                                    if (in_array("music",$HobbyData)) {
                                                                                         echo "checked";
                                                                                     }
                                                                                 } ?>  value="music"><label for="music">Music</label>
                             <input type="checkbox" name="hobby[]" id="reading" <?php if (isset($UpdateByIdRes)) {
-                                                                                    if (in_array("Reading",$HobbyData)) {
+                                                                                    if (in_array("reading",$HobbyData)) {
                                                                                         echo "checked";
                                                                                     }
                                                                                 } ?> value="reading"><label for="reading">Reading</label>
