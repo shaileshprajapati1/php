@@ -6,6 +6,7 @@
 
 			<div class="bottom-table">
 				<h2 class="hdg text-center">User Table</h2>
+				<button class="btn btn-success"><a href="adduser">Add User</a></button>
 				<div class="bs-docs-example">
 					<table class="table table-hover">
 						<thead>
@@ -35,8 +36,8 @@
 								<td><?php echo $value->gender ;?></td>
 								<td><?php echo $value->hobby ;?></td>
 								<td>
-									<a href="edit?userid=<?php $value->id; ?>">Edit</a>
-									<a href="delete?userid=<?php $value->id; ?>">Delete</a>
+									<a href="edit?userid=<?php echo  $value->id; ?>">Edit</a>
+									<a href="delete?userid=<?php echo $value->id; ?>">Delete</a>
 								</td>
 								
 							

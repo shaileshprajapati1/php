@@ -48,6 +48,36 @@ class controller extends Model
                    
 
                     break;
+                case '/delete':
+                    $DeleteRes = $this->Delete("users",array("id"=>$_GET['userid']));
+                    if($DeleteRes['Code'] == 1){
+                       header("location:viewalluser");                        
+                    }
+                
+
+                    break;
+                case '/adduser':
+                    include_once("Views/admin/adduser.php");
+                    if(isset($_POST['add'])){
+                        $Hobbydata = implode(",",$_POST['hobby']);
+                        // echo $Hobbydata;
+                        array_pop($_POST);
+                        array_pop($_POST);
+                        array_pop($_POST);
+                        array_pop($_POST);
+                        $data = array_merge($_POST,array("hobby"=>$Hobbydata));
+                        $AdduserRes = $this->Insert("users",$data);
+                        
+                        if($AdduserRes['Code'] == 1){
+                            header("location:viewalluser");
+                        }
+                            // echo "<pre>";
+                            // print_r($AdduserRes);
+                            // echo "</pre>";
+                    }
+                                       
+
+                    break;
                 case '/viewalluser':
                     $viewalluserRes = $this->Select("users",array("role_id"=>"2"));
                     // echo "<pre>";
