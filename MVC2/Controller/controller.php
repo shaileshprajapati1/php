@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("Model/model.php");
 class controller extends Model
 {
@@ -43,12 +44,37 @@ class controller extends Model
                     break;
                 case '/login':
                     include_once("Views/login.php");
+                    if (isset($_POST['login'])) {
+                        $LoginRes = $this->Login($_POST['username'], $_POST['password']);
+                        if ($LoginRes['Code'] == 1) {
+                            $_SESSION['userdata'] = $LoginRes['Data'];
+                            if ($LoginRes['Data']->role_id == 1) {
+                                echo    " <script>
+                                alert('Hello Admin');
+                                window.location.href='admin';
+                                </script>";
+                            } else {
+                                echo    " <script>
+                                alert('Login Success');
+                                window.location.href='home';
+                                </script>";
+                            }
+                        } else {
+                            echo    " <script>
+                                alert('Invalid user ');
+                                
+                                </script>";
+                        }
+                    }
+                    echo "<pre>";
+                    print_r($LoginRes);
+                    echo "</pre>";
                     break;
                 case '/register':
                     include_once("Views/register.php");
-                    $HobbyData = implode(",",$_POST['hobby']);
-                    
-                    if(isset($_POST['register'])){
+                    $HobbyData = implode(",", $_POST['hobby']);
+
+                    if (isset($_POST['register'])) {
                         array_pop($_POST);
                         array_pop($_POST);
                         unset($_POST['password2']);
@@ -56,12 +82,12 @@ class controller extends Model
                         // echo "<pre>";
                         // print_r($_POST);
                         // echo "</pre>";
-                        $Data = array_merge($_POST,array("hobby"=>$HobbyData));
+                        $Data = array_merge($_POST, array("hobby" => $HobbyData));
                         // echo "<pre>";
                         // print_r($Data);
                         // echo "</pre>";
-                        $InsertRes = $this->Insert("users",$Data);
-                        if($InsertRes['Data'] == 1){
+                        $InsertRes = $this->Insert("users", $Data);
+                        if ($InsertRes['Data'] == 1) {
                             echo "<script>
                             alert('Register Success!!');
                             window.location.href='login';
