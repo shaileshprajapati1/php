@@ -112,11 +112,14 @@
                                     <td><?php echo $value->email; ?></td>
                                     <td><?php echo $value->phone; ?></td>
                                     <td><?php echo $value->dob; ?></td>
-                                
+
                                     <td>
-                                        <!-- <?php echo $value->id; ?> -->
-                                        <a href="eidituser?userid=<?php echo $value->id; ?>">Edit</a>
-                                        <a href="deleteuser?userid=<?php echo $value->id; ?>">Delete</a>
+                                        <?php if($value->role_id == 2) { ?>
+                                            <a href="eidituser?userid=<?php echo $value->id; ?>">Edit</a>
+                                            <a href="deleteuser?userid=<?php echo $value->id; ?>">Delete</a>
+
+                                        <?php    } ?>
+                                       
                                     </td>
 
                                 </tr>

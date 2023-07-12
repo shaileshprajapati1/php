@@ -45,13 +45,14 @@ class controller extends Model
                     break;
                 
                 case '/eidituser':
-                $UpdateByIdRes = $this->select("users",array("id"=>$_GET['userid'],"role_id"=>"2"));
-                $CityData = $this->select("city");
+                    
+                    $UpdateByIdRes = $this->select("users",array("id"=>$_GET['userid'],"role_id"=>"2"));
+                    $CityData = $this->select("city");
 
                     // echo "<pre>";
                     // print_r($UpdateByIdRes['Data'][0]->cityid );
                     // echo "</pre>";
-                    // exit;
+                    
                     include_once("Views/admin/header.php");
                     include_once("Views/admin/updateuser.php");
                     include_once("Views/admin/footer.php");

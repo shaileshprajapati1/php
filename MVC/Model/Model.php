@@ -38,9 +38,15 @@ class Model
         }
         return $ResponceData;
     }
-    function select($tbl, $where = null)
+    function select($tbl, $where = null,$join = null)
     {
         $SQL = " SELECT * FROM $tbl ";
+        if($join != "") {
+            foreach ($join as $key => $value) {
+            $SQL .= " JOIN $key ON '$value'";
+            }
+        }
+
         if ($where != "") {
             $SQL .= " WHERE";
             // $SQL = rtrim($SQL,"WHERE");
@@ -50,8 +56,8 @@ class Model
             }
             $SQL = rtrim($SQL,"AND");
         }
+        echo $SQL;
 
-        // echo $SQL;
         $SQLEx = $this->connection->query($SQL);
         // print_r($SQLEx);
         if ($SQLEx->num_rows > 0) {

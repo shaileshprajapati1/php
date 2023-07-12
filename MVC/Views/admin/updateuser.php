@@ -58,22 +58,11 @@
                             <label for="hobby">Hobby</label><br>
                             <?php $HobbyData = explode(",", $UpdateByIdRes['Data'][0]->hobby);
                             // print_r($HobbyData); 
-                            // print_r($UpdateByIdRes['Data'][0]->hobby); ?>
-                            <input type="checkbox" name="hobby[]" id="cricket" <?php if (isset($UpdateByIdRes)) {
-                                                                                    if (in_array("cricket",$HobbyData)) {
-                                                                                        echo "checked";
-                                                                                    }
-                                                                                } ?> value="cricket"><label for="cricket">Cricket</label>
-                            <input type="checkbox" name="hobby[]" id="music"<?php if (isset($UpdateByIdRes)) {
-                                                                                    if (in_array("music",$HobbyData)) {
-                                                                                        echo "checked";
-                                                                                    }
-                                                                                } ?>  value="music"><label for="music">Music</label>
-                            <input type="checkbox" name="hobby[]" id="reading" <?php if (isset($UpdateByIdRes)) {
-                                                                                    if (in_array("reading",$HobbyData)) {
-                                                                                        echo "checked";
-                                                                                    }
-                                                                                } ?> value="reading"><label for="reading">Reading</label>
+                            // print_r($UpdateByIdRes['Data'][0]->hobby); 
+                            ?>
+                            <input type="checkbox" name="hobby[]" id="cricket" <?php if (in_array("cricket", $HobbyData)) { echo "checked"; } ?> value="cricket"><label for="cricket">cricket</label>
+                            <input type="checkbox" name="hobby[]" id="music" <?php if (in_array("music", $HobbyData)) { echo "checked"; } ?> value="music"><label for="music">music</label>
+                            <input type="checkbox" name="hobby[]" id="reading" <?php if (in_array("reading", $HobbyData)) { echo "checked"; } ?> value="reading"><label for="reading">reading</label>
 
                         </div>
                         <div class="row my-2">
