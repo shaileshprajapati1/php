@@ -54,4 +54,32 @@ class Model
         }
         return $ResponceData;
     }
+    public function Select($tbl,$whwere=null)
+    {
+        $SQL = " SELECT * FROM $tbl " ;
+         if($whwere != ""){
+            $SQL .= "WHERE";
+            foreach ($whwere as $key => $value) {
+            $SQL .= " $key = '$value' AND";
+            }
+            $SQL = rtrim($SQL,"AND");
+         }
+        //    echo $SQL;
+        $SQLEx = $this->connection->query($SQL);
+        // print_r($SQLEx);
+        if ($SQLEx->num_rows > 0) {
+            while ($Data = $SQLEx->fetch_object()) {
+                $FetchData[] = $Data;
+            }
+            // print_r($FetchData);
+            $ResponceData['Data'] = $FetchData;
+            $ResponceData['Msg'] = "Success";
+            $ResponceData['Code'] = "1";
+        } else {
+            $ResponceData['Data'] = "0";
+            $ResponceData['Msg'] = "Try Agian";
+            $ResponceData['Code'] = "0";
+        }
+        return $ResponceData;
+    }
 }

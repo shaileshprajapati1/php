@@ -49,6 +49,14 @@ class controller extends Model
 
                     break;
                 case '/viewalluser':
+                    $viewalluserRes = $this->Select("users",array("role_id"=>"2"));
+                    // echo "<pre>";
+                    // print_r($viewalluserRes["Data"]);
+                    // echo "<pre>";
+
+                    
+
+                    // exit;
                     include_once("Views/admin/adminheader.php");
                     include_once("Views/admin/viewalluser.php");
                    

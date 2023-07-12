@@ -10,23 +10,39 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>Name</th>
-								<th>Position</th>
-								<th>Office</th>
-								<th>Age</th>
-								<th>Start Date</th>
-								<th>Salary</th>
+								<th>ID</th>
+								<th>FULLNAME</th>
+								<th>USERNAME</th>
+								<th>EMAIL</th>
+								<th>PHONE</th>
+								<th>DOB</th>
+								<th>GENDER</th>
+								<th>HOBBY</th>
+								<th>ACTION</th>
 							</tr>
 						</thead>
 						<tbody>
+							<?php
+							$i =0;
+							foreach ($viewalluserRes["Data"] as $key => $value) {$i++;?>
 							<tr>
-								<td>Nash</td>
-								<td>Software Engineer</td>
-								<td>London</td>
-								<td>35</td>
-								<td>2011/05/03</td>
-								<td>$163,500.00</td>
-							</tr>
+								<td><?php echo $i ;?></td>
+								<td><?php echo $value->fullname ;?></td>
+								<td><?php echo $value->username ;?></td>
+								<td><?php echo $value->email ;?></td>
+								<td><?php echo $value->phone ;?></td>
+								<td><?php echo $value->dob ;?></td>
+								<td><?php echo $value->gender ;?></td>
+								<td><?php echo $value->hobby ;?></td>
+								<td>
+									<a href="edit?userid=<?php $value->id; ?>">Edit</a>
+									<a href="delete?userid=<?php $value->id; ?>">Delete</a>
+								</td>
+								
+							
+							</tr>	
+						<?php	} ?>
+							
 
 						</tbody>
 					</table>

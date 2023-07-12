@@ -33,7 +33,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <!--skycons-icons-->
     <script src="<?php echo $this->baseURL; ?>Assets/admin/js/skycons.js"></script>
     <!--//skycons-icons-->
-
+   
     <!-- js-->
     <script src="<?php echo $this->baseURL; ?>Assets/admin/js/bootstrap.js"></script>
     <script src="<?php echo $this->baseURL; ?>Assets/admin/js/jquery-1.11.1.min.js"></script>
