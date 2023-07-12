@@ -42,6 +42,18 @@ class controller extends Model
                     include_once("Views/footer.php");
 
                     break;
+                case '/admin':
+                    include_once("Views/admin/adminheader.php");
+                    include_once("Views/admin/adminhomepage.php");
+                   
+
+                    break;
+                case '/viewalluser':
+                    include_once("Views/admin/adminheader.php");
+                    include_once("Views/admin/viewalluser.php");
+                   
+
+                    break;
                 case '/login':
                     include_once("Views/login.php");
                     if (isset($_POST['login'])) {
