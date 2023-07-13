@@ -84,6 +84,11 @@ class controller extends Model
                         header("location:viewallusers");
                     }
                     break;
+                case '/logout':
+                    session_start();
+                    session_destroy();
+                    header("location:login");
+                    break;
                 case '/viewallusers':
                     $Allusers = $this->select("users",array("role_id"=>"2"));
                     // echo "<pre>";

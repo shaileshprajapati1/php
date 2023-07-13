@@ -56,6 +56,11 @@ class Controller extends Model
                     }
 
                     break;
+                case '/logout':
+                   session_start();
+                   session_destroy();
+                   header("location:login");
+                    break;
                 case '/edituser':
                    $viewuser = $this->select("users",array("id"=>$_GET['userid'],"role_id"=>"2"));
                     $CityData = $this->select("city");

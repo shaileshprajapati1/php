@@ -43,9 +43,11 @@ class controller extends Model
 
                     break;
                 case '/admin':
+                    if(!isset($_SESSION['userdata'])){
+                     header("location:");
+                    }
                     include_once("Views/admin/adminheader.php");
                     include_once("Views/admin/adminhomepage.php");
-                   
 
                     break;
                 case '/delete':
@@ -53,6 +55,11 @@ class controller extends Model
                     if($DeleteRes['Code'] == 1){
                        header("location:viewalluser");                        
                     }
+                
+
+                    break;
+                case '/logout':
+                    include_once("Views/admin/logout.php");
                 
 
                     break;
