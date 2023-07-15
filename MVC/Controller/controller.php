@@ -217,21 +217,24 @@ class controller extends Model
                         // echo "<pre>";
                         // print_r($_POST);
                         // echo "<pre>";
+                        $HobbyData = implode(",",$_REQUEST['hobby']);
                         array_pop($_POST);
                         array_pop($_POST);
                         unset($_POST['fname']);
                         unset($_POST['lname']);
+                        unset($_POST['hobby'],$_POST['re-password']);
+                        
 
                         // echo "<pre>";
                         // print_r($_POST);
                         // echo "<pre>";
-                        $data = array_merge($_POST, array("fullname" => $fullname, "profile_pic" => $fileName, "password" => md5($_POST['password'])));
+                        $data = array_merge($_POST, array("fullname" => $fullname,"hobby"=>$HobbyData, "profile_pic" => $filename, "password" => md5($_POST['password'])));
                         unset($_POST['password']);
                         // echo "<pre>";
                         // print_r($data);
                         // echo "<pre>";
 
-
+// exit;
                         $Insertres = $this->Insert("users", $data);
                         // print_r($Insertres);
                         if ($Insertres['Data']) {

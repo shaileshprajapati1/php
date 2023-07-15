@@ -68,7 +68,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group first">
                                         <label for="Phone">Phone Number</label>
-                                        <input type="text" class="form-control" placeholder="Enter PhoneNo" name="phone" id="phone" required>
+                                        <input type="text" class="form-control" minlength="10" maxlength="10" placeholder="Enter PhoneNo" name="phone" id="phone" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -83,14 +83,14 @@
 
                                     <div class="form-group last mb-3">
                                         <label for="password">Password</label>
-                                        <input type="password" class="form-control" placeholder="Your Password" name="password" id="password" required>
+                                        <input type="password" class="form-control" minlength="8" maxlength="8" placeholder="Your Password" name="password" id="password" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
 
                                     <div class="form-group last mb-3">
                                         <label for="re-password">Re-type Password</label>
-                                        <input type="password" class="form-control" placeholder="Your Password" name="re-password" id="re-password" required>
+                                        <input type="password" class="form-control" minlength="8" maxlength="8" placeholder="Your Password" name="re-password" id="re-password" required>
                                     </div>
                                 </div>
                             </div>
@@ -110,6 +110,7 @@
                                 <label for="password">profile_pic</label>
                                 <input type="file" class="form-control" name="profile_pic" id="">
                             </div>
+                            
 
 
                             <div class="d-flex mb-5 mt-4 align-items-center">
