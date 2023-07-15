@@ -1,3 +1,23 @@
+<?php
+
+// echo "<pre>";
+// print_r($_SESSION);
+// echo "</pre>";
+
+if(!isset($_SESSION['userdata'])){
+    header("location:login");
+}
+if(isset($_SESSION['userdata'])){
+    if($_SESSION['userdata']->role_id == 2){
+        header("location:logout");
+    }
+}
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 

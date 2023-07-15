@@ -33,7 +33,7 @@
 
                         <h3 class="mb-5 text-center">Register</h3>
                         <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -->
-                        <form action="#" method="post">
+                        <form action="#" method="post" enctype="multipart/form-data">
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -57,61 +57,77 @@
                                     </div>
                                 </div>
                                 <!-- <div class="row"> -->
-                                    <div class="col-md-12">
-                                        <div class="form-group first">
-                                            <label for="email">Email Address</label>
-                                            <input type="email" class="form-control" placeholder="Enter Email Id" name="email" id="email" required>
-                                        </div>
+                                <div class="col-md-12">
+                                    <div class="form-group first">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" class="form-control" placeholder="Enter Email Id" name="email" id="email" required>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group first">
-                                            <label for="Phone">Phone Number</label>
-                                            <input type="text" class="form-control" placeholder="Enter PhoneNo" name="phone" id="phone" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group first">
-                                            <label for="dob">DOB</label>
-                                            <input type="date" class="form-control" placeholder="01-01-0000" name="dob" id="dob" required>
-                                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group first">
+                                        <label for="Phone">Phone Number</label>
+                                        <input type="text" class="form-control" placeholder="Enter PhoneNo" name="phone" id="phone" required>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-
-                                        <div class="form-group last mb-3">
-                                            <label for="password">Password</label>
-                                            <input type="password" class="form-control" placeholder="Your Password" name="password" id="password" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-
-                                        <div class="form-group last mb-3">
-                                            <label for="re-password">Re-type Password</label>
-                                            <input type="password" class="form-control" placeholder="Your Password" name="re-password" id="re-password" required>
-                                        </div>
+                                <div class="col-md-6">
+                                    <div class="form-group first">
+                                        <label for="dob">DOB</label>
+                                        <input type="date" class="form-control" placeholder="01-01-0000" name="dob" id="dob" required>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
 
-
-                                <div class="d-flex mb-5 mt-4 align-items-center">
-                                    <div class="d-flex align-items-center">
-                                        <label class="control control--checkbox mb-0"><span class="caption">Creating an account means you're okay with our <a href="#">Terms and Conditions</a> and our <a href="#">Privacy Policy</a>.</span>
-                                            <input type="checkbox" checked="checked" />
-                                            <div class="control__indicator"></div>
-                                        </label>
+                                    <div class="form-group last mb-3">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" placeholder="Your Password" name="password" id="password" required>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
 
-                                <input type="submit" value="Register" name="register" class="btn px-5 btn-primary">
+                                    <div class="form-group last mb-3">
+                                        <label for="re-password">Re-type Password</label>
+                                        <input type="password" class="form-control" placeholder="Your Password" name="re-password" id="re-password" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="gender">Gedner</label><br>
+                                <input type="radio" name="gender" id="Male" value="Male"><label for="Male">Male</label>
+                                <input type="radio" name="gender" id="Female" value="Female"><label for="Female">Female</label>
+                            </div>
+                            <div>
+                                <label for="hobby">Hobby</label><br>
+                                <input type="checkbox" name="hobby[]" id="cricket" value="cricket"><label for="cricket">cricket</label>
+                                <input type="checkbox" name="hobby[]" id="music" value="music"><label for="music">music</label>
+                                <input type="checkbox" name="hobby[]" id="reading" value="reading"><label for="reading">reading</label>
+                               
+                            </div>
+                            <div>
+                                <label for="password">profile_pic</label>
+                                <input type="file" class="form-control" name="profile_pic" id="">
+                            </div>
 
-                                
+
+                            <div class="d-flex mb-5 mt-4 align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <label class="control control--checkbox mb-0"><span class="caption">Creating an account means you're okay with our <a href="#">Terms and Conditions</a> and our <a href="#">Privacy Policy</a>.</span>
+                                        <input type="checkbox" checked="checked" />
+                                        <div class="control__indicator"></div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <input type="submit" value="Register" name="register" class="btn px-5 btn-primary">
+
+
 
                         </form>
-                        
-                     
+
+
                     </div>
                 </div>
             </div>

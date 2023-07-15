@@ -127,11 +127,11 @@ class Model
         }
         return $ResponceData;
     }
-    function Update($tbl, $data, $where)
+    function Update($tbl, $clm, $where)
     {
         $SQL = "UPDATE $tbl SET";
-        foreach ($data as $dkey => $dvalue) {
-            $SQL .= " $dkey = '$dvalue',";
+        foreach ($clm as $ckey => $cvalue) {
+            $SQL .= " $ckey = '$cvalue' ,";
         }
         $SQL = rtrim($SQL, ",");
         $SQL .= " WHERE ";

@@ -18,7 +18,7 @@ class controller extends Model
         // print_r($StrtoArray);
         // echo "<br>";
         $this->baseURL = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] .
-            "/" . $StrtoArray[1] . "/" . $StrtoArray[2] . "/" . $StrtoArray[3] ."/" . "Assest" . "/";
+            "/" . $StrtoArray[1] . "/" . $StrtoArray[2] . "/" . $StrtoArray[3] . "/" . "Assest" . "/";
         // echo $this->baseURL;
 
         if (isset($_SERVER['PATH_INFO'])) {
@@ -43,63 +43,64 @@ class controller extends Model
                     include_once("Views/admin/dashboard.php");
                     include_once("Views/admin/footer.php");
                     break;
-                
+
                 case '/eidituser':
-                    
-                    $UpdateByIdRes = $this->select("users",array("id"=>$_GET['userid'],"role_id"=>"2"));
+
+                    $UpdateByIdRes = $this->select("users", array("id" => $_GET['userid'], "role_id" => "2"));
                     $CityData = $this->select("city");
 
                     // echo "<pre>";
                     // print_r($UpdateByIdRes['Data'][0]->cityid );
                     // echo "</pre>";
-                    
+
                     include_once("Views/admin/header.php");
                     include_once("Views/admin/updateuser.php");
                     include_once("Views/admin/footer.php");
-                    if(isset($_POST['Update'])){
-                        $HobbyData = implode(",",$_POST['hobby']);
+                    if (isset($_POST['Update'])) {
+                        $HobbyData = implode(",", $_POST['hobby']);
                         // echo $HobbyData;
-                        array_pop($_POST);
-                        array_pop($_POST);
                         // echo "<pre>"; 
                         // print_r($_POST);
                         // echo "<pre>";
-                        $Data = array_merge($_POST,array("hobby"=>$HobbyData));
-                    $UpadateRes = $this->update("users",$Data,array("id"=>$_GET['userid']));
-                    // echo "<pre>"; 
-                    // print_r($UpadateRes);
-                    // echo "<pre>";
-                    if($UpadateRes['Code'] == 1 ){
-                        header("location:viewallusers");
-                        
-                    }
-                       
+                        array_pop($_POST);
+                        array_pop($_POST);
+                        $Data = array_merge($_POST, array("hobby" => $HobbyData));
+                        // echo "<pre>"; 
+                        // print_r($Data);
+                        // echo "<pre>";
+
+                        $UpadateRes = $this->update("users", $Data, array("id" => $_GET['userid']));
+                        // echo "<pre>"; 
+                        // print_r($UpadateRes);
+                        // echo "<pre>";
+                        if ($UpadateRes['Code'] == 1) {
+                            header("location:viewallusers");
+                        }
                     }
 
-                    
+
                     break;
                 case '/deleteuser':
-                    $DeleteRes = $this->Delete("users",array("id"=>$_GET['userid']));
-                    if($DeleteRes['Code'] == 1){
+                    $DeleteRes = $this->Delete("users", array("id" => $_GET['userid']));
+                    if ($DeleteRes['Code'] == 1) {
                         header("location:viewallusers");
                     }
                     break;
                 case '/logout':
-                    session_start();
                     session_destroy();
                     header("location:login");
                     break;
                 case '/viewallusers':
-                    $Allusers = $this->select("users",array("role_id"=>"2"));
+                    $Allusers = $this->select("users", array("role_id" => "2"));
                     // echo "<pre>";
                     // print_r($Allusers);
                     // exit;
                     include_once("Views/admin/header.php");
                     include_once("Views/admin/viewallusers.php");
                     include_once("Views/admin/footer.php");
-                    if(isset($_POST['Adduser'])){
+                    if (isset($_POST['Adduser'])) {
                         $fullname = $_POST['fname'] . " " . $_POST['lname'];
-                        
+
                         // echo "<pre>";
                         // print_r($_POST);
                         // echo "<pre>";
@@ -112,9 +113,10 @@ class controller extends Model
                         // print_r($_POST);
                         // echo "<pre>";
                         $data = array_merge($_POST, array("fullname" => $fullname));
-                        // echo "<pre>";
-                        // print_r($data);
-                        // echo "<pre>";
+
+                        echo "<pre>";
+                        print_r($data);
+                        echo "<pre>";
 
 
                         $Insertres = $this->Insert("users", $data);
@@ -159,6 +161,57 @@ class controller extends Model
                     // include_once("Views/header.php");
                     include_once("Views/register.php");
                     if (isset($_POST['register'])) {
+                        echo "<pre>";
+                        print_r($_FILES);
+                        echo "</pre>";
+                        $target_dir = "uploads/";
+                        $filename = $target_dir . ($_FILES["profile_pic"]["name"]);
+                        $uploadOk = 1;
+                        $imageFileType = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+                        $check = getimagesize($_FILES["profile_pic"]["tmp_name"]);
+                        if ($check !== false) {
+                            echo "File is an image - " . $check["mime"] . ".";
+                            $uploadOk = 1;
+                        } else {
+                            echo "File is not an image.";
+                            $uploadOk = 0;
+                        }
+
+
+                        // Check if file already exists
+                        if (file_exists($filename)) {
+                            echo "Sorry, file already exists.";
+                            $uploadOk = 0;
+                        }
+
+                        // Check file size
+                        if ($_FILES["profile_pic"]["size"] > 500000) {
+                            echo "Sorry, your file is too large.";
+                            $uploadOk = 0;
+                        }
+
+                        // Allow certain file formats
+                        if (
+                            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                            && $imageFileType != "gif"
+                        ) {
+                            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                            $uploadOk = 0;
+                        }
+
+                        // Check if $uploadOk is set to 0 by an error
+                        if ($uploadOk == 0) {
+                            echo "Sorry, your file was not uploaded.";
+                            // if everything is ok, try to upload file
+                        } else {
+                            if ($UploadefileRes = move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $filename)) {
+                                echo "The file " . htmlspecialchars($_FILES["profile_pic"]["name"]) . " has been uploaded.";
+                            } else {
+                                echo "Sorry, there was an error uploading your file.";
+                            }
+                        }
+
+                        // exit;
                         $fullname = $_POST['fname'] . " " . $_POST['lname'];
                         echo $fullname;
                         // echo "<pre>";
@@ -172,7 +225,8 @@ class controller extends Model
                         // echo "<pre>";
                         // print_r($_POST);
                         // echo "<pre>";
-                        $data = array_merge($_POST, array("fullname" => $fullname));
+                        $data = array_merge($_POST, array("fullname" => $fullname, "profile_pic" => $fileName, "password" => md5($_POST['password'])));
+                        unset($_POST['password']);
                         // echo "<pre>";
                         // print_r($data);
                         // echo "<pre>";
