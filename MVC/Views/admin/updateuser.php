@@ -6,7 +6,7 @@
                     <h1 class="mt-4"><i class="fa-solid fa-users"></i>Update User</h1>
                 </div>
 
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <div class="row my-2">
                         <div class="col-6 offset-1 ">
                             <label for="username">Username</label>
@@ -53,6 +53,16 @@
                                                                 }; ?> id="Female" value="Female"><label for="Female">Female</label>
                         </div>
                     </div>
+                    <div class="row my-2">
+                        <div class="col-6 offset-1  ">
+                            <label for="phone">Profile_pic</label>
+                            <img src="uploads/<?php echo $UpdateByIdRes['Data'][0]->profile_pic; ?>" width="100px" height="100px" alt="">
+                            <input type="file" name="profile_pic" id="profile_pic">
+                            <input type="hidden" name="old_profile_pic" id="old_profile_pic" value="<?php echo $UpdateByIdRes['Data'][0]->profile_pic; ?>">
+                        </div>
+                    </div>
+
+
                     <div class="row my-2">
                         <div class="col-6 offset-1 ">
                             <label for="hobby">Hobby</label><br>

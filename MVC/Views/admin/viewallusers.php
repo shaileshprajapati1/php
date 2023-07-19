@@ -86,6 +86,7 @@
                                 <th>email </th>
                                 <th>phone</th>
                                 <th>dob</th>
+                                <th>Images</th>
                                 <th>action</th>
                             </tr>
                         </thead>
@@ -97,6 +98,7 @@
                                 <th>email </th>
                                 <th>phone</th>
                                 <th>dob</th>
+                                <th>Images</th>
                                 <th>action</th>
                             </tr>
                         </tfoot>
@@ -112,6 +114,8 @@
                                     <td><?php echo $value->email; ?></td>
                                     <td><?php echo $value->phone; ?></td>
                                     <td><?php echo $value->dob; ?></td>
+                                    <td>
+                                       <img src="uploads/<?php echo $value->profile_pic; ?>" width="100px" height="100px" alt=""> </td>
 
                                     <td>
                                         <?php if($value->role_id == 2) { ?>
