@@ -50,26 +50,53 @@ class Controller extends Model
 
                     break;
                 case '/deleteuser':
-                    $DeleteRes = $this->Delete("users",array("id"=>$_GET['userid']));
-                    if($DeleteRes['code']==1){
+                    $DeleteRes = $this->Delete("users", array("id" => $_GET['userid']));
+                    if ($DeleteRes['code'] == 1) {
                         header("location:viewalluser");
                     }
 
                     break;
                 case '/logout':
-                  
-                   session_destroy();
-                   header("location:login");
+
                     break;
                 case '/edituser':
-                    $viewuser = $this->select("users",array("id"=>$_GET['userid'],"role_id"=>"2"));
-                    $CityData = $this->select("cities");
-                //    echo "<pre>";
-                //    print_r($CityData);
-                //    echo "</pre>";
-                //    exit;
+                    $viewuser = $this->select(
+                        "users",
+                        array("id" => $_GET['userid'], "role_id" => "2"),
+                        array(
+                            "cities" => "users.city=cities.cid",
+                            "states" => "cities.state_id=states.sid",
+                            "country" => "states.country_id=country.country_id"
+                        )
+                    );
+                        $CityData = $this->select("cities");
+                        $StatesData = $this->select("states");
+                        $CountryData = $this->select("country");
+                    // echo "<pre>";
+                    // print_r($viewuser);
+                    // echo "</pre>";
+                    // exit;
                     include_once("Views/admin/edituser.php");
-                
+                    if(isset($_POST['update'])){
+                        $HobbyData = implode(",",$_POST['hobby']);
+                        array_pop($_POST);
+                        unset($_POST['hobby']);
+                        $Data = array_merge($_POST,array("hobby"=>$HobbyData));
+                        // echo "<pre>";
+                        // print_r($Data);
+                        // echo "</pre>";
+                        $UpdateRes = $this->Update("users",$Data,array("id"=>$_GET['userid'],"role_id"=>2));
+                        echo "<pre>";
+                        print_r($UpdateRes);
+                        echo "</pre>";
+                        if($UpdateRes['code'] ==1){
+                            header("location:viewalluser");
+                        }
+
+                    }
+
+            
+
                     break;
                 case '/adduser':
                     include_once("Views/admin/adduser.php");
@@ -94,7 +121,7 @@ class Controller extends Model
                     break;
                 case '/viewalluser':
 
-                    $Alluser = $this->select("users",array("role_id"=>"2"));
+                    $Alluser = $this->select("users", array("role_id" => "2"));
                     // echo "<pre>";
                     // print_r($Alluser);
 

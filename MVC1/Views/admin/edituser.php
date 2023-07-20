@@ -199,7 +199,7 @@
             </div>
             <div class="input__box">
                 <span class="details">Phone Number</span>
-                <input type="tel" placeholder="Enter Phonenumber" name="phone" id="phone" value="<?php echo $viewuser['data'][0]->phone; ?>" required>
+                <input type="tel" maxlength="10" minlength="10" placeholder="Enter Phonenumber" name="phone" id="phone" value="<?php echo $viewuser['data'][0]->phone; ?>" required>
             </div>
 
             <div class="input__box">
@@ -271,17 +271,45 @@
             </div>
         </div>
         <div class="col-md-4">
-        <div class="gender__title">City</div>
+            <div class="gender__title">City</div>
             <select id="inputState" class="form-select">
                 <option selected>Select city</option>
                 <?php foreach ($CityData['data'] as $key => $value) { ?>
-                   
-               <option <?php if(isset($viewuser)){
-                if($viewuser['data'][0]->city == $value->cityid){
-                    echo "selected";
-                }
-               } ?> value="<?php echo $value->cityid ?>" ><?php echo $value->city ?></option>
-        <?php  }  ?>
+
+                    <option <?php if (isset($viewuser)) {
+                                if ($viewuser['data'][0]->city == $value->cid) {
+                                    echo "selected";
+                                }
+                            } ?> value="<?php echo $value->cid ?>"><?php echo $value->name ?></option>
+                <?php  }  ?>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <div class="gender__title">States</div>
+            <select id="inputState" class="form-select">
+                <option selected>Select city</option>
+                <?php foreach ($StatesData['data'] as $key => $value) { ?>
+
+                    <option <?php if (isset($viewuser)) {
+                                if ($viewuser['data'][0]->state_id == $value->sid) {
+                                    echo "selected";
+                                }
+                            } ?> value="<?php echo $value->sid ?>"><?php echo $value->name ?></option>
+                <?php  }  ?>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <div class="gender__title">Country</div>
+            <select id="inputState" class="form-select">
+                <option selected>Select city</option>
+                <?php foreach ($CountryData['data'] as $key => $value) { ?>
+
+                    <option <?php if (isset($viewuser)) {
+                                if ($viewuser['data'][0]->country_id == $value->country_id) {
+                                    echo "selected";
+                                }
+                            } ?> value="<?php echo $value->country_id ?>"><?php echo $value->country_name ?></option>
+                <?php  }  ?>
             </select>
         </div>
 

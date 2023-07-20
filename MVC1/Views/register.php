@@ -202,6 +202,10 @@ form .button input:hover {
                 <span class="details">Confirm Password</span>
                 <input type="password" placeholder="********" name="cpassword" id="cpassword" required>
             </div>
+            <div class="input__box">
+                <span class="details">Profile_pic</span>
+                <input type="file"  name="profile_pic" id="profile_pic" required>
+            </div>
 
         </div>
         <div class="gender__details">

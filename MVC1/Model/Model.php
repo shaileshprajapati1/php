@@ -20,7 +20,7 @@ class Model
     function Login($uname, $pass)
     {
         $SQL = " SELECT * FROM users WHERE password = '$pass' AND ( username = '$uname' OR email = '$uname'OR phone  = '$uname')";
-       echo $SQL;
+        echo $SQL;
         $SQLEx = $this->con->query($SQL);
         if ($SQLEx->num_rows > 0) {
             $FetchData = $SQLEx->fetch_object();
@@ -34,17 +34,17 @@ class Model
         }
         return $ResponceData;
     }
-    function select($tbl,$where = null, $join = null)
+    function select($tbl, $where = null, $join = null)
     {
         $SQL = " SELECT * FROM $tbl ";
         if ($join != "") {
             foreach ($join as $jkey => $jvalue) {
-                $SQL .= " JOIN $jkey ON '$jvalue'";
+                $SQL .= " JOIN $jkey ON $jvalue";
             }
         }
 
         if ($where != "") {
-            $SQL .= "WHERE";
+            $SQL .= " WHERE";
             foreach ($where as $key => $value) {
                 $SQL .= " $key = '$value' AND";
             }
@@ -94,6 +94,32 @@ class Model
     {
 
         $SQL = " DELETE FROM $tbl WHERE";
+        foreach ($where as $key => $value) {
+            $SQL .= " $key = '$value' AND";
+        }
+        $SQL = rtrim($SQL, "AND");
+        // echo $SQL;
+        $SQLEx = $this->con->query($SQL);
+        // print_r($SQLEx);
+        if ($SQLEx > 0) {
+            $ResponceData['data'] = "1";
+            $ResponceData['msg'] = "Success";
+            $ResponceData['code'] = "1";
+        } else {
+            $ResponceData['data'] = "0";
+            $ResponceData['msg'] = "Try Agian";
+            $ResponceData['code'] = "0";
+        }
+        return $ResponceData;
+    }
+    public function Update($tbl, $clm, $where)
+    {
+        $SQL = " UPDATE $tbl SET";
+        foreach ($clm as $key => $value) {
+            $SQL .= " $key = '$value' ,";
+        }
+        $SQL = rtrim($SQL, ",");
+        $SQL .= " WHERE";
         foreach ($where as $key => $value) {
             $SQL .= " $key = '$value' AND";
         }
