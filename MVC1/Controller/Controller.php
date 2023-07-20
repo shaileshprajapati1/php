@@ -57,13 +57,13 @@ class Controller extends Model
 
                     break;
                 case '/logout':
-                   session_start();
+                  
                    session_destroy();
                    header("location:login");
                     break;
                 case '/edituser':
-                   $viewuser = $this->select("users",array("id"=>$_GET['userid'],"role_id"=>"2"));
-                    $CityData = $this->select("city");
+                    $viewuser = $this->select("users",array("id"=>$_GET['userid'],"role_id"=>"2"));
+                    $CityData = $this->select("cities");
                 //    echo "<pre>";
                 //    print_r($CityData);
                 //    echo "</pre>";
@@ -110,8 +110,9 @@ class Controller extends Model
                         // echo "<pre>";
                         // print_r($loginRes);
                         // echo "<pre>";
+                        // exit;
                         if ($loginRes['code'] == 1) {
-                            $_SESSION['userdata'] == $loginRes['data'];
+                            $_SESSION['userdata'] = $loginRes['data'];
                             if ($loginRes['data']->role_id == 1) {
                                 echo " <script>
                             alert('Hello Admin');

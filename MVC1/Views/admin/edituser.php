@@ -277,7 +277,7 @@
                 <?php foreach ($CityData['data'] as $key => $value) { ?>
                    
                <option <?php if(isset($viewuser)){
-                if($viewuser['data'][0]->cityid == $value->cityid){
+                if($viewuser['data'][0]->city == $value->cityid){
                     echo "selected";
                 }
                } ?> value="<?php echo $value->cityid ?>" ><?php echo $value->city ?></option>

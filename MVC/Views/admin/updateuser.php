@@ -25,11 +25,11 @@
                             <input class="form-control" type="email" name="email" id="email" value="<?php echo $UpdateByIdRes['Data'][0]->email ?>">
                         </div>
                     </div>
-                    <div class="row my-2">
+                    <!-- <div class="row my-2">
                         <div class="col-6 offset-1  ">
                             <label for="password">password</label>
                             <input class="form-control" type="password" name="password" <?php echo isset($UpdateByIdRes) ? "disabled" : ""; ?> id="password" value="<?php echo $UpdateByIdRes['Data'][0]->password ?? ""; ?>">
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row my-2">
                         <div class="col-6 offset-1  ">
@@ -83,10 +83,46 @@
                                     <?php foreach ($CityData['Data'] as $key => $value) {  ?>
 
                                         <option <?php if (isset($UpdateByIdRes)) {
-                                                    if ($UpdateByIdRes['Data'][0]->cityid == $value->cityid) {
+                                                    if ($UpdateByIdRes['Data'][0]->city == $value->cid) {
                                                         echo "selected";
                                                     }
-                                                }; ?> value="<?php echo $value->cityid; ?>"><?php echo $value->city; ?></option>
+                                                }; ?> value="<?php echo $value->cid; ?>"><?php echo $value->name ; ?></option>
+                                    <?php   } ?>
+                                </select>
+
+
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-6 offset-1 ">
+                                <label for="city" class="form-label">states</label>
+                                <select id="city" class="form-select">
+                                    <option selected>Select city</option>
+                                    <?php foreach ($StatesData['Data'] as $key => $value) {  ?>
+
+                                        <option <?php if (isset($UpdateByIdRes)) {
+                                                    if ($UpdateByIdRes['Data'][0]->state_id == $value->sid) {
+                                                        echo "selected";
+                                                    }
+                                                }; ?> value="<?php echo $value->sid; ?>"><?php echo $value->name ; ?></option>
+                                    <?php   } ?>
+                                </select>
+
+
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-6 offset-1 ">
+                                <label for="city" class="form-label">country</label>
+                                <select id="city" class="form-select">
+                                    <option selected>Select city</option>
+                                    <?php foreach ($CountryData['Data'] as $key => $value) {  ?>
+
+                                        <option <?php if (isset($UpdateByIdRes)) {
+                                                    if ($UpdateByIdRes['Data'][0]->country_id == $value->country_id) {
+                                                        echo "selected";
+                                                    }
+                                                }; ?> value="<?php echo $value->country_id ; ?>"><?php echo $value->country_name ; ?></option>
                                     <?php   } ?>
                                 </select>
 

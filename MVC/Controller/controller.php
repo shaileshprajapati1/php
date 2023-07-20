@@ -46,13 +46,18 @@ class controller extends Model
 
                 case '/eidituser':
 
-                    $UpdateByIdRes = $this->select("users", array("id" => $_GET['userid'], "role_id" => "2"));
-                    $CityData = $this->select("city");
+                    $UpdateByIdRes = $this->select("users", array("id" => $_GET['userid'], "role_id" => "2"), array("cities" => "users.city = cities.cid ", "states" => "cities.state_id=states.sid", "country" => "states.country_id=country.country_id")); //,array("cities"=>"users.city=cities.cid","states"=>"cities.state_id=states.sid","country"=>"states.country_id=country.id")
+                    $CityData = $this->select("cities");
+                    $StatesData = $this->select("states");
+                    $CountryData = $this->select("country");
 
                     // echo "<pre>";
-                    // print_r($UpdateByIdRes['Data'][0]->cityid );
+                    // print_r($UpdateByIdRes);
                     // echo "</pre>";
-
+                    // echo "<pre>";
+                    // print_r($CityData);
+                    // echo "</pre>";
+                    // exit;
                     include_once("Views/admin/header.php");
                     include_once("Views/admin/updateuser.php");
                     include_once("Views/admin/footer.php");
@@ -60,6 +65,7 @@ class controller extends Model
                         $filename = $_FILES["profile_pic"]["name"];
                         $Uploadfile = "uploads/" . $filename;
                         $uploadOk = 1;
+                        $Error = 0;
                         $imageFileType = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
                         // $check = getimagesize($_FILES["profile_pic"]["tmp_name"]);
                         // if ($check !== false) {
@@ -71,44 +77,47 @@ class controller extends Model
                         //     $uploadOk = 0;
                         // }
 
-
-                        // Check if file already exists
-                        if (file_exists($filename)) {
-                            echo "Sorry, file already exists.";
-                            $uploadOk = 0;
-                        }
-
-                        // Check file size
-                        if ($_FILES["profile_pic"]["size"] > 1000) {
-                            echo "Sorry, your file is too large.";
-                            $uploadOk = 0;
-                        }
-
-                        // Allow certain file formats
-                        if (
-                            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                            && $imageFileType != "gif"
-                        ) {
-                            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-                            $uploadOk = 0;
-                        }
-
-                        // Check if $uploadOk is set to 0 by an error
-                        if ($uploadOk == 0) {
-                            echo "Sorry, your file was not uploaded.";
-                            // if everything is ok, try to upload file
-                        } else {
-                            if ($UploadefileRes = move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $Uploadfile)) {
-                                echo "The file " . htmlspecialchars($_FILES["profile_pic"]["name"]) . " has been uploaded.";
-                            } else {
-                                
-                                
-                                echo "Sorry, there was an error uploading your file.";
+                    
+                            // Check if file already exists
+                            if (file_exists($filename)) {
+                                echo "Sorry, file already exists.";
+                                $uploadOk = 0;
                             }
-                        } 
-                     
 
- 
+                            // Check file size
+                            if ($_FILES["profile_pic"]["size"] > 1000) {
+                                echo "Sorry, your file is too large.";
+                                $uploadOk = 0;
+                            }
+
+                            // Allow certain file formats
+                            if (
+                                $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                                && $imageFileType != "gif"
+                            ) {
+                                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                                $uploadOk = 0;
+                            }
+
+                            // Check if $uploadOk is set to 0 by an error
+                            if ($uploadOk == 0) {
+                                echo "Sorry, your file was not uploaded.";
+                                // if everything is ok, try to upload file
+                            } else {
+                                if ($UploadefileRes = move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $Uploadfile)) {
+                                    echo "The file " . htmlspecialchars($_FILES["profile_pic"]["name"]) . " has been uploaded.";
+                                } else {
+
+
+                                    echo "Sorry, there was an error uploading your file.";
+                                }
+                            }
+                        
+
+
+
+
+
                         $HobbyData = implode(",", $_POST['hobby']);
                         // echo $HobbyData;
                         // echo "<pre>"; 
@@ -123,7 +132,7 @@ class controller extends Model
                         echo "<pre>";
 
                         $UpadateRes = $this->update("users", $Data, array("id" => $_GET['userid']));
-                        echo "<pre>"; 
+                        echo "<pre>";
                         print_r($UpadateRes);
                         echo "<pre>";
                         if ($UpadateRes['Code'] == 1) {
@@ -144,7 +153,7 @@ class controller extends Model
                     header("location:login");
                     break;
                 case '/viewallusers':
-                    $Allusers = $this->select("users", array("role_id" => "2"));
+                    $Allusers = $this->select("users", array("role_id" => "2"), array("cities" => "users.city = cities.cid ", "states" => "cities.state_id=states.sid", "country" => "states.country_id=country.country_id"));
                     // echo "<pre>";
                     // print_r($Allusers);
                     // exit;

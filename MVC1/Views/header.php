@@ -2,6 +2,11 @@
 Author: W3layouts
 Author URL: http://w3layouts.com
 -->
+
+
+
+
+
 <!doctype html>
 <html lang="zxx">
 
@@ -9,7 +14,7 @@ Author URL: http://w3layouts.com
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Dentile a Medical Category 
+	<title>Dentile a Medical Category
 	</title>
 	<!-- Template CSS -->
 	<link rel="stylesheet" href="<?php echo $this->baseURL ?>assets/css/style-starter.css">
@@ -29,8 +34,7 @@ Author URL: http://w3layouts.com
 							<li class="top_li"><span class="fa fa-map-o"></span> <a href="#">Dolor sit, #PTH, 55080,
 									4300 Honey Street</a>
 							</li>
-							<li class="top_li mr-lg-0"><span class="fa fa-envelope-o"></span> <a
-									href="mailto:mail@company.com" class="mail"> mail@company.com</a>
+							<li class="top_li mr-lg-0"><span class="fa fa-envelope-o"></span> <a href="mailto:mail@company.com" class="mail"> mail@company.com</a>
 
 							</li>
 						</ul>
@@ -55,9 +59,7 @@ Author URL: http://w3layouts.com
 						<a class="navbar-brand" href="#index">
 							<img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
 						</a> -->
-				<button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-					data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-					aria-label="Toggle navigation">
+				<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="fa icon-expand fa-bars"></span>
 					<span class="fa icon-close fa-times"></span>
 				</button>
@@ -73,10 +75,11 @@ Author URL: http://w3layouts.com
 						<li class="nav-item">
 							<a class="nav-link" href="services">Services</a>
 						</li>
-						
+
 						<li class="nav-item">
 							<a class="nav-link" href="contact">Contact</a>
 						</li>
+
 						<li class="nav-item">
 							<a class="nav-link" href="login">Login</a>
 						</li>
@@ -92,10 +95,8 @@ Author URL: http://w3layouts.com
 							<div class="popup">
 
 								<form action="#" method="post" class="search-box">
-									<input type="search" placeholder="Saerch your Keyword" name="search"
-										required="required" autofocus="">
-									<button type="submit" class="btn"><span class="fa fa-search"
-											aria-hidden="true"></span></button>
+									<input type="search" placeholder="Saerch your Keyword" name="search" required="required" autofocus="">
+									<button type="submit" class="btn"><span class="fa fa-search" aria-hidden="true"></span></button>
 								</form>
 
 							</div>
@@ -113,4 +114,4 @@ Author URL: http://w3layouts.com
 		</nav>
 		<!--//nav-->
 	</header>
-	<!-- //w3l-header --> 
+	<!-- //w3l-header -->
