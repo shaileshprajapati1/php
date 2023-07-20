@@ -58,6 +58,8 @@ class Controller extends Model
                     break;
                 case '/logout':
 
+                    session_destroy();
+                    header("location:login");
                     break;
                 case '/edituser':
                     $viewuser = $this->select(
