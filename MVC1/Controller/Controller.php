@@ -62,42 +62,74 @@ class Controller extends Model
                     header("location:login");
                     break;
                 case '/edituser':
-                    $viewuser = $this->select(
-                        "users",
-                        array("id" => $_GET['userid'], "role_id" => "2"),
-                        array(
-                            "cities" => "users.city=cities.cid",
-                            "states" => "cities.state_id=states.sid",
-                            "country" => "states.country_id=country.country_id"
-                        )
-                    );
-                        $CityData = $this->select("cities");
-                        $StatesData = $this->select("states");
-                        $CountryData = $this->select("country");
+                    $viewuser = $this->select("users", array("id" => $_GET['userid'], "role_id" => "2"), array("cities" => "users.city = cities.cid ", "states" => "cities.state_id=states.sid", "country" => "states.country_id=country.country_id"));
+
+
+
+                    $CityData = $this->select("cities");
+                    $StatesData = $this->select("states");
+                    $CountryData = $this->select("country");
                     // echo "<pre>";
                     // print_r($viewuser);
                     // echo "</pre>";
                     // exit;
                     include_once("Views/admin/edituser.php");
-                    if(isset($_POST['update'])){
-                        $HobbyData = implode(",",$_POST['hobby']);
+                    if (isset($_POST['update'])) {
+                        $HobbyData = implode(",", $_POST['hobby']);
+
+
                         array_pop($_POST);
                         unset($_POST['hobby']);
-                        $Data = array_merge($_POST,array("hobby"=>$HobbyData));
+                        // echo "<pre>";
+                        // print_r($_FILES); 
+                        // echo "</pre>";
+                        $errors = array();
+                        $file_name = $_FILES['profile_pic']['name'];
+                        $file_size = $_FILES['profile_pic']['size'];
+                        $file_tmp = $_FILES['profile_pic']['tmp_name'];
+                        $file_type = $_FILES['profile_pic']['type'];
+                        $exploded = explode('.', $_FILES['profile_pic']['name']);
+                        $file_ext = strtolower(end($exploded));
+                       
+
+                        $extensions = array("jpeg", "jpg", "png");
+
+                        if ($_FILES['profile_pic']['error'] == 0) {
+                            if (in_array($file_ext, $extensions) === false) {
+                                $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
+                            }
+
+                            if ($file_size > 2097152) {
+                                $errors[] = 'File size must be excately 2 MB';
+                            }
+
+                            if (empty($errors) == true) {
+                                move_uploaded_file($file_tmp, "uploads/" . $file_name);
+                                echo "Success";
+                            } else {
+                                print_r($errors);
+                            }
+                        } else {
+                            $file_name = $_REQUEST['old_profile_pic'];
+                        }
+
+                        unset($_POST['old_profile_pic']);
+                        // unset($_REQUEST['profile_pic']);
+                        $Data = array_merge($_POST, array("hobby" => $HobbyData, "profile_pic" => $file_name));
                         // echo "<pre>";
                         // print_r($Data);
                         // echo "</pre>";
-                        $UpdateRes = $this->Update("users",$Data,array("id"=>$_GET['userid'],"role_id"=>2));
-                        echo "<pre>";
-                        print_r($UpdateRes);
-                        echo "</pre>";
-                        if($UpdateRes['code'] ==1){
+                        // exit;
+                        $UpdateRes = $this->Update("users", $Data, array("id" => $_GET['userid'], "role_id" => 2));
+                        // echo "<pre>";
+                        // print_r($UpdateRes);
+                        // echo "</pre>";
+                        if ($UpdateRes['code'] == 1) {
                             header("location:viewalluser");
                         }
-
                     }
 
-            
+
 
                     break;
                 case '/adduser':
@@ -164,11 +196,47 @@ class Controller extends Model
                 case '/register':
                     include_once("Views/register.php");
                     if (isset($_POST['register'])) {
-
+                        $HobbyData = implode(",", $_POST['hobby']);
                         array_pop($_POST);
                         unset($_POST['cpassword']);
-                        print_r($_POST);
-                        $data = $_POST;
+                        // echo "<pre>";
+                        // print_r($_FILES);
+                        // echo "</pre>";
+                        $errors = array();
+                        $file_name = $_FILES['profile_pic']['name'];
+                        $file_size = $_FILES['profile_pic']['size'];
+                        $file_tmp = $_FILES['profile_pic']['tmp_name'];
+                        $file_type = $_FILES['profile_pic']['type'];
+                        $exploded = explode('.', $_FILES['profile_pic']['name']);
+                        $file_ext = strtolower(end($exploded));
+                        // $file_ext = strtolower(end(explode('.', $_FILES['profile_pic']['name'])));
+
+                        $extensions = array("jpeg", "jpg", "png");
+
+                        if ($_FILES['profile_pic']['error'] == 0) {
+                            if (in_array($file_ext, $extensions) === false) {
+                                $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
+                            }
+
+                            if ($file_size > 2097152) {
+                                $errors[] = 'File size must be excately 2 MB';
+                            }
+
+                            if (empty($errors) == true) {
+                                move_uploaded_file($file_tmp, "uploads/" . $file_name);
+                                echo "Success";
+                            } else {
+                                print_r($errors);
+                            }
+                        }
+
+
+
+                        $data = array_merge($_POST, array("hobby" => $HobbyData, "profile_pic" => $file_name));
+                        // echo "<pre>";
+                        // print_r($data);
+                        // echo "</pre>";
+                        // exit;
                         $InsertRes = $this->Insert("users", $data);
                         if ($InsertRes['data'] == 1) {
                             echo " <script>

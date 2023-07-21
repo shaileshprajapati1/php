@@ -19,7 +19,7 @@
 
         body {
             display: flex;
-            height: 100vh;
+            height: 137vh;
             justify-content: center;
             /*center vertically */
             align-items: center;
@@ -183,7 +183,7 @@
 <div class="container">
     <!-- <a href="home">Home</a> -->
     <div class="title">User Form </div>
-    <form action="#" method="post">
+    <form action="#" method="post" enctype="multipart/form-data">
         <div class="user__details">
             <div class="input__box">
                 <span class="details">Full Name</span>
@@ -211,6 +211,12 @@
             <div class="input__box">
                 <span class="details">BirthDay</span>
                 <input type="date" placeholder="Enter Phonenumber" name="dob" id="dob" value="<?php echo $viewuser['data'][0]->dob; ?>" required>
+            </div>
+            <div class="input__box">
+                <span class="details">Profile_pic</span>
+                <img src="uploads/<?php echo $viewuser['data'][0]->profile_pic; ?>" alt="" width="100px">
+                <input type="file" name="profile_pic" id="profile_pic" >
+                <input type="hidden" name="old_profile_pic" id="old_profile_pic" value="<?php echo $viewuser['data'][0]->profile_pic; ?>" >
             </div>
 
 

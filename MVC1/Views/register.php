@@ -176,7 +176,7 @@ form .button input:hover {
 <div class="container">
 <a href="home">Home</a>
     <div class="title">Registration</div>
-    <form action="#" method="post">
+    <form action="#" method="post" enctype="multipart/form-data">
         <div class="user__details">
             <div class="input__box" >
                 <span class="details">Full Name</span>
@@ -196,7 +196,7 @@ form .button input:hover {
             </div>
             <div class="input__box">
                 <span class="details">Password</span>
-                <input type="password" placeholder="********" name="password" id="password" required>
+                <input type="password" minlength="3" maxlength="8" placeholder="********" name="password" id="password" required>
             </div>
             <div class="input__box">
                 <span class="details">Confirm Password</span>
@@ -205,6 +205,13 @@ form .button input:hover {
             <div class="input__box">
                 <span class="details">Profile_pic</span>
                 <input type="file"  name="profile_pic" id="profile_pic" required>
+            </div>
+            <div class="gender__details">
+                <span class="category">Hobby</span>
+                <input type="checkbox"  name="hobby[]" id="cricket" value="cricket"><label for="cricket">Cricket</label>
+                <input type="checkbox"  name="hobby[]" id="music" value="music"><label for="music">Music</label>
+                <input type="checkbox"  name="hobby[]" id="reading" value="reading"><label for="reading">Reading</label>
+                <input type="checkbox"  name="hobby[]" id="carrom" value="carrom"><label for="carrom">Carrom</label>
             </div>
 
         </div>

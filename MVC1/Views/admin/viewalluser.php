@@ -63,9 +63,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <th>FULLNAME</th>
                                 <th>EMAIL</th>
                                 <th>PHONE</th>
-                                <th>DOB</th>
+                                <!-- <th>DOB</th> -->
                                 <th>GENDER</th>
                                 <th>HOBBY</th>
+                                <th>IMAGES</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
@@ -83,9 +84,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <td><?php echo $value->fullname; ?></td>
                                     <td><?php echo $value->email; ?></td>
                                     <td><?php echo $value->phone; ?></td>
-                                    <td><?php echo $value->dob; ?></td>
+                                    <!-- <td><?php echo $value->dob; ?></td> -->
                                     <td><?php echo $value->gender; ?></td>
                                     <td><?php echo $value->hobby; ?></td>
+                                    <td>
+                                        <img src="uploads/<?php echo $value->profile_pic; ?>" alt="" width="100px">
+                                        </td>
                                     <td>
                                         <!-- <?php echo $value->id; ?> -->
                                         <a href="edituser?userid=<?php echo $value->id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>

@@ -46,7 +46,7 @@ class controller extends Model
 
                 case '/eidituser':
 
-                    $UpdateByIdRes = $this->select("users", array("id" => $_GET['userid'], "role_id" => "2"), array("cities" => "users.city = cities.cid ", "states" => "cities.state_id=states.sid", "country" => "states.country_id=country.country_id")); //,array("cities"=>"users.city=cities.cid","states"=>"cities.state_id=states.sid","country"=>"states.country_id=country.id")
+                    $UpdateByIdRes = $this->select("users", array("id" => $_GET['userid'], "role_id" => "2"),array("cities" => "users.city = cities.cid ", "states" => "cities.state_id=states.sid", "country" => "states.country_id=country.country_id")); //,array("cities"=>"users.city=cities.cid","states"=>"cities.state_id=states.sid","country"=>"states.country_id=country.id")
                     $CityData = $this->select("cities");
                     $StatesData = $this->select("states");
                     $CountryData = $this->select("country");
