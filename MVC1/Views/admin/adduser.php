@@ -183,7 +183,7 @@
 <div class="container">
     <!-- <a href="home">Home</a> -->
     <div class="title">Add User Form </div>
-    <form action="#" method="post">
+    <form action="#" method="post" enctype="multipart/form-data">
         <div class="user__details">
             <div class="input__box">
                 <span class="details">Full Name</span>
@@ -215,9 +215,16 @@
                 <input type="date" placeholder="Enter Phonenumber" name="dob" id="dob" required>
             </div>
         </div>
+        <div class="input__box">
+                <span class="details">Profile_pic</span>
+                <!-- <img src="uploads/<?php echo $viewuser['data'][0]->profile_pic; ?>" alt="" width="100px"> -->
+                <input type="file" name="profile_pic" id="profile_pic" >
+                
+            </div>
         <div class="gender__details">
             <input type="radio" name="gender" id="dot-1" value="Male">
             <input type="radio" name="gender" id="dot-2" value="Female">
+
 
             <span class="gender__title">Gender</span>
             <div class="category">

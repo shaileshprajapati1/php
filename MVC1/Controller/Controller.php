@@ -137,10 +137,40 @@ class Controller extends Model
                     if (isset($_POST['add'])) {
                         $HobbyData = implode(",", $_POST['hobby']);
                         // echo $HobbyData;
+                        $errors = array();
+                        $file_name = $_FILES['profile_pic']['name'];
+                        $file_size = $_FILES['profile_pic']['size'];
+                        $file_tmp = $_FILES['profile_pic']['tmp_name'];
+                        $file_type = $_FILES['profile_pic']['type'];
+                        $exploded = explode('.', $_FILES['profile_pic']['name']);
+                        $file_ext = strtolower(end($exploded));
+                        // $file_ext = strtolower(end(explode('.', $_FILES['profile_pic']['name'])));
+
+                        $extensions = array("jpeg", "jpg", "png");
+
+                        if ($_FILES['profile_pic']['error'] == 0) {
+                            if (in_array($file_ext, $extensions) === false) {
+                                $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
+                            }
+
+                            if ($file_size > 2097152) {
+                                $errors[] = 'File size must be excately 2 MB';
+                            }
+
+                            if (empty($errors) == true) {
+                                move_uploaded_file($file_tmp, "uploads/" . $file_name);
+                                echo "Success";
+                            } else {
+                                print_r($errors);
+                            }
+                        }
+
+
+
                         array_pop($_POST);
                         array_pop($_POST);
                         unset($_POST['cpassword']);
-                        $Data = array_merge($_POST, array("hobby" => $HobbyData));
+                        $Data = array_merge($_POST, array("hobby" => $HobbyData,"profile_pic"=>$file_name));
                         $AdduserRes = $this->Insert("users", $Data);
                         echo "<pre>";
                         print_r($AdduserRes);
