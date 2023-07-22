@@ -35,6 +35,10 @@ class controller extends Model
                     $Data = $this->select("country");
                     echo json_encode($Data);
                     break;
+                case '/allstates':
+                    $Data = $this->select("states");
+                    echo json_encode($Data);
+                    break;
                 case '/about':
                     include_once("Views/header.php");
                     include_once("Views/about.php");
