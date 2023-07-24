@@ -17,6 +17,7 @@
 
     <!-- Style -->
     <link rel="stylesheet" href="http://localhost/PHP/php/AccessAPI/Assest/register/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 
     <title>Rigster Form</title>
 </head>
@@ -33,7 +34,7 @@
 
                         <h3 class="mb-5 text-center">Register</h3>
                         <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -->
-                        <form  onsubmit='return formSubmit(this)' action="#" method="post" enctype="multipart/form-data" id="login-form">
+                        <form onsubmit='return formSubmit(this)' action="#" method="post" enctype="multipart/form-data" id="loginform">
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -155,58 +156,55 @@
 
 
         <script>
-           function loadcountries(){
-            fetch("http://localhost/PHP/php/API/Allcountries").then((res)=>res.json()).then((response)=>{
-                console.log(response);
-                htmloption = `<option value = "">Select Country</option>`
-                response.Data.forEach(data => {
-                    console.log(data);
-                    htmloption += `<option value =${data.country_id}>${data.country_name}</option>` 
-                });
-                console.log(htmloption);
-                document.getElementById("country").innerHTML=htmloption
-            })
-           }
-           loadcountries()
+            function loadcountries() {
+                fetch("http://localhost/PHP/php/API/Allcountries").then((res) => res.json()).then((response) => {
+                    console.log(response);
+                    htmloption = `<option value = "">Select Country</option>`
+                    response.Data.forEach(data => {
+                        console.log(data);
+                        htmloption += `<option value =${data.country_id}>${data.country_name}</option>`
+                    });
+                    console.log(htmloption);
+                    document.getElementById("country").innerHTML = htmloption
+                })
+            }
+            loadcountries()
 
-           function loadstates(id){
-            // console.log("country id is",id.value);
-              fetch("http://localhost/php/php/API/allstates?countryid=" + id.value).then((res)=>res.json()).then((response)=> {
-                console.log(response);
-                htmloption = `<option value = "">Select states</option>`
-                    response.Data.forEach( data => {
+            function loadstates(id) {
+                // console.log("country id is",id.value);
+                fetch("http://localhost/php/php/API/allstates?countryid=" + id.value).then((res) => res.json()).then((response) => {
+                    console.log(response);
+                    htmloption = `<option value = "">Select states</option>`
+                    response.Data.forEach(data => {
                         console.log(data);
                         htmloption += `<option value = ${data.sid}>${data.name}</option>`
                     });
                     console.log(htmloption);
-                    document.getElementById("states").innerHTML=htmloption
+                    document.getElementById("states").innerHTML = htmloption
 
-              }) ;
-
-           }
-           loadstates()
-
-           function  loadcities(id) {
-            console.log(id.value);
-            fetch("http://localhost/php/php/API/allcities?statesid="+ id.value).then((res)=>res.json()).then((response)=>{
-                console.log(response);
-                htmloption =    `<option value="">Select city</option>`
-                response.Data.forEach( data => {
-                    console.log(data);
-                    htmloption +=  `<option value="${data.cid}">${data.name}</option>`
                 });
-                console.log(htmloption);
-                document.getElementById("cities").innerHTML=htmloption
-            });
-           }
-           loadcities()
 
-           function formSubmit() {
-            event.preventDefault()
+            }
+            loadstates()
+
+            function loadcities(id) {
+                console.log(id.value);
+                fetch("http://localhost/php/php/API/allcities?statesid=" + id.value).then((res) => res.json()).then((response) => {
+                    console.log(response);
+                    htmloption = `<option value="">Select city</option>`
+                    response.Data.forEach(data => {
+                        console.log(data);
+                        htmloption += `<option value="${data.cid}">${data.name}</option>`
+                    });
+                    console.log(htmloption);
+                    document.getElementById("cities").innerHTML = htmloption
+                });
+            }
+            loadcities()
+
+            //   
+
            
-        }
-
-
         </script>
 
 

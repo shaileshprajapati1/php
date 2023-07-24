@@ -29,7 +29,11 @@ class Controller extends Model
                     echo json_encode($data);
                     break;
                 case '/allstates':
-                    $data = $this->select("states");
+                    $data = $this->select("states",array("country_id"=>$_REQUEST['countryid']));
+                    echo json_encode($data);
+                    break;
+                case '/allcities':
+                    $data = $this->select("cities",array("state_id"=>$_REQUEST['stateid']));
                     echo json_encode($data);
                     break;
                 case '/home':

@@ -240,14 +240,20 @@
 
     <div class="input__box">
       <label for="country">Country</label>
-      <select name="country" id="country">
-        <option>select Country</option>
+      <select name="country" id="country" onchange="statesbycountryID(this)" >
+        <option value="">select Country</option>
       </select>
     </div>
     <div class="input__box">
-      <label for="states">States</label>
-      <select name="states" id="states">
-        <option>select States</option>
+      <label for="states">State</label>
+      <select name="states" id="states" onchange="citybystatesid(this)">
+        <option value="">select States</option>
+      </select>
+    </div>
+    <div class="input__box">
+      <label for="cities">city</label>
+      <select name="city" id="city" >
+        <option value="">select city</option>
       </select>
     </div>
 
@@ -261,10 +267,10 @@
   function allcountries() {
     fetch("http://localhost/php/php/API1/allcountry").then((res) => res.json()).then((responce) => {
       console.log(responce);
-      htmloption = `<option>select Country</option>`
+      htmloption = `<option value="">select Country</option>`
       responce.data.forEach(data => {
         console.log(data);
-        htmloption += `<option>${data.country_name}</option>`
+        htmloption += `<option value=${data.country_id} >${data.country_name}</option>`
       });
       console.log(htmloption);
       document.getElementById("country").innerHTML = htmloption;
@@ -272,20 +278,34 @@
   }
   allcountries()
 
- function allstates(){
-  fetch("http://localhost/php/php/API1/allstates").then((res)=>res.json()).then((responce)=> {
-    console.log(responce);
-    htmloption =`<option>select States</option>`
-    responce.data.forEach(data => {
-      console.log(data);
-      htmloption +=`<option>${data.name}</option>`
-    });
-    console.log(htmloption);
-    document.getElementById("states").innerHTML = htmloption;
+  function statesbycountryID(id){
+    // console.log(id.value);
+    fetch("http://localhost/php/php/API1/allstates?countryid="+id.value).then((res)=>res.json()).then((responce)=> {
+      console.log(responce);
+      htmloption = `<option value="">select States</option>`
+      responce.data.forEach(data => {
+        console.log(data);
+        htmloption += `<option value="${data.sid}">${data.name}</option>`
 
+      });
+      console.log(htmloption);
+      document.getElementById("states").innerHTML=htmloption;
+    })
+
+  }
+  function citybystatesid(id){
+    console.log(id.value);
+    fetch("http://localhost/php/php/API1/allcities?stateid="+id.value).then((res)=>res.json()).then((responce)=> {
+      console.log(responce);
+      htmloption = `<option value="">select city</option>`
+      responce.data.forEach(data=>{
+        console.log(data);
+        htmloption +=  `<option value="${data.cid}">${data.name}</option>`
+      }) ;
+      console.log(htmloption);
+      document.getElementById("city").innerHTML=htmloption;
   });
- }
 
-allstates()
+}
 
 </script>
