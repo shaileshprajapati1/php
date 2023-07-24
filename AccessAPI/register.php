@@ -33,7 +33,7 @@
 
                         <h3 class="mb-5 text-center">Register</h3>
                         <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -->
-                        <form action="#" method="post" enctype="multipart/form-data">
+                        <form  onsubmit='return formSubmit(this)' action="#" method="post" enctype="multipart/form-data" id="login-form">
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -111,9 +111,21 @@
                                 <input type="file" class="form-control" name="profile_pic" id="">
                             </div>
                             <div>
-                                <label for="password">Country</label>
-                                <select name="country" class="form-control" id="country">
-                                    <option>Select Country</option>
+                                <label for="country">Country</label>
+                                <select name="country" onchange="loadstates(this)" class="form-control" id="country">
+                                    <option value="">Select Country</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="states">States</label>
+                                <select name="states" onchange="loadcities(this)" class="form-control" id="states">
+                                    <option value="">Select states</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="cities">city</label>
+                                <select name="cities" class="form-control" id="cities">
+                                    <option value="">Select city</option>
                                 </select>
                             </div>
 
@@ -146,16 +158,55 @@
            function loadcountries(){
             fetch("http://localhost/PHP/php/API/Allcountries").then((res)=>res.json()).then((response)=>{
                 console.log(response);
-                htmloption = `<option>Select Country</option>`
+                htmloption = `<option value = "">Select Country</option>`
                 response.Data.forEach(data => {
                     console.log(data);
-                    htmloption += `<option>${data.country_name}</option>` 
+                    htmloption += `<option value =${data.country_id}>${data.country_name}</option>` 
                 });
                 console.log(htmloption);
                 document.getElementById("country").innerHTML=htmloption
             })
            }
            loadcountries()
+
+           function loadstates(id){
+            // console.log("country id is",id.value);
+              fetch("http://localhost/php/php/API/allstates?countryid=" + id.value).then((res)=>res.json()).then((response)=> {
+                console.log(response);
+                htmloption = `<option value = "">Select states</option>`
+                    response.Data.forEach( data => {
+                        console.log(data);
+                        htmloption += `<option value = ${data.sid}>${data.name}</option>`
+                    });
+                    console.log(htmloption);
+                    document.getElementById("states").innerHTML=htmloption
+
+              }) ;
+
+           }
+           loadstates()
+
+           function  loadcities(id) {
+            console.log(id.value);
+            fetch("http://localhost/php/php/API/allcities?statesid="+ id.value).then((res)=>res.json()).then((response)=>{
+                console.log(response);
+                htmloption =    `<option value="">Select city</option>`
+                response.Data.forEach( data => {
+                    console.log(data);
+                    htmloption +=  `<option value="${data.cid}">${data.name}</option>`
+                });
+                console.log(htmloption);
+                document.getElementById("cities").innerHTML=htmloption
+            });
+           }
+           loadcities()
+
+           function formSubmit() {
+            event.preventDefault()
+           
+        }
+
+
         </script>
 
 

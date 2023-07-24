@@ -36,7 +36,11 @@ class controller extends Model
                     echo json_encode($Data);
                     break;
                 case '/allstates':
-                    $Data = $this->select("states");
+                    $Data = $this->select("states",array("country_id"=>$_REQUEST['countryid']));
+                    echo json_encode($Data);
+                    break;
+                case '/allcities':
+                    $Data = $this->select("cities",array("state_id"=>$_REQUEST['statesid']));
                     echo json_encode($Data);
                     break;
                 case '/about':
@@ -233,100 +237,100 @@ class controller extends Model
                     }
 
                     break;
-                case '/register':
-                    // include_once("Views/header.php");
-                    include_once("Views/register.php");
-                    if (isset($_POST['register'])) {
-                        // echo "<pre>";
-                        // print_r($_FILES);
-                        // echo "</pre>";
+                // case '/register':
+                //     // include_once("Views/header.php");
+                //     include_once("Views/register.php");
+                //     if (isset($_POST['register'])) {
+                //         // echo "<pre>";
+                //         // print_r($_FILES);
+                //         // echo "</pre>";
 
-                        $filename = $_FILES["profile_pic"]["name"];
-                        $Uploadfile = "uploads/" . $filename;
-                        $uploadOk = 1;
-                        $imageFileType = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-                        $check = getimagesize($_FILES["profile_pic"]["tmp_name"]);
-                        if ($check !== false) {
-                            echo "File is an image - " . $check["mime"] . ".";
-                            $uploadOk = 1;
-                        } else {
-                            echo "File is not an image.";
-                            $uploadOk = 0;
-                        }
-
-
-                        // Check if file already exists
-                        if (file_exists($filename)) {
-                            echo "Sorry, file already exists.";
-                            $uploadOk = 0;
-                        }
-
-                        // Check file size
-                        if ($_FILES["profile_pic"]["size"] > 500000) {
-                            echo "Sorry, your file is too large.";
-                            $uploadOk = 0;
-                        }
-
-                        // Allow certain file formats
-                        if (
-                            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                            && $imageFileType != "gif"
-                        ) {
-                            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-                            $uploadOk = 0;
-                        }
-
-                        // Check if $uploadOk is set to 0 by an error
-                        if ($uploadOk == 0) {
-                            echo "Sorry, your file was not uploaded.";
-                            // if everything is ok, try to upload file
-                        } else {
-                            if ($UploadefileRes = move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $Uploadfile)) {
-                                echo "The file " . htmlspecialchars($_FILES["profile_pic"]["name"]) . " has been uploaded.";
-                            } else {
-                                echo "Sorry, there was an error uploading your file.";
-                            }
-                        }
-
-                        // exit;
-                        $fullname = $_POST['fname'] . " " . $_POST['lname'];
-                        echo $fullname;
-                        // echo "<pre>";
-                        // print_r($_POST);
-                        // echo "<pre>";
-                        $HobbyData = implode(",", $_REQUEST['hobby']);
-                        array_pop($_POST);
-                        array_pop($_POST);
-                        unset($_POST['fname']);
-                        unset($_POST['lname']);
-                        unset($_POST['hobby'], $_POST['re-password']);
+                //         $filename = $_FILES["profile_pic"]["name"];
+                //         $Uploadfile = "uploads/" . $filename;
+                //         $uploadOk = 1;
+                //         $imageFileType = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+                //         $check = getimagesize($_FILES["profile_pic"]["tmp_name"]);
+                //         if ($check !== false) {
+                //             echo "File is an image - " . $check["mime"] . ".";
+                //             $uploadOk = 1;
+                //         } else {
+                //             echo "File is not an image.";
+                //             $uploadOk = 0;
+                //         }
 
 
-                        // echo "<pre>";
-                        // print_r($_POST);
-                        // echo "<pre>";
-                        $data = array_merge($_POST, array("fullname" => $fullname, "hobby" => $HobbyData, "profile_pic" => $filename, "password" => md5($_POST['password'])));
-                        unset($_POST['password']);
-                        // echo "<pre>";
-                        // print_r($data);
-                        // echo "<pre>";
+                //         // Check if file already exists
+                //         if (file_exists($filename)) {
+                //             echo "Sorry, file already exists.";
+                //             $uploadOk = 0;
+                //         }
 
-                        // exit;
-                        $Insertres = $this->Insert("users", $data);
-                        // print_r($Insertres);
-                        if ($Insertres['Data']) {
-                            echo " <script>
-                            alert('Register Success!!');
-                            window.location.href='login';
-                            </script>";
-                        }
-                    }
+                //         // Check file size
+                //         if ($_FILES["profile_pic"]["size"] > 500000) {
+                //             echo "Sorry, your file is too large.";
+                //             $uploadOk = 0;
+                //         }
 
-                    break;
+                //         // Allow certain file formats
+                //         if (
+                //             $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                //             && $imageFileType != "gif"
+                //         ) {
+                //             echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                //             $uploadOk = 0;
+                //         }
 
-                default:
-                    # code...
-                    break;
+                //         // Check if $uploadOk is set to 0 by an error
+                //         if ($uploadOk == 0) {
+                //             echo "Sorry, your file was not uploaded.";
+                //             // if everything is ok, try to upload file
+                //         } else {
+                //             if ($UploadefileRes = move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $Uploadfile)) {
+                //                 echo "The file " . htmlspecialchars($_FILES["profile_pic"]["name"]) . " has been uploaded.";
+                //             } else {
+                //                 echo "Sorry, there was an error uploading your file.";
+                //             }
+                //         }
+
+                //         // exit;
+                //         $fullname = $_POST['fname'] . " " . $_POST['lname'];
+                //         echo $fullname;
+                //         // echo "<pre>";
+                //         // print_r($_POST);
+                //         // echo "<pre>";
+                //         $HobbyData = implode(",", $_REQUEST['hobby']);
+                //         array_pop($_POST);
+                //         array_pop($_POST);
+                //         unset($_POST['fname']);
+                //         unset($_POST['lname']);
+                //         unset($_POST['hobby'], $_POST['re-password']);
+
+
+                //         // echo "<pre>";
+                //         // print_r($_POST);
+                //         // echo "<pre>";
+                //         $data = array_merge($_POST, array("fullname" => $fullname, "hobby" => $HobbyData, "profile_pic" => $filename, "password" => md5($_POST['password'])));
+                //         unset($_POST['password']);
+                //         // echo "<pre>";
+                //         // print_r($data);
+                //         // echo "<pre>";
+
+                //         // exit;
+                //         $Insertres = $this->Insert("users", $data);
+                //         // print_r($Insertres);
+                //         if ($Insertres['Data']) {
+                //             echo " <script>
+                //             alert('Register Success!!');
+                //             window.location.href='login';
+                //             </script>";
+                //         }
+                //     }
+
+                //     break;
+
+                // default:
+                //     # code...
+                //     break;
             }
         } else {
             header("location:home");
