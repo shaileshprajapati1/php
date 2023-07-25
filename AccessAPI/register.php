@@ -40,13 +40,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group first">
                                         <label for="fname">First Name</label>
-                                        <input type="text" class="form-control" placeholder="Enter FirstName" name="fname" id="fname" required>
+                                        <input type="text" class="form-control" placeholder="Enter FirstName" name="fname" id="fname">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group first">
                                         <label for="lname">Last Name</label>
-                                        <input type="text" class="form-control" placeholder="Enter LastName" name="lname" id="lname" required>
+                                        <input type="text" class="form-control" placeholder="Enter LastName" name="lname" id="lname">
                                     </div>
                                 </div>
                             </div>
@@ -54,14 +54,14 @@
                                 <div class="col-md-12">
                                     <div class="form-group first">
                                         <label for="username">username</label>
-                                        <input type="text" class="form-control" placeholder="Enter username " name="username" id="username" required>
+                                        <input type="text" class="form-control" placeholder="Enter username " name="username" id="username">
                                     </div>
                                 </div>
                                 <!-- <div class="row"> -->
                                 <div class="col-md-12">
                                     <div class="form-group first">
                                         <label for="email">Email Address</label>
-                                        <input type="email" class="form-control" placeholder="Enter Email Id" name="email" id="email" required>
+                                        <input type="email" class="form-control" placeholder="Enter Email Id" name="email" id="email">
                                     </div>
                                 </div>
                             </div>
@@ -69,13 +69,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group first">
                                         <label for="Phone">Phone Number</label>
-                                        <input type="text" class="form-control" minlength="10" maxlength="10" placeholder="Enter PhoneNo" name="phone" id="phone" required>
+                                        <input type="text" class="form-control" minlength="10" maxlength="10" placeholder="Enter PhoneNo" name="phone" id="phone">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group first">
                                         <label for="dob">DOB</label>
-                                        <input type="date" class="form-control" placeholder="01-01-0000" name="dob" id="dob" required>
+                                        <input type="date" class="form-control" placeholder="01-01-0000" name="dob" id="dob">
                                     </div>
                                 </div>
                             </div>
@@ -84,14 +84,14 @@
 
                                     <div class="form-group last mb-3">
                                         <label for="password">Password</label>
-                                        <input type="password" class="form-control" minlength="8" maxlength="8" placeholder="Your Password" name="password" id="password" required>
+                                        <input type="password" class="form-control" minlength="8" maxlength="8" placeholder="Your Password" name="password" id="password">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
 
                                     <div class="form-group last mb-3">
                                         <label for="re-password">Re-type Password</label>
-                                        <input type="password" class="form-control" minlength="8" maxlength="8" placeholder="Your Password" name="re-password" id="re-password" required>
+                                        <input type="password" class="form-control" minlength="8" maxlength="8" placeholder="Your Password" name="re-password" id="re-password">
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                             </div>
 
 
-                            <input type="submit" value="Register" name="register" class="btn px-5 btn-primary">
+                            <input type="submit" id="register" value="Register" name="register" class="btn px-5 btn-primary">
 
 
 
@@ -188,7 +188,7 @@
             loadstates()
 
             function loadcities(id) {
-                console.log(id.value);
+                // console.log(id.value);
                 fetch("http://localhost/php/php/API/allcities?statesid=" + id.value).then((res) => res.json()).then((response) => {
                     console.log(response);
                     htmloption = `<option value="">Select city</option>`
@@ -202,8 +202,13 @@
             }
             loadcities()
 
-            //   
+            function formSubmit(loginform) {
+                event.preventDefault();
+                let result = document.getElementById("loginform");
+                htmloption =
+                    result.innerHTML = "<b>The form is secured from submission using the preventDefault() method inside callback function.</b>"
 
+            }
            
         </script>
 

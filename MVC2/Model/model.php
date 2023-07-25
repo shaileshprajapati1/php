@@ -94,6 +94,7 @@ class Model
         if($SQLEx >0){
             $ResponceData['Data'] = "1";
             $ResponceData['Msg'] = "Success";
+
             $ResponceData['Code'] = "1";
         } else {
             $ResponceData['Data'] = "0";
@@ -101,6 +102,7 @@ class Model
             $ResponceData['Code'] = "0";
         }
         return $ResponceData;
+
     }
 
 }
