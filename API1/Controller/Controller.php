@@ -36,6 +36,11 @@ class Controller extends Model
                     $data = $this->select("cities",array("state_id"=>$_REQUEST['stateid']));
                     echo json_encode($data);
                     break;
+                case '/register':
+                    $data = json_decode(file_get_contents("php://input"),true);
+                    // print_r($data);
+                    $Res = $this->Insert("users",$data);
+                    break;
                 case '/home':
                     include_once("Views/header.php");
                     include_once("Views/home.php");

@@ -37,31 +37,31 @@
                         <form onsubmit='return formSubmit(this)' action="#" method="post" enctype="multipart/form-data" id="loginform">
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group first">
-                                        <label for="fname">First Name</label>
-                                        <input type="text" class="form-control" placeholder="Enter FirstName" name="fname" id="fname">
+                                        <label for="fullname">Full Name</label>
+                                        <input type="text" class="form-control" placeholder="Enter FirstName" name="fullname" id="fullname" required>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="form-group first">
                                         <label for="lname">Last Name</label>
                                         <input type="text" class="form-control" placeholder="Enter LastName" name="lname" id="lname">
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group first">
                                         <label for="username">username</label>
-                                        <input type="text" class="form-control" placeholder="Enter username " name="username" id="username">
+                                        <input type="text" class="form-control" placeholder="Enter username " name="username" id="username"required>
                                     </div>
                                 </div>
                                 <!-- <div class="row"> -->
                                 <div class="col-md-12">
                                     <div class="form-group first">
                                         <label for="email">Email Address</label>
-                                        <input type="email" class="form-control" placeholder="Enter Email Id" name="email" id="email">
+                                        <input type="email" class="form-control" placeholder="Enter Email Id" name="email" id="email"required>
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group first">
                                         <label for="Phone">Phone Number</label>
-                                        <input type="text" class="form-control" minlength="10" maxlength="10" placeholder="Enter PhoneNo" name="phone" id="phone">
+                                        <input type="text" class="form-control" minlength="10" maxlength="10" placeholder="Enter PhoneNo" name="phone" id="phone" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -84,16 +84,16 @@
 
                                     <div class="form-group last mb-3">
                                         <label for="password">Password</label>
-                                        <input type="password" class="form-control" minlength="8" maxlength="8" placeholder="Your Password" name="password" id="password">
+                                        <input type="password" class="form-control" minlength="3" maxlength="8" placeholder="Your Password" name="password" id="password">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
 
                                     <div class="form-group last mb-3">
                                         <label for="re-password">Re-type Password</label>
                                         <input type="password" class="form-control" minlength="8" maxlength="8" placeholder="Your Password" name="re-password" id="re-password">
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div>
                                 <label for="gender">Gedner</label><br>
@@ -124,8 +124,8 @@
                                 </select>
                             </div>
                             <div>
-                                <label for="cities">city</label>
-                                <select name="cities" class="form-control" id="cities">
+                                <label for="city">city</label>
+                                <select name="city" class="form-control" id="city">
                                     <option value="">Select city</option>
                                 </select>
                             </div>
@@ -197,19 +197,58 @@
                         htmloption += `<option value="${data.cid}">${data.name}</option>`
                     });
                     console.log(htmloption);
-                    document.getElementById("cities").innerHTML = htmloption
+                    document.getElementById("city").innerHTML = htmloption
                 });
             }
             loadcities()
 
-            function formSubmit(loginform) {
+            function formSubmit() {
                 event.preventDefault();
-                let result = document.getElementById("loginform");
-                htmloption =
-                    result.innerHTML = "<b>The form is secured from submission using the preventDefault() method inside callback function.</b>"
+                // formdata = $("#loginform").serializeArray()
+                // console.log(formdata);
+                // var result = {};
+                // $.each($('#loginform').serializeArray(), function() {
+                //     result[this.name] = this.value;
+                // });
+                // console.log(result);
+                var values = {};
+                $.each($('#loginform').serializeArray(), function(i, field) {
+                    values[field.name] = field.value;
+                });
+                Hobbystring = ""
+                $('input[type="checkbox"]:checked').each(function() {
+                    // console.log(this.value);
+                    Hobbystring += this.value + ",";
+
+
+                    // values["hobby"] = $(this.values).prop('checked')
+                    // if ($.inArray(this.name, values) === -1) {
+                    // }
+                });
+                // console.log(Hobbystring);
+                Hobbystr = Hobbystring.substring(0, Hobbystring.length - 4);
+                values['hobby'] = Hobbystr;
+                delete values['hobby[]'];
+                delete values['country'];
+                delete values['states'];
+                fetch("http://localhost/PHP/php/API/register", {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(values)
+                    
+                    
+                }).then((res) => res.json()).then((response) => {
+                    console.log(response);
+
+                })
+
+
+
+                // console.log(values)
+
+
 
             }
-           
         </script>
 
 

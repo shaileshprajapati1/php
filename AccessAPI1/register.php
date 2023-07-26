@@ -176,12 +176,13 @@
       }
     }
   </style>
+  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 </head>
 
 <div class="container">
   <a href="home">Home</a>
   <div class="title">Registration</div>
-  <form action="#" method="post" enctype="multipart/form-data">
+  <form action="#" onsubmit='return formData(this)' id="formdata" method="post" enctype="multipart/form-data">
     <div class="user__details">
       <div class="input__box">
         <span class="details">Full Name</span>
@@ -197,7 +198,7 @@
       </div>
       <div class="input__box">
         <span class="details">Phone Number</span>
-        <input type="tel" placeholder="Enter Phonenumber" name="phone" id="phone" required>
+        <input type="tel" minlength="10" maxlength="10" placeholder="Enter Phonenumber" name="phone" id="phone" required>
       </div>
       <div class="input__box">
         <span class="details">Password</span>
@@ -209,7 +210,7 @@
       </div>
       <div class="input__box">
         <span class="details">Profile_pic</span>
-        <input type="file" name="profile_pic" id="profile_pic" required>
+        <input type="file" name="profile_pic" id="profile_pic">
       </div>
       <div class="gender__details">
         <span class="category">Hobby</span>
@@ -240,7 +241,7 @@
 
     <div class="input__box">
       <label for="country">Country</label>
-      <select name="country" id="country" onchange="statesbycountryID(this)" >
+      <select name="country" id="country" onchange="statesbycountryID(this)">
         <option value="">select Country</option>
       </select>
     </div>
@@ -252,14 +253,14 @@
     </div>
     <div class="input__box">
       <label for="cities">city</label>
-      <select name="city" id="city" >
+      <select name="city" id="city">
         <option value="">select city</option>
       </select>
     </div>
 
 
     <div class="button">
-      <input type="submit" name="register" value="Register">
+      <input type="submit" id="register" name="register" value="Register">
     </div>
   </form>
 </div>
@@ -278,9 +279,9 @@
   }
   allcountries()
 
-  function statesbycountryID(id){
+  function statesbycountryID(id) {
     // console.log(id.value);
-    fetch("http://localhost/php/php/API1/allstates?countryid="+id.value).then((res)=>res.json()).then((responce)=> {
+    fetch("http://localhost/php/php/API1/allstates?countryid=" + id.value).then((res) => res.json()).then((responce) => {
       console.log(responce);
       htmloption = `<option value="">select States</option>`
       responce.data.forEach(data => {
@@ -289,23 +290,56 @@
 
       });
       console.log(htmloption);
-      document.getElementById("states").innerHTML=htmloption;
+      document.getElementById("states").innerHTML = htmloption;
     })
 
   }
-  function citybystatesid(id){
+
+  function citybystatesid(id) {
     console.log(id.value);
-    fetch("http://localhost/php/php/API1/allcities?stateid="+id.value).then((res)=>res.json()).then((responce)=> {
+    fetch("http://localhost/php/php/API1/allcities?stateid=" + id.value).then((res) => res.json()).then((responce) => {
       console.log(responce);
       htmloption = `<option value="">select city</option>`
-      responce.data.forEach(data=>{
+      responce.data.forEach(data => {
         console.log(data);
-        htmloption +=  `<option value="${data.cid}">${data.name}</option>`
-      }) ;
+        htmloption += `<option value="${data.cid}">${data.name}</option>`
+      });
       console.log(htmloption);
-      document.getElementById("city").innerHTML=htmloption;
-  });
+      document.getElementById("city").innerHTML = htmloption;
+    });
+  }
 
-}
+  function formData() {
+    event.preventDefault();
+    //Serialize the Form
+    var values = {};
+    $.each($("#formdata").serializeArray(), function(i, field) {
+      values[field.name] = field.value;
 
+    });
+    HobbyString = ""
+    $('input[type=checkbox]:checked').map(function() {
+      // console.log(this.value);
+      HobbyString += this.value + ",";
+    });
+    Hobbystr = HobbyString.substring(0, HobbyString.length - 1);
+    values['hobby'] = Hobbystr;
+    delete values['hobby[]'];
+    delete values['country'];
+    delete values['states'];
+    delete values['cpassword'];
+    fetch("http://localhost/php/php/API1/register", {
+      method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json' },
+    body: JSON.stringify(values)
+    }).then((res) => res.json()).then((responce) => {
+      console.log(responce);
+    })
+
+    // console.log(Hobbystr);
+    console.log(values);
+
+  }
 </script>
