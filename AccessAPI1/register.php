@@ -211,26 +211,25 @@
       <div class="input__box">
         <span class="details">Profile_pic</span>
         <!-- <input type="file" name="profile_pic" id="profile_pic"> -->
-        <input type="file" id="profile_pic" onchange="uploadImage(event)" accept="image/*">
+        <input type="file" id="profile_pic" onchange="loadFile(event)" accept="image/*">
         <img width="100px" id="output" />
         <input type="hidden" name="profile_pic" id="profile_pic" value=""/>
         <script>
-          var uploadImage = function(event) {
-            // console.log(event.target.files[0]);
-            var output = document.getElementById('output');
-            output.src = URL.createObjectURL(event.target.files[0]);
-            let photo = event.target.files[0];
-            let formdata = new FormData();
-            formData.append('profile_pic', photo);
-            fetch("http://localhost/php/php/API1/uploadimage", {
-              method: 'POST',
-              body: formData
-            }).then((res)=> res.json()).then((data)=> {
-              console.log(data);
-              document.getElementById("profile_pic").values = data
-            })
-          };
-        </script>
+                var loadFile = function(event) {
+                    // console.log(event.target.files[0]);
+                    output = document.getElementById("output")
+                    output.src = URL.createObjectURL(event.target.files[0]);
+                    // let photo = document.getElementById("profilePic").files[0];
+                    let photo = event.target.files[0];
+                    let formData = new FormData();
+                    formData.append("profile_pic", photo);
+                    fetch('http://localhost/php/php/API1/uploadimage', {method: "POST", body: formData}).then((res)=>res.json()).then((result)=>{
+                        console.log(result);
+                        document.getElementById("profile_pic").values=result 
+                    })
+
+                }
+            </script>
 
       </div>
       <div class="gender__details">
