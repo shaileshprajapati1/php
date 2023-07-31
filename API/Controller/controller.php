@@ -43,10 +43,15 @@ class controller extends Model
                     $Data = $this->select("cities",array("state_id"=>$_REQUEST['statesid']));
                     echo json_encode($Data);
                     break;
+                case '/uploadimage':
+                    $filename = $_FILES["profile_pic"]["name"];
+                    move_uploaded_file($_FILES["profile_pic"]["tmp_name"],"uploads/".$filename);
+                    echo json_encode($filename);
+                    break;
                 case '/register':
-                    $Data = json_decode(file_get_contents("php://input"),true);
-                    // print_r($Data);
-                    $Res = $this->Insert("users",$Data);
+                    $Data = json_decode(file_get_contents('php://input'),true);
+                    print_r($Data);
+                    // $Res = $this->Insert("users",$Data);
                     // print_r($Res);
                     
                     break;

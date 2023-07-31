@@ -210,7 +210,28 @@
       </div>
       <div class="input__box">
         <span class="details">Profile_pic</span>
-        <input type="file" name="profile_pic" id="profile_pic">
+        <!-- <input type="file" name="profile_pic" id="profile_pic"> -->
+        <input type="file" id="profile_pic" onchange="uploadImage(event)" accept="image/*">
+        <img width="100px" id="output" />
+        <input type="hidden" name="profile_pic" id="profile_pic" value=""/>
+        <script>
+          var uploadImage = function(event) {
+            // console.log(event.target.files[0]);
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            let photo = event.target.files[0];
+            let formdata = new FormData();
+            formData.append('profile_pic', photo);
+            fetch("http://localhost/php/php/API1/uploadimage", {
+              method: 'POST',
+              body: formData
+            }).then((res)=> res.json()).then((data)=> {
+              console.log(data);
+              document.getElementById("profile_pic").values = data
+            })
+          };
+        </script>
+
       </div>
       <div class="gender__details">
         <span class="category">Hobby</span>
@@ -330,10 +351,11 @@
     delete values['cpassword'];
     fetch("http://localhost/php/php/API1/register", {
       method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json' },
-    body: JSON.stringify(values)
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
     }).then((res) => res.json()).then((responce) => {
       console.log(responce);
     })

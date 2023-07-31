@@ -54,14 +54,14 @@
                                 <div class="col-md-12">
                                     <div class="form-group first">
                                         <label for="username">username</label>
-                                        <input type="text" class="form-control" placeholder="Enter username " name="username" id="username"required>
+                                        <input type="text" class="form-control" placeholder="Enter username " name="username" id="username" required>
                                     </div>
                                 </div>
                                 <!-- <div class="row"> -->
                                 <div class="col-md-12">
                                     <div class="form-group first">
                                         <label for="email">Email Address</label>
-                                        <input type="email" class="form-control" placeholder="Enter Email Id" name="email" id="email"required>
+                                        <input type="email" class="form-control" placeholder="Enter Email Id" name="email" id="email" required>
                                     </div>
                                 </div>
                             </div>
@@ -108,8 +108,29 @@
 
                             </div>
                             <div>
-                                <label for="password">profile_pic</label>
-                                <input type="file" class="form-control" name="profile_pic" id="">
+                                <label for="profile_pic">profile_pic</label>
+                                <input type="file" accept="image/*" id="profilepic" onchange="loadFile(event)">
+                                <img width="100px" id="output" />
+                                <input type="hidden"  name="profile_pic" id="profile_pic" value="">
+
+                                <script>
+                                    var loadFile = function(event) {
+                                        // console.log(event.target.file[0]);
+                                        var output = document.getElementById('output');
+                                        output.src = URL.createObjectURL(event.target.files[0]);
+                                        let photo = event.target.files[0];
+                                        let formData = new FormData();
+                                        formData.append('profile_pic', photo);
+                                        fetch("http://localhost/PHP/php/API/uploadimage", {
+                                                method: 'POST',
+                                                body: formData }).then((response) => response.json()).then((data) => {
+                                                console.log(data);
+                                                
+                                                document.getElementById("profile_pic").values = data
+                                            })
+                                            
+                                    };
+                                </script>
                             </div>
                             <div>
                                 <label for="country">Country</label>
@@ -233,10 +254,12 @@
                 delete values['states'];
                 fetch("http://localhost/PHP/php/API/register", {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify(values)
-                    
-                    
+
+
                 }).then((res) => res.json()).then((response) => {
                     console.log(response);
 

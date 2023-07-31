@@ -38,8 +38,15 @@ class Controller extends Model
                     break;
                 case '/register':
                     $data = json_decode(file_get_contents("php://input"),true);
-                    // print_r($data);
-                    $Res = $this->Insert("users",$data);
+                    print_r($data);
+                    // $Res = $this->Insert("users",$data);
+                    // echo json_encode($Res);
+                    break;
+                case '/uploadimage':
+                    $file_name = $_FILES['profile_pic']['name'];
+                    move_uploaded_file($_FILES['profile_pic']['tmp_name'], "uploads/" . $file_name);
+                    echo json_encode($file_name);
+                    
                     break;
                 case '/home':
                     include_once("Views/header.php");
