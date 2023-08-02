@@ -1,0 +1,28 @@
+
+Error Date Time >>
+01-08-2023 01:43:59 PM
+Error Msg>>php_network_getaddresses: getaddrinfo for localhost1 failed: No such host is known. 
+
+Error Date Time >>
+01-08-2023 01:44:42 PM
+Error Msg>>Access denied for user 'root1'@'localhost' (using password: NO)
+
+Error Date Time >>
+01-08-2023 01:44:44 PM
+Error Msg>>Access denied for user 'root1'@'localhost' (using password: NO)
+
+Error Date Time >>
+01-08-2023 01:44:44 PM
+Error Msg>>Access denied for user 'root1'@'localhost' (using password: NO)
+
+Error Date Time >>
+01-08-2023 01:44:44 PM
+Error Msg>>Access denied for user 'root1'@'localhost' (using password: NO)
+
+Error Date Time >>
+01-08-2023 01:44:44 PM
+Error Msg>>Access denied for user 'root1'@'localhost' (using password: NO)
+
+Error Date Time >>
+01-08-2023 01:44:45 PM
+Error Msg>>Access denied for user 'root1'@'localhost' (using password: NO)

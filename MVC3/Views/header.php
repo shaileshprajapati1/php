@@ -1,91 +1,127 @@
-
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<title>E-Banking a Banking Category Bootstrap Bootstrap Responsive website Template | Home :: w3layouts</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="E-Banking Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- Custom Theme files -->
-<link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
-<link href="css/style.css" type="text/css" rel="stylesheet" media="all">
-<link href="css/font-awesome.css" rel="stylesheet">   <!-- font-awesome icons --> 
-<!-- //Custom Theme files -->  
-<!-- js --> 
-	<script src="js/jquery-2.2.3.min.js"></script>
-<!-- web-fonts -->
-<link href="//fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-<!-- //web-fonts --> 
-</head>
-<body> 
-	<!-- header -->
-	<div class="headerw3-agile"> 
-		<div class="header-w3mdl"><!-- header-two --> 
-			<div class="container"> 
-				<div class="agileits-logo navbar-left">
-					<h1><a href="index.html"><img src="images/e.png" alt="logo"/>Banking</a></h1> 
-				</div> 
-				<div class="agileits-hdright nav navbar-nav">
-					<div class="header-w3top"><!-- header-top --> 
-						<ul class="w3l-nav-top">
-							<li><i class="fa fa-phone"></i><span> +01 222 111 444 </span></li> 
-							<li><a href="mailto:example@mail.com"><i class="fa fa-envelope-o"></i><span>mail@example.com</span></a></li>
-						</ul>
-						<div class="clearfix"> </div> 	 
-					</div>
-					<div class="agile_social_banner">
-						<ul class="agileits_social_list">
-							<li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-							<li><a href="#" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-							<li><a href="#" class="w3_agile_dribble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-							<li><a href="#" class="w3_agile_vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
-						</ul>
-					</div>  
 
-				</div>
-				<div class="clearfix"> </div> 
-			</div>	
-		</div>	
-	</div>	
-	<!-- //header -->  
-	<!-- banner -->
-	<div class="banner">
-		<div class="header-nav"><!-- header-three --> 	
-			<nav class="navbar navbar-default">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						Menu 
-					</button> 
-				</div>
-				<!-- top-nav -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li><a href="index.html" class="active">Home</a></li>
-						<li><a href="about.html" class="scroll">About</a></li>    
-						<li><a href="services.html" class="scroll">services</a></li>    
-						<li><a href="gallery.html" class="scroll">Gallery</a></li>    
-						<li><a href="icons.html" data-toggle="dropdown">Short Codes<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="icons.html">Icons</a></li>
-								<li><a href="typography.html">Typograpghy</a></li>
-							</ul>
-						</li>	
-						<li><a href="contact.html" class="scroll">Contact Us</a></li>
-					</ul>  
-					<div class="clearfix"> </div>	
-				</div>
-			</nav>    
-		</div>
-		<!-- banner-text -->
-		<!-- banner -->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Studious - Education Category Responsive Website Template - Home : W3Layouts</title>
+    <!-- google-fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- //google-fonts -->
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="<?php echo $this->baseURL ;?>assets/css/style-starter.css">
+</head>
+
+<body>
+    <!-- top header -->
+    <section class="w3l-top-header">
+        <div class="container-fluid">
+            <div class="top-content-w3ls d-flex align-items-center justify-content-between">
+                <div class="top-headers">
+                    <ul>
+                        <li>
+                            <a href="#help" class="d-sm-block d-none">Have any question ?</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-phone"></i><a href="tel:+1(21) 234 4567">+1(21) 234 4567</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-envelope"></i><a href="mailto:mail@example.com">mail@example.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="top-headers top-headers-2">
+                    <ul>
+                        <li>
+                            <a href="#facebook"><span class="fa fa-facebook"></span></a>
+                        </li>
+                        <li>
+                            <a href="#twitter"><span class="fa fa-twitter"></span></a>
+                        </li>
+                        <li>
+                            <a href="#instagram"><span class="fa fa-instagram"></span></a>
+                        </li>
+                        <li class="mr-0">
+                            <a href="#linkedin"><span class="fa fa-linkedin"></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //top header -->
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg stroke">
+                <h1>
+                    <a class="navbar-brand d-flex align-items-center" href="home">
+                        <img src="<?php echo $this->baseURL ;?>assets/images/logo.png" alt="" class="mr-1" />Studious</a>
+                </h1>
+                <!-- if logo is image enable this   
+    <a class="navbar-brand" href="#index.html">
+        <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+    </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-lg-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="courses">Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register">Sign Up</a>
+                        </li>
+                        <!-- search button -->
+                        <div class="search-right ml-lg-3">
+                            <form action="#search" method="GET" class="search-box position-relative">
+                                <div class="input-search">
+                                    <input type="search" placeholder="Enter Keyword" name="search" required="required"
+                                        autofocus="" class="search-popup">
+                                </div>
+                                <button type="submit" class="btn search-btn"><i class="fa fa-search"
+                                        aria-hidden="true"></i></button>
+                            </form>
+                        </div>
+                        <!-- //search button -->
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
