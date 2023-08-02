@@ -73,9 +73,10 @@ class controller extends Model
                     break;
                 case '/register':
                     $Data = json_decode(file_get_contents('php://input'), true);
-                    print_r($Data);
-                    // $Res = $this->Insert("users",$Data);
+                    // print_r($Data);
+                    $Res = $this->Insert("users",$Data);
                     // print_r($Res);
+                    echo json_encode($Res);
 
                     break;
                 case '/about':

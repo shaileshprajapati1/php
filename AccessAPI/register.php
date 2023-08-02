@@ -108,14 +108,14 @@
 
                             </div>
                             <div>
-                                <label for="profile_pic">profile_pic</label>
+                                <label for="profilepic">profile_pic</label>
                                 <input type="file" accept="image/*" id="profilepic" onchange="loadFile(event)">
                                 <img width="100px" id="output" />
-                                <input type="hidden"  name="profile_pic" id="profile_pic" value="">
+                                <input type="hidden"  name="profile_pic" id="profile_pic" >
 
                                 <script>
                                     var loadFile = function(event) {
-                                        // console.log(event.target.file[0]);
+                                        // console.log(event.target.files[0]);
                                         var output = document.getElementById('output');
                                         output.src = URL.createObjectURL(event.target.files[0]);
                                         let photo = event.target.files[0];
@@ -126,7 +126,7 @@
                                                 body: formData }).then((response) => response.json()).then((data) => {
                                                 console.log(data);
                                                 
-                                                document.getElementById("profile_pic").values = data
+                                                document.getElementById("profile_pic").value = data
                                             })
                                             
                                     };
