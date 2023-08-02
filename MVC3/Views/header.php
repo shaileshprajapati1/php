@@ -11,11 +11,10 @@ Author URL: http://w3layouts.com
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Studious - Education Category Responsive Website Template - Home : W3Layouts</title>
     <!-- google-fonts -->
-    <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- //google-fonts -->
     <!-- Template CSS Style link -->
-    <link rel="stylesheet" href="<?php echo $this->baseURL ;?>assets/css/style-starter.css">
+    <link rel="stylesheet" href="<?php echo $this->baseURL; ?>assets/css/style-starter.css">
 </head>
 
 <body>
@@ -62,15 +61,13 @@ Author URL: http://w3layouts.com
             <nav class="navbar navbar-expand-lg stroke">
                 <h1>
                     <a class="navbar-brand d-flex align-items-center" href="home">
-                        <img src="<?php echo $this->baseURL ;?>assets/images/logo.png" alt="" class="mr-1" />Studious</a>
+                        <img src="<?php echo $this->baseURL; ?>assets/images/logo.png" alt="" class="mr-1" />Studious</a>
                 </h1>
                 <!-- if logo is image enable this   
     <a class="navbar-brand" href="#index.html">
         <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
     </a> -->
-                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
-                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
                     <span class="navbar-toggler-icon fa icon-close fa-times"></span>
                 </button>
@@ -92,15 +89,26 @@ Author URL: http://w3layouts.com
                         <li class="nav-item">
                             <a class="nav-link" href="register">Sign Up</a>
                         </li>
+                        <?php
+                        if (isset($_SESSION['userdata'])) { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="logout">Logout</a>
+                            </li>
+
+                        <?php  } else { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login">Login</a>
+                            </li>
+
+                        <?php   }
+                        ?>
                         <!-- search button -->
                         <div class="search-right ml-lg-3">
                             <form action="#search" method="GET" class="search-box position-relative">
                                 <div class="input-search">
-                                    <input type="search" placeholder="Enter Keyword" name="search" required="required"
-                                        autofocus="" class="search-popup">
+                                    <input type="search" placeholder="Enter Keyword" name="search" required="required" autofocus="" class="search-popup">
                                 </div>
-                                <button type="submit" class="btn search-btn"><i class="fa fa-search"
-                                        aria-hidden="true"></i></button>
+                                <button type="submit" class="btn search-btn"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </form>
                         </div>
                         <!-- //search button -->
