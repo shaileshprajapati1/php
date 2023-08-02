@@ -133,8 +133,12 @@
                                         <label class="form-label" for="form3Example9">DOB</label>
                                         <input type="date" id="form3Example9" class="form-control form-control-lg" />
                                     </div>
-
                                     <div class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example9">Hobby</label>
+                                        <input type="checkbox" name="hobby[]" id="cricket" value="cricket" ><label for="cricket">cricket</label>
+                                    </div>
+
+                                    <!-- <div class="form-outline mb-4">
                                         <label class="form-label" for="form3Example90">Pincode</label>
                                         <input type="text" id="form3Example90" class="form-control form-control-lg" />
                                     </div>
@@ -144,7 +148,7 @@
                                         <input type="text" id="form3Example99" class="form-control form-control-lg" />
                                     </div>
 
-                                    
+                                     -->
 
                                     <div class="text-center">
                                      <input type="submit" name="register" value="Submit Form">

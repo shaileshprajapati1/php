@@ -90,7 +90,7 @@
 
         }
         function deletebyid(id){
-            console.log("deleteid",id);
+            // console.log("deleteid",id);
             let todoitem = document.getElementById("todoitem").value
             fetch("http://localhost/PHP/php/API/deletebyid?todoid=" + id).then((res)=>res.json()).then((result)=>{
                 getalltododata()
