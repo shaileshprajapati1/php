@@ -4,64 +4,81 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+
+<?php
+if (!isset($_SESSION['userdata'])) {
+	header("location:login");
+}
+
+?>
 <!DOCTYPE HTML>
 <html>
+
 <head>
-<title>Admin Panel</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	<title>Admin Panel</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Novus Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- Bootstrap Core CSS -->
-<link href="<?php echo $this->baseURL ;?>assets/admin/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- Custom CSS -->
-<link href="<?php echo $this->baseURL ;?>assets/admin/css/style.css" rel='stylesheet' type='text/css' />
-<!-- font CSS -->
-<!-- font-awesome icons -->
-<link href="<?php echo $this->baseURL ;?>assets/admin/css/font-awesome.css" rel="stylesheet"> 
-<!-- //font-awesome icons -->
- <!-- js-->
-<script src="<?php echo $this->baseURL ;?>assets/admin/js/jquery-1.11.1.min.js"></script>
-<script src="<?php echo $this->baseURL ;?>assets/admin/js/modernizr.custom.js"></script>
-<!--webfonts-->
-<!-- <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'> -->
-<!--//webfonts--> 
-<!--animate-->
-<link href="<?php echo $this->baseURL ;?>assets/admin/css/animate.css" rel="stylesheet" type="text/css" media="all">
-<script src="<?php echo $this->baseURL ;?>assets/admin/js/wow.min.js"></script>
-	<script>
-		 new WOW().init();
+	<script type="application/x-javascript">
+		addEventListener("load", function() {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
 	</script>
-<!--//end-animate-->
-<!-- chart -->
-<script src="<?php echo $this->baseURL ;?>assets/admin/js/Chart.js"></script>
-<!-- //chart -->
-<!--Calender-->
-<link rel="stylesheet" href="<?php echo $this->baseURL ;?>assets/admin/css/clndr.css" type="text/css" />
-<script src="<?php echo $this->baseURL ;?>assets/admin/js/underscore-min.js" type="text/javascript"></script>
-<script src= "<?php echo $this->baseURL ;?>assets/admin/js/moment-2.2.1.js" type="text/javascript"></script>
-<script src="<?php echo $this->baseURL ;?>assets/admin/js/clndr.js" type="text/javascript"></script>
-<script src="<?php echo $this->baseURL ;?>assets/admin/js/site.js" type="text/javascript"></script>
-<!--End Calender-->
-<!-- Metis Menu -->
-<script src="<?php echo $this->baseURL ;?>assets/admin/js/metisMenu.min.js"></script>
-<script src="<?php echo $this->baseURL ;?>assets/admin/js/custom.js"></script>
-<link href="<?php echo $this->baseURL ;?>assets/admin/css/custom.css" rel="stylesheet">
-<!--//Metis Menu -->
-</head> 
+	<!-- Bootstrap Core CSS -->
+	<link href="<?php echo $this->baseURL; ?>assets/admin/css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<!-- Custom CSS -->
+	<link href="<?php echo $this->baseURL; ?>assets/admin/css/style.css" rel='stylesheet' type='text/css' />
+	<!-- font CSS -->
+	<!-- font-awesome icons -->
+	<link href="<?php echo $this->baseURL; ?>assets/admin/css/font-awesome.css" rel="stylesheet">
+	<!-- //font-awesome icons -->
+	<!-- js-->
+	<script src="<?php echo $this->baseURL; ?>assets/admin/js/jquery-1.11.1.min.js"></script>
+	<script src="<?php echo $this->baseURL; ?>assets/admin/js/modernizr.custom.js"></script>
+	<!--webfonts-->
+	<!-- <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'> -->
+	<!--//webfonts-->
+	<!--animate-->
+	<link href="<?php echo $this->baseURL; ?>assets/admin/css/animate.css" rel="stylesheet" type="text/css" media="all">
+	<script src="<?php echo $this->baseURL; ?>assets/admin/js/wow.min.js"></script>
+	<script>
+		new WOW().init();
+	</script>
+	<!--//end-animate-->
+	<!-- chart -->
+	<script src="<?php echo $this->baseURL; ?>assets/admin/js/Chart.js"></script>
+	<!-- //chart -->
+	<!--Calender-->
+	<link rel="stylesheet" href="<?php echo $this->baseURL; ?>assets/admin/css/clndr.css" type="text/css" />
+	<script src="<?php echo $this->baseURL; ?>assets/admin/js/underscore-min.js" type="text/javascript"></script>
+	<script src="<?php echo $this->baseURL; ?>assets/admin/js/moment-2.2.1.js" type="text/javascript"></script>
+	<script src="<?php echo $this->baseURL; ?>assets/admin/js/clndr.js" type="text/javascript"></script>
+	<script src="<?php echo $this->baseURL; ?>assets/admin/js/site.js" type="text/javascript"></script>
+	<!--End Calender-->
+	<!-- Metis Menu -->
+	<script src="<?php echo $this->baseURL; ?>assets/admin/js/metisMenu.min.js"></script>
+	<script src="<?php echo $this->baseURL; ?>assets/admin/js/custom.js"></script>
+	<link href="<?php echo $this->baseURL; ?>assets/admin/css/custom.css" rel="stylesheet">
+	<!--//Metis Menu -->
+</head>
+
 <body class="cbp-spmenu-push">
 	<div class="main-content">
 		<!--left-fixed -navigation-->
 		<div class=" sidebar" role="navigation">
-            <div class="navbar-collapse">
+			<div class="navbar-collapse">
 				<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
 					<ul class="nav" id="side-menu">
 						<li>
 							<a href="admin" class="active"><i class="fa fa-home nav_icon"></i>Dashboard</a>
 						</li>
 						<li>
-							<a href="#"><i class="fa fa-users"></i>Components  <span class="fa arrow"></span></a>
+							<a href="#"><i class="fa fa-users"></i>Components <span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level collapse">
 								<li>
 									<a href="adduser"><i class="fa fa-user"></i>Add User</a>
@@ -72,7 +89,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							</ul>
 							<!-- /nav-second-level -->
 						</li>
-						
+
 				</nav>
 			</div>
 		</div>
@@ -97,7 +114,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						<input class="sb-search-input input__field--madoka" placeholder="Search..." type="search" id="input-31" />
 						<label class="input__label" for="input-31">
 							<svg class="graphic" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
-								<path d="m0,0l404,0l0,77l-404,0l0,-77z"/>
+								<path d="m0,0l404,0l0,77l-404,0l0,-77z" />
 							</svg>
 						</label>
 					</form>
@@ -116,33 +133,33 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 									</div>
 								</li>
 								<li><a href="#">
-								   <div class="user_img"><img src="images/1.png" alt=""></div>
-								   <div class="notification_desc">
-									<p>Lorem ipsum dolor amet</p>
-									<p><span>1 hour ago</span></p>
-									</div>
-								   <div class="clearfix"></div>	
-								</a></li>
+										<div class="user_img"><img src="images/1.png" alt=""></div>
+										<div class="notification_desc">
+											<p>Lorem ipsum dolor amet</p>
+											<p><span>1 hour ago</span></p>
+										</div>
+										<div class="clearfix"></div>
+									</a></li>
 								<li class="odd"><a href="#">
-									<div class="user_img"><img src="images/2.png" alt=""></div>
-								   <div class="notification_desc">
-									<p>Lorem ipsum dolor amet </p>
-									<p><span>1 hour ago</span></p>
-									</div>
-								  <div class="clearfix"></div>	
-								</a></li>
+										<div class="user_img"><img src="images/2.png" alt=""></div>
+										<div class="notification_desc">
+											<p>Lorem ipsum dolor amet </p>
+											<p><span>1 hour ago</span></p>
+										</div>
+										<div class="clearfix"></div>
+									</a></li>
 								<li><a href="#">
-								   <div class="user_img"><img src="images/3.png" alt=""></div>
-								   <div class="notification_desc">
-									<p>Lorem ipsum dolor amet </p>
-									<p><span>1 hour ago</span></p>
-									</div>
-								   <div class="clearfix"></div>	
-								</a></li>
+										<div class="user_img"><img src="images/3.png" alt=""></div>
+										<div class="notification_desc">
+											<p>Lorem ipsum dolor amet </p>
+											<p><span>1 hour ago</span></p>
+										</div>
+										<div class="clearfix"></div>
+									</a></li>
 								<li>
 									<div class="notification_bottom">
 										<a href="#">See all messages</a>
-									</div> 
+									</div>
 								</li>
 							</ul>
 						</li>
@@ -155,36 +172,36 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 									</div>
 								</li>
 								<li><a href="#">
-									<div class="user_img"><img src="images/2.png" alt=""></div>
-								   <div class="notification_desc">
-									<p>Lorem ipsum dolor amet</p>
-									<p><span>1 hour ago</span></p>
-									</div>
-								  <div class="clearfix"></div>	
-								 </a></li>
-								 <li class="odd"><a href="#">
-									<div class="user_img"><img src="images/1.png" alt=""></div>
-								   <div class="notification_desc">
-									<p>Lorem ipsum dolor amet </p>
-									<p><span>1 hour ago</span></p>
-									</div>
-								   <div class="clearfix"></div>	
-								 </a></li>
-								 <li><a href="#">
-									<div class="user_img"><img src="images/3.png" alt=""></div>
-								   <div class="notification_desc">
-									<p>Lorem ipsum dolor amet </p>
-									<p><span>1 hour ago</span></p>
-									</div>
-								   <div class="clearfix"></div>	
-								 </a></li>
-								 <li>
+										<div class="user_img"><img src="images/2.png" alt=""></div>
+										<div class="notification_desc">
+											<p>Lorem ipsum dolor amet</p>
+											<p><span>1 hour ago</span></p>
+										</div>
+										<div class="clearfix"></div>
+									</a></li>
+								<li class="odd"><a href="#">
+										<div class="user_img"><img src="images/1.png" alt=""></div>
+										<div class="notification_desc">
+											<p>Lorem ipsum dolor amet </p>
+											<p><span>1 hour ago</span></p>
+										</div>
+										<div class="clearfix"></div>
+									</a></li>
+								<li><a href="#">
+										<div class="user_img"><img src="images/3.png" alt=""></div>
+										<div class="notification_desc">
+											<p>Lorem ipsum dolor amet </p>
+											<p><span>1 hour ago</span></p>
+										</div>
+										<div class="clearfix"></div>
+									</a></li>
+								<li>
 									<div class="notification_bottom">
 										<a href="#">See all notifications</a>
-									</div> 
+									</div>
 								</li>
 							</ul>
-						</li>	
+						</li>
 						<li class="dropdown head-dpdn">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue1">15</span></a>
 							<ul class="dropdown-menu">
@@ -194,77 +211,77 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 									</div>
 								</li>
 								<li><a href="#">
-									<div class="task-info">
-										<span class="task-desc">Database update</span><span class="percentage">40%</span>
-										<div class="clearfix"></div>	
-									</div>
-									<div class="progress progress-striped active">
-										<div class="bar yellow" style="width:40%;"></div>
-									</div>
-								</a></li>
+										<div class="task-info">
+											<span class="task-desc">Database update</span><span class="percentage">40%</span>
+											<div class="clearfix"></div>
+										</div>
+										<div class="progress progress-striped active">
+											<div class="bar yellow" style="width:40%;"></div>
+										</div>
+									</a></li>
 								<li><a href="#">
-									<div class="task-info">
-										<span class="task-desc">Dashboard done</span><span class="percentage">90%</span>
-									   <div class="clearfix"></div>	
-									</div>
-									<div class="progress progress-striped active">
-										 <div class="bar green" style="width:90%;"></div>
-									</div>
-								</a></li>
+										<div class="task-info">
+											<span class="task-desc">Dashboard done</span><span class="percentage">90%</span>
+											<div class="clearfix"></div>
+										</div>
+										<div class="progress progress-striped active">
+											<div class="bar green" style="width:90%;"></div>
+										</div>
+									</a></li>
 								<li><a href="#">
-									<div class="task-info">
-										<span class="task-desc">Mobile App</span><span class="percentage">33%</span>
-										<div class="clearfix"></div>	
-									</div>
-								   <div class="progress progress-striped active">
-										 <div class="bar red" style="width: 33%;"></div>
-									</div>
-								</a></li>
+										<div class="task-info">
+											<span class="task-desc">Mobile App</span><span class="percentage">33%</span>
+											<div class="clearfix"></div>
+										</div>
+										<div class="progress progress-striped active">
+											<div class="bar red" style="width: 33%;"></div>
+										</div>
+									</a></li>
 								<li><a href="#">
-									<div class="task-info">
-										<span class="task-desc">Issues fixed</span><span class="percentage">80%</span>
-									   <div class="clearfix"></div>	
-									</div>
-									<div class="progress progress-striped active">
-										 <div class="bar  blue" style="width: 80%;"></div>
-									</div>
-								</a></li>
+										<div class="task-info">
+											<span class="task-desc">Issues fixed</span><span class="percentage">80%</span>
+											<div class="clearfix"></div>
+										</div>
+										<div class="progress progress-striped active">
+											<div class="bar  blue" style="width: 80%;"></div>
+										</div>
+									</a></li>
 								<li>
 									<div class="notification_bottom">
 										<a href="#">See all pending tasks</a>
-									</div> 
+									</div>
 								</li>
 							</ul>
-						</li>	
+						</li>
 					</ul>
 					<div class="clearfix"> </div>
 				</div>
 				<!--notification menu end -->
-				<div class="profile_details">		
+				<div class="profile_details">
 					<ul>
 						<li class="dropdown profile_details_drop">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-								<div class="profile_img">	
-									<span class="prfil-img"><img src="images/a.png" alt=""> </span> 
+								<div class="profile_img">
+									<span class="prfil-img"><img src="<?php echo $this->baseURL; ?>assets/admin/images/shailesh.jpg" style="border-radius: 50%;" width="50px" alt=""> </span>
 									<div class="user-name">
-										<p>Wikolia</p>
+										<p>shailesh</p>
 										<span>Administrator</span>
 									</div>
 									<i class="fa fa-angle-down lnr"></i>
 									<i class="fa fa-angle-up lnr"></i>
-									<div class="clearfix"></div>	
-								</div>	
+									<div class="clearfix"></div>
+								</div>
 							</a>
 							<ul class="dropdown-menu drp-mnu">
-								<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> 
-								<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li> 
+								<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
+								<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>
 								<li> <a href="logout"><i class="fa fa-sign-out"></i> Logout</a> </li>
 							</ul>
 						</li>
 					</ul>
 				</div>
-				<div class="clearfix"> </div>				
+				<div class="clearfix"> </div>
 			</div>
-			<div class="clearfix"> </div>	
+			<div class="clearfix"> </div>
 		</div>
 		<!-- //header-ends -->

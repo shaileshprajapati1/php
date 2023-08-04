@@ -3,7 +3,7 @@
     <div class="main-page">
         <div class="row-one">
             <!-- <div class="col-md-4 widget"> -->
-            <div class="tables">
+            <div class="tables"><button class="btn btn-success"><a href="adduser">Add User</a></button>
                 <h3 class="title1">Tables</h3>
                 <div class="panel-body widget-shadow">
                     <h4>View All User:</h4>
@@ -38,7 +38,7 @@
                                     <td> <?php echo $value->gender; ?></td>
                                     <td>
                                         <?php if ($value->role_id == 2) { ?>
-                                            <button class="btn btn-success"> <a href="edituser?userid=<?php echo $value->id; ?>">Edit</a></button>
+                                            <button class="btn btn-primery"> <a href="edituser?userid=<?php echo $value->id; ?>">Edit</a></button>
                                             <button class="btn btn-danger"> <a href="deleteuser?userid=<?php echo $value->id; ?>">Delete</a></button>
 
                                         <?php  }
@@ -59,3 +59,4 @@
 
 
                 </div>
+               
