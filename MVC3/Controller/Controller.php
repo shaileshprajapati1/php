@@ -47,8 +47,20 @@ class Controller extends Model
                     include_once("Views/courses.php");
                     include_once("Views/footer.php");
                     break;
-                case '/Admin':
-                    echo "Admin page";
+                case '/admin':
+                    include_once("Views/admin/adminheader.php");
+                    include_once("Views/admin/admindashboard.php");
+                    include_once("Views/admin/adminfooter.php");
+                    break;
+                case '/adduser':
+                    include_once("Views/admin/adminheader.php");
+                    include_once("Views/admin/adduser.php");
+                    include_once("Views/admin/adminfooter.php");
+                    break;
+                case '/viewalluser':
+                    include_once("Views/admin/adminheader.php");
+                    include_once("Views/admin/viewalluser.php");
+                    include_once("Views/admin/adminfooter.php");
                     break;
                 case '/logout':
                     session_destroy();
@@ -59,9 +71,9 @@ class Controller extends Model
                     if (isset($_POST['login'])) {
                         if ($_POST['username'] !== "" && $_POST['password'] !== "") {
                             $LoginRes = $this->Select("users", array("username" => $_POST['username'], "password" => $_POST['password']));
-                            echo "<pre>";
-                            print_r($LoginRes);
-                            echo "</pre>";
+                            // echo "<pre>";
+                            // print_r($LoginRes);
+                            // echo "</pre>";
                             if ($LoginRes['Code'] == 1) {
                                 $_SESSION['userdata'] = $LoginRes['Data'];
                                 if ($LoginRes['Data'][0]->role_id == 1) {
@@ -99,8 +111,8 @@ class Controller extends Model
                         $HobbyData = implode(",", $_POST['hobby']);
                         // echo $HobbyData;
                         array_pop($_POST);
-                        $Data = array_merge($_POST, array("hobby" => $HobbyData, "password" => md5($_POST['password'])));
-                        unset($_REQUEST["password"]);
+                        $Data = array_merge($_POST, array("hobby" => $HobbyData));
+                       
                         $InsertRes = $this->Insert("users", $Data);
                         // print_r($InsertRes);
                         if ($InsertRes["Code"] == 1) {

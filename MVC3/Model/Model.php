@@ -55,7 +55,7 @@ class Model {
             }
         }
 
-       echo $SQL;
+    //    echo $SQL;
         $SQLEx = $this->connection->query($SQL);
 
         // print_r($SQLEx);

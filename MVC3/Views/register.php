@@ -74,10 +74,6 @@
 
 
 
-                                        <!-- <div class="form-outline mb-4">
-                                        <label class="form-label" for="form3Example8">Address</label>
-                                        <input type="text" id="form3Example8" class="form-control form-control-lg" />
-                                    </div> -->
 
                                         <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
 
@@ -102,7 +98,7 @@
 
                                         <div class="row1">
                                             <div class="col-md-4 mb-4">
-                                                    <label for="">Country</label>
+                                                <label for="">Country</label>
                                                 <select class="select" name="country" onchange="loadstatebycountry(this)" id="country">
                                                     <option value=""> Select Country</option>
 
@@ -110,19 +106,19 @@
 
                                             </div>
                                             <div class="col-md-4 mb-4">
-                                            <label for="">State</label>
+                                                <label for="">State</label>
 
                                                 <select class="select" onchange="loadcitybystate(this)" name="state" id="state">
-                                                    <option value="" >Select State</option>
+                                                    <option value="">Select State</option>
 
                                                 </select>
 
                                             </div>
                                             <div class="col-md-4 mb-4">
-                                            <label for="">City</label>
+                                                <label for="">City</label>
 
                                                 <select class="select" name="city" id="city">
-                                                    <option value="" >Select City</option>
+                                                    <option value="">Select City</option>
 
                                                 </select>
 
@@ -174,20 +170,20 @@
         function loadcountry() {
             fetch("http://localhost/php/php/MVC3/allcountry").then((res) => res.json()).then((result) => {
                 console.log(result);
-               let HTMLRes = `<option value=""> Select Country</option>`
-                result.Data.forEach(data  => {
-                   console.log(data);
-                   HTMLRes += `<option value=${data.country_id}> ${data.country_name}</option>`
+                let HTMLRes = `<option value=""> Select Country</option>`
+                result.Data.forEach(data => {
+                    console.log(data);
+                    HTMLRes += `<option value=${data.country_id}> ${data.country_name}</option>`
                 });
                 console.log(HTMLRes);
-                document.getElementById("country").innerHTML=HTMLRes
+                document.getElementById("country").innerHTML = HTMLRes
             });
         }
         loadcountry();
-    
-        function loadstatebycountry(id){
+
+        function loadstatebycountry(id) {
             // console.log(id.value);
-            fetch("http://localhost/php/php/MVC3/allstates?countryid="+id.value).then((res)=>res.json()).then((result)=> {
+            fetch("http://localhost/php/php/MVC3/allstates?countryid=" + id.value).then((res) => res.json()).then((result) => {
                 console.log(result);
                 let htmlres = ` <option value="" >Select State</option>`
                 result.Data.forEach(data => {
@@ -195,27 +191,27 @@
                     htmlres += ` <option value=${data.sid} >${data.name}</option>`
                 })
                 console.log(htmlres);
-                document.getElementById("state").innerHTML=htmlres
+                document.getElementById("state").innerHTML = htmlres
             })
 
-       }
-    loadstatebycountry()
+        }
+        loadstatebycountry()
 
-    function  loadcitybystate(id){
-        // console.log(id.value);
-        fetch("http://localhost/php/php/MVC3/allcities?stateid="+id.value).then((res)=>res.json()).then((result)=>{
-            console.log(result);
-            let htmlres = `<option value="" >Select City</option>`
-            result.Data.forEach(data=>{
-                console.log(data);
-                htmlres+= `<option value=${data.cid} >${data.name}</option>`
-            })
-            console.log(htmlres);
-            document.getElementById("city").innerHTML=htmlres
-        });
+        function loadcitybystate(id) {
+            // console.log(id.value);
+            fetch("http://localhost/php/php/MVC3/allcities?stateid=" + id.value).then((res) => res.json()).then((result) => {
+                console.log(result);
+                let htmlres = `<option value="" >Select City</option>`
+                result.Data.forEach(data => {
+                    console.log(data);
+                    htmlres += `<option value=${data.cid} >${data.name}</option>`
+                })
+                console.log(htmlres);
+                document.getElementById("city").innerHTML = htmlres
+            });
 
-    }
-loadcitybystate()
+        }
+        loadcitybystate()
     </script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
