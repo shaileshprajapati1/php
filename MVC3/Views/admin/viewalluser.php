@@ -12,22 +12,48 @@
                             <tr>
                                 <th>Sr No</th>
                                 <th>Fullname</th>
-                                <th>Username</th>
+                                <!-- <th>Username</th> -->
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Gender</th>
-                                <th>Hobby</th>
                                 <th>Action</th>
-                                
-                               
+
+
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Mark</td>
-                                
-                            </tr>
-                           
+                            <?php
+                            // echo "<pre>";
+                            // print_r($viewallusers['Data']);
+                            // echo "</pre>";
+                            $i = 0;
+                            foreach ($viewallusers['Data'] as $key => $value) {
+                                $i++ ?>
+                                <tr>
+                                    <td> <?php echo $i ?></td>
+                                    <td> <?php echo $value->fullname; ?></td>
+                                    <!-- <td> <?php echo $value->username; ?></td> -->
+                                    <td> <?php echo $value->email; ?></td>
+                                    <td> <?php echo $value->phone; ?></td>
+                                    <td> <?php echo $value->gender; ?></td>
+                                    <td>
+                                        <?php if ($value->role_id == 2) { ?>
+                                            <button class="btn btn-success"> <a href="edituser?userid=<?php echo $value->id; ?>">Edit</a></button>
+                                            <button class="btn btn-danger"> <a href="deleteuser?userid=<?php echo $value->id; ?>">Delete</a></button>
+
+                                        <?php  }
+
+                                        ?>
+                                    </td>
+
+                                </tr>
+
+                            <?php  }
+
+                            ?>
+
+
+
                         </tbody>
                     </table>
 

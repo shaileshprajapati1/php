@@ -58,9 +58,14 @@ class Controller extends Model
                     include_once("Views/admin/adminfooter.php");
                     break;
                 case '/viewalluser':
+                    $viewallusers = $this->Select("users",array("role_id"=>2));
+                    // echo "<pre>";
+                    // print_r($viewallusers);
+                    //  echo "</pre>";
                     include_once("Views/admin/adminheader.php");
                     include_once("Views/admin/viewalluser.php");
                     include_once("Views/admin/adminfooter.php");
+                    
                     break;
                 case '/logout':
                     session_destroy();
