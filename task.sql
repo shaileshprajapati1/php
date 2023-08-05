@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2023 at 08:33 AM
+-- Generation Time: Aug 05, 2023 at 10:12 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -52427,8 +52427,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fullname`, `username`, `email`, `phone`, `dob`, `gender`, `password`, `hobby`, `profile_pic`, `role_id`, `city`, `account`, `create at`, `update at`) VALUES
-(5, 'manish prajapati', 'manish', 'manish@mail.com', '8849668513', '1994-08-01', 'Male', '789456', 'Cricket', '5.jpeg', 2, 8, '', '2023-07-20 06:39:52', '2023-07-05 05:29:37'),
-(6, 'nilesh Prajapati ', 'nilesh', 'nilesh@mail.com', '885489635', '2020-05-06', 'Male', '123456', 'Music,Reading,Watching Movies', '', 2, 2, '', '2023-07-20 06:29:03', '2023-07-05 09:42:05'),
+(5, 'manish prajapati', 'manish', 'manish@mail.com', '8849668513', '1994-08-01', 'Male', '789456', 'cricket', '5.jpeg', 2, 8, '', '2023-08-05 06:42:01', '2023-07-05 05:29:37'),
+(6, 'nilesh Prajapati ', 'nilesh', 'nilesh@mail.com', '885489635', '2020-05-06', 'Male', '123456', 'music,reading,watching movies', '', 2, 2, '', '2023-08-05 06:42:19', '2023-07-05 09:42:05'),
 (7, 'ranjitsingh', 'ranjit', 'test@test.com', '9988776655', '1994-09-01', 'Male', '123456', 'cricket,reading', '', 2, 3, '', '2023-07-19 07:40:12', '2023-07-06 05:20:02'),
 (19, 'ranjitsingh', 'ranjit', 'test@test.com', '9724668513', '1990-01-01', 'Male', '123456', 'cricket,music,reading', '', 2, 4, '', '2023-07-19 07:40:18', '2023-07-08 08:18:29'),
 (20, 'Shailesh Prajapati ', 'shailesh', 'shaileshprajapati966@gmail.com', '9724668513', '1994-08-01', 'Male', 'shailesh', 'music,reading,watching Movies', '', 1, 5, '', '2023-07-19 07:40:22', '2023-07-08 08:43:19'),
@@ -52482,8 +52482,8 @@ INSERT INTO `users` (`id`, `fullname`, `username`, `email`, `phone`, `dob`, `gen
 (81, 'jigar prajapati', 'jigar', 'jigar@gmail.com', '8846932522', '2000-01-01', 'Male', '202cb962ac59075b964b07152d234b70', 'cricket,reading,music,watching movies', NULL, 2, 993, '', '2023-08-02 11:43:02', '2023-08-02 11:41:21'),
 (82, 'jigar prajapati', 'jigar', 'jigar@gmail.com', '8849668513', '2000-01-01', 'Female', '123', 'watching movies', NULL, 2, 783, '', '2023-08-02 16:29:13', '2023-08-02 11:45:18'),
 (83, '', '', '', '', '0000-00-00', '', '', 'cricket', NULL, 2, 0, '', '2023-08-04 10:39:55', '2023-08-04 10:39:55'),
-(84, 'ranjitsingh', 'ranjit', 'ranjit@gmail.com', '88548963545', '2004-01-01', 'Male', '123', 'reading,music,watching movies', NULL, 2, 1003, '', '2023-08-04 10:41:21', '2023-08-04 10:41:21'),
-(85, 'ranjitsingh', 'ranjit', 'ranjit@gmail.com', '88548963545', '2004-01-01', 'Female', '', 'reading,music,watching movies', NULL, 2, 1003, '', '2023-08-05 06:18:43', '2023-08-04 10:45:29');
+(84, 'ranjitsingh', 'ranjit', 'ranjit@gmail.com', '88548963545', '2004-01-01', 'Male', '123', 'cricket,reading,music,watching movies', NULL, 2, 0, '', '2023-08-05 08:08:36', '2023-08-04 10:41:21'),
+(85, 'ranjitsingh', 'ranjit', 'ranjit@gmail.com', '88548963545', '2004-01-01', 'Male', '', 'cricket,watching movies', NULL, 2, 0, '', '2023-08-05 08:10:19', '2023-08-04 10:45:29');
 
 --
 -- Indexes for dumped tables
