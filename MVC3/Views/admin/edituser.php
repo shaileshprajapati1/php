@@ -1,48 +1,49 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 <div id="page-wrapper">
     <div class="main-page signup-page">
-        <h3 class="title1">SignUp Here</h3>
+        <h3 class="title1">Update User</h3>
 
         <div class="sign-up-row widget-shadow">
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="sign-u">
                     <label class="sign-up1" for="fullname">Full name</label>
-                    <input type="text" id="fullname" name="fullname" class="sign-up2" />
+                    <input type="text" id="fullname" value="<?php echo $ViewUserRes["Data"]["0"]->fullname; ?>" name="fullname" class="sign-up2" />
                 </div>
                 <div class="clearfix"> </div><br>
                 <div class="sign-u">
                     <label class="sign-up1" for="username">Username</label>
-                    <input type="text" id="username" name="username" class="sign-up2" />
+                    <input type="text" id="username" value="<?php echo $ViewUserRes["Data"]["0"]->username; ?>" name="username" class="sign-up2" />
                 </div>
                 <div class="clearfix"> </div><br>
                 <div class="sign-u">
                     <label class="sign-up1" for="email">Email</label>
-                    <input type="email" id="email" name="email" class="sign-up2" />
+                    <input type="email" id="email" value="<?php echo $ViewUserRes["Data"]["0"]->email; ?>" name="email" class="sign-up2" />
                 </div>
                 <div class="clearfix"> </div><br>
                 <div class="sign-u">
                     <label class="sign-up1" for="phone">phone</label>
-                    <input type="tel" id="phone" name="phone" class="sign-up2" />
+                    <input type="tel" id="phone" value="<?php echo $ViewUserRes["Data"]["0"]->phone; ?>" name="phone" class="sign-up2" />
                 </div>
                 <div class="clearfix"> </div><br>
                 <div class="sign-u">
                     <label class="sign-up1" for="password">Password</label>
-                    <input type="password" id="password" name="password" class="sign-up2" />
+                    
+                    <input type="password" id="password" <?php echo isset($ViewUserRes)?"disabled":"" ?>  value="<?php echo $ViewUserRes["Data"]["0"]->password ?? ""; ?>" name="password" class="sign-up2" />
                 </div>
                 <div class="clearfix"> </div><br>
                 <div class="sign-u">
                     <h6 class="mb-0 me-4">Gender: </h6>
                     <div class="form-check form-check-inline mb-0 me-4">
-                        <input class="form-check-input" type="radio" name="gender" id="maleGender" value="Male" />
+                        <input class="form-check-input" type="radio" name="gender" id="maleGender" <?php if ($ViewUserRes["Data"][0]->gender == "Male") { echo "Checked"; } ?> value="Male" />
                         <label class="form-check-label" for="maleGender">Male</label>
                     </div>
                     <div class="form-check form-check-inline mb-0 me-4">
-                        <input class="form-check-input" type="radio" name="gender" id="femaleGender" value="Female" />
+                        <input class="form-check-input" type="radio" name="gender" id="femaleGender" <?php if ($ViewUserRes["Data"][0]->gender == "Female") { echo "Checked"; } ?> value="Female" />
                         <label class="form-check-label" for="femaleGender">Female</label>
                     </div>
 
                     <div class="form-check form-check-inline mb-0">
-                        <input class="form-check-input" type="radio" name="gender" id="otherGender" value="Other" />
+                        <input class="form-check-input" type="radio" name="gender" id="otherGender" <?php if ($ViewUserRes["Data"][0]->gender == "Other") { echo "Checked"; } ?> value="Other" />
                         <label class="form-check-label" for="otherGender">Other</label>
                     </div>
 
@@ -91,7 +92,7 @@
                 </div>
                 <div class="clearfix"> </div><br>
                 <div class="text-center">
-                    <input type="submit" name="adduser" class="btn btn-success" value="Add User">
+                    <input type="submit" name="update" class="btn btn-success" value="Update">
                 </div>
             </form>
 

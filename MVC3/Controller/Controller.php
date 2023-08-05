@@ -25,11 +25,11 @@ class Controller extends Model
                     echo json_encode($data);
                     break;
                 case '/allstates':
-                    $data = $this->Select("states",array("country_id"=>$_REQUEST['countryid']));
+                    $data = $this->Select("states", array("country_id" => $_REQUEST['countryid']));
                     echo json_encode($data);
                     break;
                 case '/allcities':
-                    $data = $this->Select("cities",array("state_id"=>$_REQUEST['stateid']));
+                    $data = $this->Select("cities", array("state_id" => $_REQUEST['stateid']));
                     echo json_encode($data);
                     break;
                 case '/contact':
@@ -56,16 +56,44 @@ class Controller extends Model
                     include_once("Views/admin/adminheader.php");
                     include_once("Views/admin/adduser.php");
                     include_once("Views/admin/adminfooter.php");
+                    if (isset($_POST["adduser"])) {
+                        $HobbyData = implode(",", $_POST['hobby']);
+                        // echo $HobbyData;
+                        array_pop($_POST);
+                        unset($_POST["country"], $_POST["state"], $_POST["hobby"]);
+                        // echo "<pre>";
+                        // print_r($_POST);
+                        // echo "</pre>";
+                        $data = array_merge($_POST, array("hobby" => $HobbyData));
+                        // echo "<pre>";
+                        // print_r($data);
+                        // echo "</pre>";
+                        $AddRes = $this->Insert("users", $data);
+                        print_r($AddRes);
+                        if ($AddRes["Data"] == 1) {
+                            header("location:viewalluser");
+                        }
+                    }
                     break;
                 case '/viewalluser':
-                    $viewallusers = $this->Select("users",array("role_id"=>2));
+                    $viewallusers = $this->Select("users", array("role_id" => 2));
                     // echo "<pre>";
                     // print_r($viewallusers);
                     //  echo "</pre>";
                     include_once("Views/admin/adminheader.php");
                     include_once("Views/admin/viewalluser.php");
                     include_once("Views/admin/adminfooter.php");
-                    
+
+                    break;
+                case '/edituser':
+                    $ViewUserRes = $this->Select("users",array("id"=>$_GET['userid'])); 
+                    // echo "<pre>";
+                    // print_r($ViewUserRes["Data"]["0"]);
+                    // echo "</pre>";
+                    include_once("Views/admin/adminheader.php");
+                    include_once("Views/admin/edituser.php");
+                    include_once("Views/admin/adminfooter.php");
+
                     break;
                 case '/logout':
                     session_destroy();
@@ -117,7 +145,7 @@ class Controller extends Model
                         // echo $HobbyData;
                         array_pop($_POST);
                         $Data = array_merge($_POST, array("hobby" => $HobbyData));
-                       
+
                         $InsertRes = $this->Insert("users", $Data);
                         // print_r($InsertRes);
                         if ($InsertRes["Code"] == 1) {
