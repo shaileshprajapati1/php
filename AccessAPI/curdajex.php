@@ -66,7 +66,7 @@
         function selecttodobyid(id) {
             // console.log("call");
             fetch("http://localhost/PHP/php/API/selecttodobyid?todoid=" + id).then((res) => res.json()).then((result) => {
-                console.log(result.Data[0].title);
+                // console.log(result.Data[0].title);
                 document.getElementById("todoitem").value = result.Data[0].title
                 document.getElementById("btn-save").innerHTML = '<input type="button" value="update" onclick=update(' + result.Data[0].id + ') name="btn" id="btn">'
 
