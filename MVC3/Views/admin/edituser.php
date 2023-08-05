@@ -84,6 +84,14 @@
                 </div>
                 <div class="clearfix"> </div><br>
                 <div class="sign-u">
+                    <?php 
+                    echo "<pre>";
+                    $HobbyData = explode(",",$ViewUserRes["Data"][0]->hobby);
+                    print_r($HobbyData) ;
+                    
+                    echo "</pre>";
+                    ?>
+
                     <label class="form-label" for="form3Example9">Hobby</label><br>
                     <input type="checkbox" name="hobby[]" id="cricket" value="cricket"><label for="cricket">cricket</label>
                     <input type="checkbox" name="hobby[]" id="reading" value="reading"><label for="reading">reading</label>
