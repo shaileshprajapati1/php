@@ -83,17 +83,31 @@ class Controller extends Model
                     include_once("Views/admin/adminheader.php");
                     include_once("Views/admin/viewalluser.php");
                     include_once("Views/admin/adminfooter.php");
-
                     break;
                 case '/edituser':
                     $ViewUserRes = $this->Select("users",array("id"=>$_GET['userid'])); 
+                    $AllCityData = $this->Select("Cities") ;
                     // echo "<pre>";
-                    // print_r($ViewUserRes["Data"]["0"]);
+                    // print_r($AllCityData);
                     // echo "</pre>";
                     include_once("Views/admin/adminheader.php");
                     include_once("Views/admin/edituser.php");
                     include_once("Views/admin/adminfooter.php");
+                    if(isset($_POST['update'])){
+                        $HobbyData = implode(",",$_POST['hobby']);
+                        // echo $HobbyData;
+                        array_pop($_POST);
+                        unset($_POST['country'],$_POST["state"],$_POST['hobby']);
+                        $data = array_merge($_POST,array("hobby"=>$HobbyData));
+                        $UpdateRes = $this->Update("users",$data,array("id"=>$_GET['userid']));
 
+                        // echo "<pre>";
+                        // print_r($UpdateRes);
+                        // echo "</pre>";
+                        if($UpdateRes['Data'] == 1){
+                            header("location:viewalluser");
+                        }
+                    }
                     break;
                 case '/logout':
                     session_destroy();

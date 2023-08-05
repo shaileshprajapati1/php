@@ -70,9 +70,9 @@
                     <div class="col-md-4 mb-4">
                         <label for="">City</label>
 
-                        <select class="select" name="city" id="city">
+                        <select class="select" name="city"  id="city">
                             <option value="">Select City</option>
-
+                           
                         </select>
 
                     </div>
@@ -80,23 +80,23 @@
                 <div class="clearfix"> </div><br>
                 <div class="sign-u">
                     <label class="sign-up1" for="dob">DOB</label>
-                    <input type="date" id="dob" name="dob" class="sign-up2" />
+                    <input type="date" id="dob" value="<?php echo $ViewUserRes["Data"]["0"]->dob ;?>" name="dob" class="sign-up2" />
                 </div>
                 <div class="clearfix"> </div><br>
                 <div class="sign-u">
                     <?php 
-                    echo "<pre>";
+                    // echo "<pre>";
                     $HobbyData = explode(",",$ViewUserRes["Data"][0]->hobby);
-                    print_r($HobbyData) ;
+                    // print_r($HobbyData) ;
                     
-                    echo "</pre>";
+                    // echo "</pre>";
                     ?>
 
                     <label class="form-label" for="form3Example9">Hobby</label><br>
-                    <input type="checkbox" name="hobby[]" id="cricket" value="cricket"><label for="cricket">cricket</label>
-                    <input type="checkbox" name="hobby[]" id="reading" value="reading"><label for="reading">reading</label>
-                    <input type="checkbox" name="hobby[]" id="music" value="music"><label for="music">music</label>
-                    <input type="checkbox" name="hobby[]" id="watching movies" value="watching movies"><label for="watching movies">watching movies</label>
+                    <input type="checkbox" name="hobby[]" id="cricket" <?php if(in_array("cricket",$HobbyData)){echo "checked";}  ?> value="cricket"><label for="cricket">cricket</label>
+                    <input type="checkbox" name="hobby[]" id="reading" <?php if(in_array("reading",$HobbyData)){echo "checked";}  ?> value="reading"><label for="reading">reading</label>
+                    <input type="checkbox" name="hobby[]" id="music" <?php if(in_array("music",$HobbyData)){echo "checked";}  ?> value="music"><label for="music">music</label>
+                    <input type="checkbox" name="hobby[]" id="watching movies" <?php if(in_array("watching movies",$HobbyData)){echo "checked";}  ?> value="watching movies"><label for="watching movies">watching movies</label>
                 </div>
                 <div class="clearfix"> </div><br>
                 <div class="text-center">

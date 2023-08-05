@@ -2,36 +2,36 @@
 <?php
 date_default_timezone_set('Asia/Kolkata');
 
-class Model {
-    
+class Model
+{
+
     function __construct(protected $connection = null)
     {
         try {
-            $this->connection = new mysqli("localhost","root","","task");
+            $this->connection = new mysqli("localhost", "root", "", "task");
         } catch (\Exception $e) {
             // $ErrorMsg = $e->getMessage();
-            $ErrorMsg = PHP_EOL."Error Date Time >>".PHP_EOL.date('d-m-Y h:i:s A').PHP_EOL."Error Msg>>".$e->getMessage().PHP_EOL;
+            $ErrorMsg = PHP_EOL . "Error Date Time >>" . PHP_EOL . date('d-m-Y h:i:s A') . PHP_EOL . "Error Msg>>" . $e->getMessage() . PHP_EOL;
             // echo $ErrorMsg;
-            if(!file_exists("log")){
+            if (!file_exists("log")) {
                 mkdir('log');
             }
-           $FileName = date('d_m_Y');
-           file_put_contents("log/".$FileName."_log.txt",$ErrorMsg,FILE_APPEND);
+            $FileName = date('d_m_Y');
+            file_put_contents("log/" . $FileName . "_log.txt", $ErrorMsg, FILE_APPEND);
         }
     }
-    function Insert($tbl,$data)
+    function Insert($tbl, $data)
     {
-        $clm =implode(",",array_keys($data)) ;
-        $val = implode("','",$data);
+        $clm = implode(",", array_keys($data));
+        $val = implode("','", $data);
         $SQL = " INSERT INTO $tbl ($clm) VALUES ('$val')";
         // echo $SQL;
         $SQLEx = $this->connection->query($SQL);
         // print_r($SQLEx);
-        if($SQLEx >0){
+        if ($SQLEx > 0) {
             $ResponceData["Data"] = "1";
             $ResponceData["Msg"] = "success";
             $ResponceData["Code"] = "1";
-
         } else {
             $ResponceData["Data"] = "0";
             $ResponceData["Msg"] = "Try Again";
@@ -39,34 +39,34 @@ class Model {
         }
         return $ResponceData;
     }
-    function Select($tbl,$where=null,$join=null)
+    function Select($tbl, $where = null, $join = null)
     {
-        $SQL= " SELECT * FROM $tbl ";
-        if($where != ""){
-            $SQL.= "WHERE ";
-            foreach ($where as $key => $value) {
-                $SQL.= " $key = '$value' AND";
-            }
-        }
-        $SQL = rtrim($SQL," AND");
-        if($join != ""){
+        $SQL = " SELECT * FROM $tbl ";
+        if ($join != "") {
             foreach ($join as $jkey => $jvalue) {
-                $SQL .= "JOIN $jkey ON $jvalue";
+                $SQL .= "JOIN $jkey ON $jvalue AND";
             }
         }
+        $SQL = rtrim($SQL, " AND");
+        if ($where != "") {
+            $SQL .= " WHERE ";
+            foreach ($where as $key => $value) {
+                $SQL .= " $key = '$value' AND";
+            }
+        }
+        $SQL = rtrim($SQL, " AND");
 
-    //    echo $SQL;
+        //    echo $SQL;
         $SQLEx = $this->connection->query($SQL);
 
         // print_r($SQLEx);
-        if($SQLEx->num_rows >0){
+        if ($SQLEx->num_rows > 0) {
             while ($Data = $SQLEx->fetch_object()) {
                 $FetchData[] = $Data;
             }
             $ResponceData["Data"] = $FetchData;
             $ResponceData["Msg"] = "success";
             $ResponceData["Code"] = "1";
-
         } else {
             $ResponceData["Data"] = "0";
             $ResponceData["Msg"] = "Try Again";
@@ -74,9 +74,34 @@ class Model {
         }
         return $ResponceData;
     }
-    
+    function Update($tbl, $clm, $where)
+    {
+        $SQL = " UPDATE $tbl SET ";
 
-} 
+        foreach ($clm as $key => $value) {
+            $SQL .= " $key = '$value' ,";
+        }
+        $SQL = rtrim($SQL, ",");
+        $SQL .= " WHERE";
+        foreach ($where as $key => $value) {
+            $SQL .= " $key = '$value' AND";
+        }
+        $SQL = rtrim($SQL, "AND");
+        // echo $SQL;
+        $SQLEx = $this->connection->query($SQL);
+        // print_r($SQLEx);
+        if ($SQLEx > 0) {
+            $ResponceData["Data"] = "1";
+            $ResponceData["Msg"] = "success";
+            $ResponceData["Code"] = "1";
+        } else {
+            $ResponceData["Data"] = "0";
+            $ResponceData["Msg"] = "Try Again";
+            $ResponceData["Code"] = "0";
+        }
+        return $ResponceData;
+    }
+}
 
 
 ?>
