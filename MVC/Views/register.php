@@ -158,7 +158,7 @@ use PHPMailer\PHPMailer\Exception;
 ob_start();
 require 'vendor/autoload.php';
 $mail = new PHPMailer(true);
-$OTP = rand(1000, 9999);
+$OTP = rand(100000, 999999);
 if (isset($_POST['register'])) {
     $mail->isSMTP();                            // Set mailer to use SMTP
     $mail->Host = 'smtp.gmail.com';              // Specify main and backup SMTP servers
@@ -179,7 +179,10 @@ if (isset($_POST['register'])) {
         echo 'Message was not sent.';
         echo 'Mailer error: ' . $mail->ErrorInfo;
     } else {
-        echo 'Message has been sent.';
+        echo  "<script>
+        alert('Message has been sent.');
+        </script>";
+        // 'Message has been sent.';
     }
 }
 
