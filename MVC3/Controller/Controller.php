@@ -52,6 +52,16 @@ class Controller extends Model
                     include_once("Views/admin/admindashboard.php");
                     include_once("Views/admin/adminfooter.php");
                     break;
+                case '/deleteuser':
+                    $DeleteRes = $this->Delete("users",array("id"=>$_GET['userid']));
+                    // echo "<pre>";
+                    // print_r($DeleteRes);
+                    // echo "</pre>";
+                    if($DeleteRes["Data"] == 1){
+                                       
+                        header("location:viewalluser");
+                    }
+                    break;
                 case '/adduser':
                     include_once("Views/admin/adminheader.php");
                     include_once("Views/admin/adduser.php");
