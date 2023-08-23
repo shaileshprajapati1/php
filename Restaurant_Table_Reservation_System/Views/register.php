@@ -27,7 +27,7 @@
             <div class="row mb-2">
                 <div class="col-6 offset-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" id="password" required>
+                    <input type="password"  class="form-control" name="password" id="password" required>
                 </div>
             </div>
             <div class="row mb-2">
@@ -39,12 +39,12 @@
             <div class="row mb-2">
                 <div class="col-6 offset-3">
                     <label for="phone" class="form-label">Phone</label>
-                    <input type="tel" class="form-control" name="phone" id="phone"required>
+                    <input type="tel" minlength="10" maxlength="10" class="form-control" name="phone" id="phone"required>
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col-6 offset-5">
-                   <input type="submit" class="btn btn-success" value="Sign Up" name="login" id="login">
+                   <input type="submit" class="btn btn-success" value="Sign Up" name="register" id="register">
                    <input type="reset" class="btn btn-danger" >
              </div>
             </div>
