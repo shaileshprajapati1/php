@@ -1,6 +1,11 @@
 <?php
 // session_start();
-// if(!isset($_SESSION['UserData']))
+// echo "<pre>";
+// print_r($_SESSION['UserData']);
+// echo "</pre>";
+if(!isset($_SESSION["UserData"])){
+  header("location:login");
+}
 
 ?>
 
@@ -68,17 +73,18 @@
 
       <h1 class="logo me-auto me-lg-0"><a href="home">Restaurantly</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="<?php $this->URL; ?>assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto active" href="home">Home</a></li>
-          <li><a class="nav-link scrollto" href="about">About</a></li>
-          <li><a class="nav-link scrollto" href="menu">Menu</a></li>
-          <li><a class="nav-link scrollto" href="specials">Specials</a></li>
-          <li><a class="nav-link scrollto" href="events">Events</a></li>
-          <li><a class="nav-link scrollto" href="chefs">Chefs</a></li>
-          <li><a class="nav-link scrollto" href="gallery">Gallery</a></li>
+          <li><a class="nav-link scrollto active" href="admin">Home</a></li>
+          <li><a class="nav-link scrollto" href="#">View All Customer</a></li>
+          <li><a class="nav-link scrollto" href="#">Table Book Data</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#menu">Menu</a></li>
+          <li><a class="nav-link scrollto" href="#specials">Specials</a></li>
+          <li><a class="nav-link scrollto" href="#events">Events</a></li>
+          <li><a class="nav-link scrollto" href="#chefs">Chefs</a></li>
+          <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li> -->
           <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -96,10 +102,10 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li> -->
-          <li><a class="nav-link scrollto" href="contact">Contact</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#contact">Contact</a></li> -->
 
 
-          <li><a class="nav-link scrollto" href="login">Login</a></li>
+          <li><a class="nav-link scrollto" href="logout">Logout</a></li>
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

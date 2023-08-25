@@ -11,26 +11,95 @@ class Controller extends Model
         parent::__construct();
         $this->URL = "http://localhost/PHP/php/Restaurant_Table_Reservation_System/";
 
-        if(isset($_SERVER['PATH_INFO'])){
+        if (isset($_SERVER['PATH_INFO'])) {
             switch ($_SERVER['PATH_INFO']) {
                 case '/home':
                     include_once("Views/header.php");
                     include_once("Views/home.php");
                     include_once("Views/footer.php");
                     break;
-                case '/login':
+                case '/logout':
+                    session_destroy();
+                    header("location:login");
+                    break;
+                case '/admin':
+                    include_once("Views/admin/adminheader.php");
+                    include_once("Views/home.php");
+                    include_once("Views/footer.php");
+
+                    break;
+                case '/customer':
+                    include_once("Views/customer/customerheader.php");
+                    include_once("Views/home.php");
+                    include_once("Views/footer.php");
+                    break;
+                case '/about':
+                    include_once("Views/header.php");
+                    include_once("Views/about.php");
+                    include_once("Views/footer.php");
+                    break;
+                case '/menu':
+                    include_once("Views/header.php");
+                    include_once("Views/menu.php");
+                    include_once("Views/footer.php");
+                    break;
+                case '/specials':
+                    include_once("Views/header.php");
+                    include_once("Views/specials.php");
+                    include_once("Views/footer.php");
+                    break;
+                case '/events':
+                    include_once("Views/header.php");
+                    include_once("Views/events.php");
+                    include_once("Views/footer.php");
+                    break;
+                case '/chefs':
+                    include_once("Views/header.php");
+                    include_once("Views/chefs.php");
+                    include_once("Views/footer.php");
+                    break;
+                case '/gallery':
+                    include_once("Views/header.php");
+                    include_once("Views/gallery.php");
+                    include_once("Views/footer.php");
+                    break;
+                case '/contact':
+                    include_once("Views/header.php");
+                    include_once("Views/contact.php");
+                    include_once("Views/footer.php");
+                    break;
+                case '/login':          
                     include_once("Views/login.php");
-                    
+                    if (isset($_POST['login'])) {
+                        $LoginRes = $this->Select("users", array("username" => $_REQUEST['username'], "password" => $_REQUEST['password']));
+                        if ($LoginRes['Code'] == 1) {
+                            $_SESSION['UserData'] = $LoginRes['Data'];
+                            // echo "<pre>";
+                            // print_r($LoginRes['Data'][0]);
+                            // echo "</pre>";
+                            if ($LoginRes['Data'][0]->role_id == 1) {
+                                header("location:admin");
+                            } else {
+                                header("location:customer");
+                            }
+                        } else {
+                            echo " <script>
+                            alert('Invalid User')
+                            </script>";
+                        }
+                    }
+
+
                     break;
                 case '/register':
                     include_once("Views/register.php");
-                    if(isset($_POST['register'])){
+                    if (isset($_POST['register'])) {
                         unset($_POST['register']);
                         // echo "<pre>";
                         // print_r($_POST);
                         // echo "</pre>";
-                        $InsertRes = $this->Insert("users",$_POST);
-                        if($InsertRes['Code'] == 1){
+                        $InsertRes = $this->Insert("users", $_POST);
+                        if ($InsertRes['Code'] == 1) {
                             echo "<script>
                             alert('You Are SuccessFully Sign Up !!!!')
                             window.location.href='login'
@@ -38,11 +107,13 @@ class Controller extends Model
                         }
                     }
                     break;
-                
+
                 default:
-                    # code...
+                    
                     break;
             }
+        } else {
+            header("location:home");
         }
     }
 }

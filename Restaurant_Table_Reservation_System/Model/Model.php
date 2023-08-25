@@ -25,4 +25,30 @@ class Model
         }
         return $Responce;
     }
+    function Select($tbl, $where =null)
+    {
+        $SQL = " SELECT * FROM $tbl";
+        if ($where != "" || $where != null) {
+            $SQL .= " WHERE";
+            foreach ($where as $key => $value) {
+                $SQL .= " $key =  '$value' AND";
+            }
+            $SQL = rtrim($SQL, "AND");
+        }
+        // echo $SQL;
+        $SQLEx = $this->connection->query($SQL);
+        if ($SQLEx->num_rows > 0) {
+            while ($Data = $SQLEx->fetch_object()) {
+                $FetchData[] = $Data;
+            }
+            $Responce['Data'] = $FetchData;
+            $Responce['Code'] = "1";
+            $Responce['Msg'] = "Success";
+        } else {
+            $Responce['Data'] = "0";
+            $Responce['Code'] = "0";
+            $Responce['Msg'] = "Try Again";
+        }
+        return $Responce;
+    }
 }
