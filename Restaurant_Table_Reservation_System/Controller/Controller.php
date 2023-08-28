@@ -28,6 +28,44 @@ class Controller extends Model
                     include_once("Views/footer.php");
 
                     break;
+                case '/deletecustomer':
+                    $DeleteRes = $this->Delete("users",array("id"=>$_GET['id'],"role_id"=>"2"));
+                    if($DeleteRes['Code'] == 1){
+                        header("location:viewcustomer");
+                    }
+                    break;
+                case '/editcustomer':
+                    $EditRes = $this->Select('users',array("id"=>$_GET['id'],"role_id"=>"2"));
+                    // echo "<pre>";
+                    // print_r($EditRes['Data']);
+                    // echo "</pre>";
+                    include_once("Views/admin/editcustomer.php");
+                    // include_once("Views/home.php");
+                    // include_once("Views/footer.php");
+                    if(isset($_POST['update'])){
+                        array_pop($_POST);
+                        // echo "<pre>";
+                        // print_r($_POST);
+                        // echo "</pre>";
+                        $data= $_POST;
+                        $UpdateRes = $this->Update("users",$data,array("id"=>$_GET['id'],"role_id"=>"2"));
+                        if($UpdateRes['Code'] ==1){
+                            header("location:viewcustomer");
+                        }
+                    }
+
+
+                    break;
+                case '/viewcustomer':
+                    $ViewcustomerRes = $this->Select("users",array("role_id"=>"2"));
+                    // echo "<pre>";
+                    // print_r($ViewcustomerRes['Data']);
+                    // echo "</pre>";
+                    // include_once("Views/admin/adminheader.php");
+                    include_once("Views/admin/viewcustomer.php");
+                    // include_once("Views/footer.php");
+
+                    break;
                 case '/customer':
                     include_once("Views/customer/customerheader.php");
                     include_once("Views/home.php");

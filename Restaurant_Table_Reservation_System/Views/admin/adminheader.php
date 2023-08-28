@@ -78,7 +78,7 @@ if(!isset($_SESSION["UserData"])){
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a class="nav-link scrollto active" href="admin">Home</a></li>
-          <li><a class="nav-link scrollto" href="#">View All Customer</a></li>
+          <li><a class="nav-link scrollto" href="viewcustomer">View All Customer</a></li>
           <li><a class="nav-link scrollto" href="#">Table Book Data</a></li>
           <!-- <li><a class="nav-link scrollto" href="#menu">Menu</a></li>
           <li><a class="nav-link scrollto" href="#specials">Specials</a></li>
