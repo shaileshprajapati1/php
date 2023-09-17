@@ -24,7 +24,7 @@
             $SQL = " INSERT INTO $tbl ($clm) VALUES ('$val')";
             // echo $SQL;
             $SQLEx = $this->connection->query($SQL);
-            if($SQLEx > 0){
+            if ($SQLEx > 0) {
                 $Responce['Data'] = "1";
                 $Responce['Msg'] = "Success";
                 $Responce['Code'] = "1";
@@ -34,21 +34,20 @@
                 $Responce['Code'] = "0";
             }
             return $Responce;
-
         }
         function Select($tbl, $where = null)
         {
             $SQL = " SELECT * FROM $tbl ";
-            if($where != null || $where != ""){
+            if ($where != null || $where != "") {
                 $SQL .= " WHERE";
                 foreach ($where as $key => $value) {
-                   $SQL.= " $key = '$value' AND";
+                    $SQL .= " $key = '$value' AND";
                 }
-                $SQL = rtrim($SQL,"AND");
+                $SQL = rtrim($SQL, "AND");
             }
             // echo $SQL;
             $SQLEx = $this->connection->query($SQL);
-            if($SQLEx->num_rows > 0){
+            if ($SQLEx->num_rows > 0) {
                 while ($data = $SQLEx->fetch_object()) {
                     $FetchData[] = $data;
                 }
@@ -61,9 +60,57 @@
                 $Responce['Code'] = "0";
             }
             return $Responce;
-
         }
-       
+        function Update($tbl, $data, $where)
+        {
+            $SQL = " UPDATE $tbl SET ";
+
+            foreach ($data as $key => $value) {
+                $SQL .= " $key = '$value' ,";
+            }
+            $SQL = rtrim($SQL, ",");
+
+            $SQL .= " WHERE";
+            foreach ($where as $key => $value) {
+                $SQL .= " $key = '$value' AND";
+            }
+            $SQL = rtrim($SQL, "AND");
+
+            // echo $SQL;
+            // exit;
+            $SQLEx = $this->connection->query($SQL);
+            if ($SQLEx > 0) {
+                
+                $Responce['Data'] = "1";
+                $Responce['Msg'] = "Success";
+                $Responce['Code'] = "1";
+            } else {
+                $Responce['Data'] = "0";
+                $Responce['Msg'] = "Try Again";
+                $Responce['Code'] = "0";
+            }
+            return $Responce;
+        }
+        function Delete($tbl,$where){
+            $SQL = " DELETE FROM $tbl WHERE" ;
+
+            foreach ($where as $key => $value) {
+               $SQL .= " $key = '$value' AND";
+            }
+            $SQL = rtrim($SQL,"AND");
+            // echo $SQL;
+            $SQLEx = $this->connection->query($SQL);
+            if($SQLEx > 0){
+                $Responce['Data'] = "1";
+                $Responce['Msg'] = "Success";
+                $Responce['Code'] = "1";
+            } else {
+                $Responce['Data'] = "0";
+                $Responce['Msg'] = "Try Again";
+                $Responce['Code'] = "0";
+            }
+            return $Responce;
+        }
     }
 
 

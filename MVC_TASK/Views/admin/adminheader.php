@@ -4,6 +4,16 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+
+<?php
+// echo "<pre>";
+// print_r($_SESSION['userdata']);
+// echo "</pre>";
+if (!isset($_SESSION['userdata'])) {
+    header("location:login");
+}
+
+?>
 <!DOCTYPE HTML>
 <html>
 
@@ -71,13 +81,13 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                             <a href="admin" class="active"><i class="fa fa-home nav_icon"></i>Dashboard</a>
                         </li>
                         <li>
-                            <a href="Allusers" ><i class="fa fa-user nav_icon"></i>All Users</a>
+                            <a href="Allusers"><i class="fa fa-user nav_icon"></i>All Users</a>
                         </li>
                         <li>
-                            <a href="Allproduct" ><i class="fa fa-television nav_icon"></i>All Product</a>
+                            <a href="Allproduct"><i class="fa fa-television nav_icon"></i>All Product</a>
                         </li>
-                       
-                       
+
+
                         <li>
                             <!-- <a href="#"><i class="fa fa-cogs nav_icon"></i>Components </a> -->
 
@@ -145,8 +155,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 <div class="profile_img">
                                     <span class="prfil-img"><img src="<?php echo $this->baseURL; ?>admin/images/shailesh.jpg" width="30px" alt=""> </span>
                                     <div class="user-name">
-                                        <p>Wikolia</p>
-
+                                        <h3>Hello <span><?php echo $_SESSION['userdata'][0]->name; ?></span></h2>
+                                            <?php
+                                            // echo "<pre>";
+                                            // print_r($_SESSION['userdata'][0]->name);
+                                            // echo "</pre>";
+                                            ?>
                                     </div>
                                     <i class="fa fa-angle-down lnr"></i>
                                     <i class="fa fa-angle-up lnr"></i>

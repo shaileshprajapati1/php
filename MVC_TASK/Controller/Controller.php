@@ -8,6 +8,7 @@ class Controller extends Model
     public $baseURL = "";
     function __construct()
     {
+        ob_start();
         parent::__construct();
         $this->baseURL = "http://localhost/php/php/MVC_TASK/public/";
 
@@ -23,8 +24,47 @@ class Controller extends Model
                     include_once("Views/admin/admindashboard.php");
                     include_once("Views/admin/adminfooter.php");
                     break;
+                case '/Allproduct':
+                    $allproductRes = $this->Select("products");
+                    // echo "<pre>";
+                    // print_r($allproductRes);
+                    // echo "</pre>";
+                    include_once("Views/admin/adminheader.php");
+                    include_once("Views/admin/Allproduct.php");
+                    include_once("Views/admin/adminfooter.php");
+                    break;
+                case '/delete':
+                    $DeleteRes = $this->Delete("users", array("id" => $_GET['userid']));
+                    if ($DeleteRes['Code'] == 1) {
+                        echo  " <script>
+                    alert('Delete Successfully')
+                    window.location.href='Allusers'
+                    </script>";
+                    }
+                    break;
+                case '/edit':
+                    $UpdateRes = $this->Select("users", array("id" => $_GET['userid']));
+                    // echo "<pre>";
+                    // print_r($UpdateRes['Data'][0]);
+                    // echo "</pre>";
+                    include_once("Views/admin/adminheader.php");
+                    include_once("Views/admin/edituser.php");
+                    include_once("Views/admin/adminfooter.php");
+                    if (isset($_POST['update'])) {
+                        array_pop($_POST);
+                        $Data = $_POST;
+                        $UpdateDataRes = $this->Update("users", $Data, array("id" => $_GET['userid']));
+                        // echo "<pre>";
+                        // print_r($UpdateDataRes);
+                        // echo "</pre>";
+                        if ($UpdateDataRes['Code'] == 1) {
+                            header("location:Allusers");
+                        }
+                    }
+
+                    break;
                 case '/Allusers':
-                    $ViewallUsersRes = $this->Select("users",array("roll_id"=>"2"));
+                    $ViewallUsersRes = $this->Select("users", array("roll_id" => "2"));
                     // echo "<pre>";
                     // print_r($ViewallUsersRes['Data']);
                     // echo "</pre>";
@@ -33,8 +73,8 @@ class Controller extends Model
                     include_once("Views/admin/adminfooter.php");
                     break;
                 case '/logout':
-                  session_destroy();
-                  header("location:login");
+                    session_destroy();
+                    header("location:login");
 
                     break;
                 case '/register':
@@ -83,24 +123,35 @@ class Controller extends Model
                     if (isset($_POST['login'])) {
                         if ($_POST['email'] != "" && $_POST['password'] != "") {
                             $LoginRes = $this->Select("users", array("email" => $_POST['email'], "password" => md5($_POST['password'])));
+
                             if ($LoginRes['Code'] == 1) {
                                 $_SESSION['userdata'] = $LoginRes['Data'];
                                 $name = $_SESSION['userdata'][0]->name;
+                                // echo "<pre>";
+                                // print_r($_SESSION['userdata'][0]->password);
+
+                                // echo "</pre>";
                                 if ($LoginRes['Data'][0]->roll_id == 1) {
                                     echo  " <script>
-                                    alert('Welcome $name')
-                                    window.location.href='admin'
-                                    </script>";
+                                        alert('Welcome $name')
+                                        window.location.href='admin'
+                                        </script>";
                                 } else {
                                     echo  " <script>
-                                    alert('Welcome $name')
-                                    window.location.href='home'
-                                    </script>";
+                                        alert('Welcome $name')
+                                        window.location.href='home'
+                                        </script>";
                                 }
+                            } else {
+                                echo  " <script>
+                                    alert('Invalid Users')
+                                    </script>";
                             }
-                            // echo "<pre>";
-                            // print_r($_SESSION['userdata'][0]->name);
-                            // echo "</pre>";
+                        } else {
+                            echo  " <script>
+                            alert('Enter valid Email And Password')
+                           
+                            </script>";
                         }
                     }
 
@@ -124,6 +175,7 @@ class Controller extends Model
         } else {
             header("location:home");
         }
+        ob_flush();
     }
 }
 $Controller = new Controller
