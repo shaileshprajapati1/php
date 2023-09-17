@@ -2,7 +2,7 @@
 <div id="page-wrapper">
     <div class="main-page">
 
-        <a class="btn btn-success" href="addproduct">Add Product</a>
+        <a class="btn btn-primary" href="addproduct">Add Product</a>
         <!-- <div class="clearfix"> </div> -->
 
         <div class="row">
@@ -34,7 +34,12 @@
                                 <td><?php echo $value->Price; ?></td>
                                 <td><?php echo $value->CategoryID; ?></td>
                                 <td><?php echo $value->Images; ?></td>
-                                <td><?php echo $value->id; ?></td>
+                                <td>
+
+                                    <a class="btn btn-success" href="editproduct?productid=<?php echo $value->id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    <a class="btn btn-danger" href="deleteproduct?productcategoryid=<?php echo $value->CategoryID; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
+                                </td>
                             </tr>
                         <?php }
 

@@ -24,6 +24,11 @@ class Controller extends Model
                     include_once("Views/admin/admindashboard.php");
                     include_once("Views/admin/adminfooter.php");
                     break;
+                case '/addproduct':
+                    include_once("Views/admin/adminheader.php");
+                    include_once("Views/admin/addproduct.php");
+                    include_once("Views/admin/adminfooter.php");
+                    break;
                 case '/Allproduct':
                     $allproductRes = $this->Select("products");
                     // echo "<pre>";
