@@ -1,5 +1,7 @@
 
 <?php
+date_default_timezone_set('Asia/Kolkata');
+session_start();
 require_once("Model/Model.php");
 class Controller extends Model
 {
@@ -17,7 +19,23 @@ class Controller extends Model
                     include("Views/footer.php");
                     break;
                 case '/admin':
-                    echo "Hello Admin";
+                    include_once("Views/admin/adminheader.php");
+                    include_once("Views/admin/admindashboard.php");
+                    include_once("Views/admin/adminfooter.php");
+                    break;
+                case '/Allusers':
+                    $ViewallUsersRes = $this->Select("users",array("roll_id"=>"2"));
+                    // echo "<pre>";
+                    // print_r($ViewallUsersRes['Data']);
+                    // echo "</pre>";
+                    include_once("Views/admin/adminheader.php");
+                    include_once("Views/admin/allusers.php");
+                    include_once("Views/admin/adminfooter.php");
+                    break;
+                case '/logout':
+                  session_destroy();
+                  header("location:login");
+
                     break;
                 case '/register':
                     include("Views/register.php");
@@ -80,9 +98,9 @@ class Controller extends Model
                                     </script>";
                                 }
                             }
-                            echo "<pre>";
-                            print_r($_SESSION['userdata'][0]->name);
-                            echo "</pre>";
+                            // echo "<pre>";
+                            // print_r($_SESSION['userdata'][0]->name);
+                            // echo "</pre>";
                         }
                     }
 
