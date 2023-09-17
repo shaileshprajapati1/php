@@ -62,7 +62,7 @@
                     <option value="checked" >Select City</option>
                     <?php foreach ($CityData['Data'] as $key => $value) { ?>
                         
-                        <option <?php if($UpdateById['Data'][0]->cityid == $value->cityid){ echo "selected" ;} ?> value="<?php  $value->cityid ;?>"  ><?php echo $value->city ;?></option>
+                        <option <?php if($UpdateById['Data'][0]->city == $value->cid){ echo "selected" ;} ?> value="<?php  $value->cid ;?>"  ><?php echo $value->name ;?></option>
                    <?php  } ?>
                 </select>
                

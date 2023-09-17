@@ -64,7 +64,7 @@ class controller extends Model
 
                     break;
                 case '/edit':
-                    $CityData = $this->Select("city");
+                    $CityData = $this->Select("cities");
                     $UpdateById = $this->Select("users",array("id"=>$_GET['userid']));
                     // echo "<pre>";
                     // print_r($CityData['Data']);
