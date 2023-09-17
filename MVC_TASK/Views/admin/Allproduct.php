@@ -2,7 +2,7 @@
 <div id="page-wrapper">
     <div class="main-page">
 
-
+        <a class="btn btn-success" href="addproduct">Add Product</a>
         <!-- <div class="clearfix"> </div> -->
 
         <div class="row">
@@ -24,20 +24,29 @@
                     // echo "<pre>";
                     // print_r($allproductRes['Data']);
                     // echo "</pre>";
-                    $i = 0;
-                    foreach ($allproductRes['Data'] as $key => $value) {
-                        $i++; ?>
-                        <tr>
-                            <td><?php echo $i; ?></td>
-                            <td><?php echo $value->Title; ?></td>
-                            <td><?php echo $value->Price; ?></td>
-                            <td><?php echo $value->CategoryID; ?></td>
-                            <td><?php echo $value->Images; ?></td>
-                            <td><?php echo $value->id; ?></td>
-                        </tr>
-                    <?php }
+                    if (!empty($allproductRes['Data'])) {
+                        $i = 0;
+                        foreach ($allproductRes['Data'] as $key => $value) {
+                            $i++; ?>
+                            <tr>
+                                <td><?php echo $i; ?></td>
+                                <td><?php echo $value->Title; ?></td>
+                                <td><?php echo $value->Price; ?></td>
+                                <td><?php echo $value->CategoryID; ?></td>
+                                <td><?php echo $value->Images; ?></td>
+                                <td><?php echo $value->id; ?></td>
+                            </tr>
+                        <?php }
 
-                    ?>
+                        ?>
+                    <?php  } else { ?>
+                        <tr>
+                            <td class="text-center" colspan="6">
+                                <h3>Product Not Avilable</h3>
+                            </td>
+                        </tr>
+                    <?php    } ?>
+
 
 
 
