@@ -20,6 +20,14 @@
             <div class="row mb-2">
                 <div class="col-6 offset-3">
 
+                    <label class="label-control" for="name">Name</label>
+                    <input type="text" name="name" id="name" class="form-control" required>
+
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-6 offset-3">
+
                     <label class="label-control" for="email">Email</label>
                     <input type="email" name="email" id="email" class="form-control" required>
 

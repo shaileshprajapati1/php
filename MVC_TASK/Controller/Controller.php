@@ -16,6 +16,9 @@ class Controller extends Model
                     include("Views/home.php");
                     include("Views/footer.php");
                     break;
+                case '/admin':
+                    echo "Hello Admin";
+                    break;
                 case '/register':
                     include("Views/register.php");
                     if (isset($_POST['register'])) {
@@ -59,6 +62,29 @@ class Controller extends Model
                     break;
                 case '/login':
                     include("Views/login.php");
+                    if (isset($_POST['login'])) {
+                        if ($_POST['email'] != "" && $_POST['password'] != "") {
+                            $LoginRes = $this->Select("users", array("email" => $_POST['email'], "password" => md5($_POST['password'])));
+                            if ($LoginRes['Code'] == 1) {
+                                $_SESSION['userdata'] = $LoginRes['Data'];
+                                $name = $_SESSION['userdata'][0]->name;
+                                if ($LoginRes['Data'][0]->roll_id == 1) {
+                                    echo  " <script>
+                                    alert('Welcome $name')
+                                    window.location.href='admin'
+                                    </script>";
+                                } else {
+                                    echo  " <script>
+                                    alert('Welcome $name')
+                                    window.location.href='home'
+                                    </script>";
+                                }
+                            }
+                            echo "<pre>";
+                            print_r($_SESSION['userdata'][0]->name);
+                            echo "</pre>";
+                        }
+                    }
 
                     break;
                 case '/mobile':
