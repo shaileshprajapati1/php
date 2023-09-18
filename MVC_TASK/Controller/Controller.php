@@ -15,6 +15,10 @@ class Controller extends Model
         if (isset($_SERVER['PATH_INFO'])) {
             switch ($_SERVER['PATH_INFO']) {
                 case '/home':
+                    $ViewallProductinhome = $this->Select("products");
+                    // echo "<pre>";
+                    // print_r($ViewallProductinhome['Data']);
+                    // echo "</pre>";
                     include("Views/header.php");
                     include("Views/home.php");
                     include("Views/footer.php");
