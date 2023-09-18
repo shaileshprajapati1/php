@@ -25,6 +25,51 @@ class Controller extends Model
                     include_once("Views/admin/adminfooter.php");
                     break;
                 case '/addproduct':
+                    if (isset($_POST['addproduct'])) {
+                        array_pop($_POST);
+                        $ProductTitleCheck = $this->Select("products", array("Title" => $_POST['Title']));
+
+                        // echo "<pre>";
+                        // print_r($_FILES);
+                        // echo "</pre>";
+                        $filename = $_FILES['Images']['name'];
+                        $target_dir = "Uploads/";
+                        $target_file = $target_dir . basename($_FILES["Images"]["name"]);
+                        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+                        $allowedTypes = ['jpg', 'png', 'webp'];
+                        if ($_FILES['Images']['error'] == 0) {
+                            if (!in_array($imageFileType, $allowedTypes)) {
+                                $msg = "Type is not allowed";
+                            } // Check if file already exists
+                            elseif (file_exists($target_file)) {
+                                $msg = "Sorry, file already exists.";
+                            } // Check file size
+                            elseif ($_FILES["Images"]["size"] > 5000000) {
+                                $msg = "Sorry, your file is too large.";
+                            } elseif (move_uploaded_file($_FILES["Images"]["tmp_name"], $target_file)) {
+                                $msg = "The file " . basename($_FILES["Images"]["name"]) . " has been uploaded.";
+                            }
+                        } else {
+                            $filename = "defult.jpg";
+                        }
+                        $data = array_merge($_POST, array('Images' => $filename));
+                        // echo "<pre>";
+                        // print_r($data);
+                        // echo "</pre>";
+                        if ($ProductTitleCheck['Data'][0]->Title != $_POST['Title']) {
+                            $ProductAddRes = $this->Insert("products", $data);
+                            if ($ProductAddRes['Code'] == 1) {
+                                echo  " <script>
+                                alert('Product Add Successfully')
+                             window.location.href='Allproduct'
+                             </script>";
+                            }
+                        } else {
+                            echo  " <script>
+                                alert('Product AllReady Register')
+                             </script>";
+                        }
+                    }
                     include_once("Views/admin/adminheader.php");
                     include_once("Views/admin/addproduct.php");
                     include_once("Views/admin/adminfooter.php");
