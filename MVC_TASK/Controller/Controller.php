@@ -133,6 +133,15 @@ class Controller extends Model
                     }
 
                     break;
+                case '/deleteproduct':
+                    $DeleteProductRes = $this->Delete("products", array("CategoryID" => $_GET['productcategoryid']));
+                    if ($DeleteProductRes['Code'] == 1) {
+                        echo  " <script>
+                    alert('Delete Product Successfully')
+                    window.location.href='Allproduct'
+                    </script>";
+                    }
+                    break;
                 case '/delete':
                     $DeleteRes = $this->Delete("users", array("id" => $_GET['userid']));
                     if ($DeleteRes['Code'] == 1) {
