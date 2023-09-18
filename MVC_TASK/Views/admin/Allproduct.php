@@ -5,7 +5,7 @@
         <a class="btn btn-primary" href="addproduct">Add Product</a>
         <!-- <div class="clearfix"> </div> -->
 
-        <div class="row">
+        <div class= "row">
 
             <!-- <div class="col-md-12 stats-info stats-last widget-shadow"> -->
             <table class="table stats-table ">
@@ -33,7 +33,10 @@
                                 <td><?php echo $value->Title; ?></td>
                                 <td><?php echo $value->Price; ?></td>
                                 <td><?php echo $value->CategoryID; ?></td>
-                                <td><?php echo $value->Images; ?></td>
+                                <td>
+                                    <img src="Uploads/<?php echo $value->Images; ?>" width="100px" height="100px" alt="">
+                                    
+                                </td>
                                 <td>
 
                                     <a class="btn btn-success" href="editproduct?productid=<?php echo $value->id; ?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>

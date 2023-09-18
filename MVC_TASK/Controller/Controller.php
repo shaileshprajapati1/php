@@ -53,11 +53,13 @@ class Controller extends Model
                             $filename = "defult.jpg";
                         }
                         $data = array_merge($_POST, array('Images' => $filename));
-                        // echo "<pre>";
-                        // print_r($data);
-                        // echo "</pre>";
-                        if ($ProductTitleCheck['Data'][0]->Title != $_POST['Title']) {
+
+
+                        if ($ProductTitleCheck['Data']['0']->Title != $_POST['Title']) {
                             $ProductAddRes = $this->Insert("products", $data);
+                            // echo "<pre>";
+                            // print_r($ProductAddRes);
+                            // echo "</pre>";
                             if ($ProductAddRes['Code'] == 1) {
                                 echo  " <script>
                                 alert('Product Add Successfully')
@@ -82,6 +84,54 @@ class Controller extends Model
                     include_once("Views/admin/adminheader.php");
                     include_once("Views/admin/Allproduct.php");
                     include_once("Views/admin/adminfooter.php");
+                    break;
+                case '/editproduct':
+                    $EditProductRes = $this->Select("products", array("id" => $_GET['productid']));
+                    // echo "<pre>";
+                    // print_r($EditProductRes);
+                    // echo "</pre>";
+
+                    include_once("Views/admin/adminheader.php");
+                    include_once("Views/admin/editproduct.php");
+                    include_once("Views/admin/adminfooter.php");
+                    if (isset($_POST['updateproduct'])) {
+                        array_pop($_POST);
+
+                        $filename = $_FILES['Images']['name'];
+                        $target_dir = "Uploads/";
+                        $target_file = $target_dir . basename($_FILES["Images"]["name"]);
+                        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+                        $allowedTypes = ['jpg', 'png', 'webp'];
+                        if ($_FILES['Images']['error'] == 0) {
+                            if (!in_array($imageFileType, $allowedTypes)) {
+                                $msg = "Type is not allowed";
+                            } // Check if file already exists
+                            elseif (file_exists($target_file)) {
+                                $msg = "Sorry, file already exists.";
+                            } // Check file size
+                            elseif ($_FILES["Images"]["size"] > 5000000) {
+                                $msg = "Sorry, your file is too large.";
+                            } elseif (move_uploaded_file($_FILES["Images"]["tmp_name"], $target_file)) {
+                                $msg = "The file " . basename($_FILES["Images"]["name"]) . " has been uploaded.";
+                            }
+                        } else {
+                            $filename = $_REQUEST['old_Images'];
+                        }
+                        unset($_POST['old_Images']);
+                        $data = array_merge($_POST, array('Images' => $filename));
+                        // echo "<pre>";
+                        // print_r($data);
+                        // echo "</pre>";
+                        $UpdateProductRes = $this->Update("products",$data, array("id" => $_GET['productid']));
+                        // echo "<pre>";
+                        // print_r($UpdateProductRes);
+                        // echo "</pre>";
+                        if($UpdateProductRes['Code'] == 1){
+                            header("location:Allproduct");
+                        }
+
+                    }
+
                     break;
                 case '/delete':
                     $DeleteRes = $this->Delete("users", array("id" => $_GET['userid']));
