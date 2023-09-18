@@ -52,9 +52,13 @@ class Controller extends Model
                     }
                     break;
                 case '/cart':
-                    include("Views/header.php");
+                    $CartRes = $this->Select("cart");
+                    // echo "<pre>";
+                    // print_r($CartRes);
+                    // echo "</pre>";
+                    // include("Views/header.php");
                     include("Views/cart.php");
-                    include("Views/footer.php");
+                    // include("Views/footer.php");
                     break;
                 case '/admin':
                     include_once("Views/admin/adminheader.php");
