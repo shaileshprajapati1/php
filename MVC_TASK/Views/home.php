@@ -66,20 +66,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						foreach ($ViewallProductinhome['Data'] as $key => $value) { ?>
 
 							<div class="col-md-3 top-product-grids tp1 animated wow slideInUp" data-wow-delay=".5s">
-								<a href="mobile">
+								<!-- <a href="mobile"> -->
 									<div class="product-img">
 										<img src="Uploads/<?php echo $value->Images; ?>" width="100px" height="100px" alt="" />
 										<div class="p-mask">
 											<form action="#" method="post">
 												<input type="hidden" name="Title" value="<?php echo $value->Title; ?>" />
 												<input type="hidden" name="Price" value="<?php echo $value->Price; ?>" />
-												<input type="hidden" name="CategoryID" value="<?php echo $value->CategoryID; ?>" />
+												<input type="number" name="product_quantity" id="product_quantity" value="1" />
 												<input type="hidden" name="Images" value="<?php echo $value->Images; ?>" />
 												<button type="submit" name="addcart" class="w3ls-cart pw3ls-cart"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button>
 											</form>
 										</div>
 									</div>
-								</a>
+								<!-- </a> -->
 								<!-- <i class="fa fa-star yellow-star" aria-hidden="true"></i>
 								<i class="fa fa-star yellow-star" aria-hidden="true"></i>
 								<i class="fa fa-star yellow-star" aria-hidden="true"></i>

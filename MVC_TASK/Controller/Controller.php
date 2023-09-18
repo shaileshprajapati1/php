@@ -16,11 +16,44 @@ class Controller extends Model
             switch ($_SERVER['PATH_INFO']) {
                 case '/home':
                     $ViewallProductinhome = $this->Select("products");
+
                     // echo "<pre>";
                     // print_r($ViewallProductinhome['Data']);
                     // echo "</pre>";
                     include("Views/header.php");
                     include("Views/home.php");
+                    include("Views/footer.php");
+                    if (isset($_POST['addcart'])) {
+                        if ($_SESSION['userdata']) {
+                            array_pop($_POST);
+                            unset($_POST['Images']);
+                            $Amount = $_POST['Price'] * $_POST['product_quantity'];
+                            $ProductData = array( "Title" => $_POST['Title'], "Price" => $_POST['Price'], "product_quantity" => $_POST['product_quantity'], "Amount" => $Amount);
+
+                            // echo "<pre>";
+                            // print_r($ProductData);
+                            // echo "</pre>";
+                            $AddCartProductRes = $this->Insert("cart", $ProductData);
+                            // echo "<pre>";
+                            // print_r($AddCartProductRes);
+                            // echo "</pre>";
+                            if($AddCartProductRes['Code'] == 1 ){
+                                echo  " <script>
+                            alert('Product Add Cart Successfull')
+                            window.location.href='cart'
+                            </script>";
+                            }
+                        } else {
+                            echo  " <script>
+                            alert('login First')
+                            window.location.href='login'
+                            </script>";
+                        }
+                    }
+                    break;
+                case '/cart':
+                    include("Views/header.php");
+                    include("Views/cart.php");
                     include("Views/footer.php");
                     break;
                 case '/admin':
@@ -126,14 +159,13 @@ class Controller extends Model
                         // echo "<pre>";
                         // print_r($data);
                         // echo "</pre>";
-                        $UpdateProductRes = $this->Update("products",$data, array("id" => $_GET['productid']));
+                        $UpdateProductRes = $this->Update("products", $data, array("id" => $_GET['productid']));
                         // echo "<pre>";
                         // print_r($UpdateProductRes);
                         // echo "</pre>";
-                        if($UpdateProductRes['Code'] == 1){
+                        if ($UpdateProductRes['Code'] == 1) {
                             header("location:Allproduct");
                         }
-
                     }
 
                     break;

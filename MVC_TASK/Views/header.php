@@ -156,8 +156,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 				<ul class="nav navbar-nav ">
 					<?php
+					// print_r($_SESSION['userdata'][0]);
 					if (isset($_SESSION['userdata'])) { ?>
-
+						<h5> Hello <span><?php echo $_SESSION['userdata'][0]->name; ?></span> </h5>
 						<li><a href="logout" class="hyper "><span>Logout</span></a></li>
 
 					<?php	} else { ?>
