@@ -27,7 +27,7 @@
                             <td><?php echo $value->product_quantity; ?></td>
                             <td><?php echo $value->Amount; ?></td>
                             <td>
-                                <a href="delete?id=<?php echo $value->Amount; ?>">Delete</a>
+                                <a href="deletecart?id=<?php echo $value->id; ?>">Delete</a>
                                 
                             </td>
                         </tr>

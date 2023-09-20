@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2023 at 07:51 AM
+-- Generation Time: Sep 20, 2023 at 08:50 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -24,6 +24,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `Title` varchar(255) NOT NULL,
+  `Price` int(11) NOT NULL,
+  `product_quantity` int(11) NOT NULL,
+  `Amount` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `Title`, `Price`, `product_quantity`, `Amount`) VALUES
+(1, 'Ptron Speker', 599, 2, 1198),
+(2, 'Vivo t2 5g', 18999, 1, 18999),
+(3, 'TCL tv', 16999, 1, 16999),
+(4, 'Vivo t2 5g', 18999, 4, 75996);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
@@ -34,6 +58,24 @@ CREATE TABLE `products` (
   `CategoryID` varchar(255) NOT NULL,
   `Images` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `Title`, `Price`, `CategoryID`, `Images`) VALUES
+(1, 'Ptron Speker', 599, 'audio', 'ptron audio.jpg'),
+(2, 'bpl Tv', 15999, 'television', 'Bpl tv.jpg'),
+(3, 'iphone 13 128gb', 60999, 'mobile', 'iphone.jpg'),
+(4, 'JBL Speker', 999, 'audio', 'jbl audio.jpg'),
+(5, 'BOAT Audio', 4999, 'audio', 'boat audio.jpg'),
+(6, 'Zebronics audio', 8999, 'audio', 'Zebronics audio.webp'),
+(7, 'Iffalcon tv', 12999, 'television', 'Iffalcon tv.jpg'),
+(8, 'LGTv', 55999, 'television', 'LGTv.jpg'),
+(9, 'TCL tv', 16999, 'television', 'TCL tv.jpg'),
+(10, 'Oppo A17', 14999, 'mobile', 'oppo.jpg'),
+(11, 'Redmi Note 12', 20999, 'mobile', 'redmi.webp'),
+(12, 'Vivo t2 5g', 18999, 'mobile', 'vivo.webp');
 
 -- --------------------------------------------------------
 
@@ -57,11 +99,18 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `cpassword`, `roll_id`) VALUES
 (1, 'shailesh', 'sh@gmail.com', '25d55ad283aa400af464c76d713c07ad', '25d55ad283aa400af464c76d713c07ad', 1),
 (2, 'shiv', 'shiv@gmail.com', '25d55ad283aa400af464c76d713c07ad', '25d55ad283aa400af464c76d713c07ad', 2),
-(3, 'raju', 'raju@mail.com', '25d55ad283aa400af464c76d713c07ad', '25d55ad283aa400af464c76d713c07ad', 2);
+(3, 'raju', 'raju@mail.com', '25d55ad283aa400af464c76d713c07ad', '25d55ad283aa400af464c76d713c07ad', 2),
+(6, 'ranjeet', 'ranjit@gmail.com', '25d55ad283aa400af464c76d713c07ad', '25d55ad283aa400af464c76d713c07ad', 2);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `products`
@@ -80,16 +129,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
