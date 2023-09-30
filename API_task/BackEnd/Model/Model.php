@@ -23,7 +23,7 @@ class Model
             }
             $SQL = rtrim($SQL, "AND");
         }
-        // echo $SQL;
+        echo $SQL;
         $SQLEx = $this->connection->query($SQL);
         if ($SQLEx->num_rows > 0) {
             while ($data = $SQLEx->fetch_object()) {

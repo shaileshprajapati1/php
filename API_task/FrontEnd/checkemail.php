@@ -11,29 +11,14 @@
 
 <body>
     <div class="container mt-5">
-        <button onclick="getdata()">Get Data</button>
-        <div id="button">
-            <ol>
+        <form method="get" >
+            <input type="email" name="email" id="email" placeholder="Enter Email...">
 
-            </ol>
-            </div>
+            <input type="submit" name="btn" id="btn" value="submit">
 
-
+        </form>
         <script>
-          
-            async function getdata() {
-                const response = await fetch("http://localhost/php/php/API_task/BackEnd/alldata");
-                // console.log(response)
-                const data = await response.json();
-                console.log(data.Data);
-                let Htmllist = ""
-                data.Data.forEach(element => {
-                    console.log(element);
-                    Htmllist += `<li>${element.fullname} </li> `
-
-                });
-                document.getElementById("button").innerHTML = Htmllist
-            }
+        
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     </div>
