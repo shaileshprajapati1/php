@@ -11,14 +11,30 @@
 
 <body>
     <div class="container mt-5">
-        <form method="get" >
-            <input type="email" name="email" id="email" placeholder="Enter Email...">
+        <form method="get" id="formmailcheck">
+
+            <input type="email" name="email" id="email" onkeyup="checkmail(this)" placeholder="Enter Email...">
+            <span id="emailErrror"></span>
 
             <input type="submit" name="btn" id="btn" value="submit">
 
         </form>
         <script>
-        
+            async function checkmail(e) {
+                console.log(e.value);
+                let checkemail = await fetch(`http://localhost/php/php/API_task/BackEnd/checkemail?email=${e.value}`)
+
+                let checkemailres = await checkemail.json()
+                // console.log(checkemailres.Code);
+                if (checkemailres.Code == 1) {
+                    document.getElementById('emailErrror').innerHTML = "Email Alredy exists"
+                    document.getElementById("btn").disabled = true;
+                } else {
+                    document.getElementById('emailErrror').innerHTML = "valid"
+                    document.getElementById("btn").disabled = false;
+
+                }
+            }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     </div>
