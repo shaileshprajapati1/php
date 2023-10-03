@@ -91,6 +91,9 @@
             async function editbytodo(id){
                 // console.log("called "+id);
                 let Selecttodo = await fetch(`http://localhost/php/php/API_task/BackEnd/selecttodo?id=${id}`)
+                // console.log(Selecttodo);
+                let SelecttodoRes = await Selecttodo.json()
+                console.log(SelecttodoRes.Data[0]);
             }
 
         </script>
