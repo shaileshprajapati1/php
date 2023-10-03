@@ -19,16 +19,29 @@ class Controller extends Model
                     // exit;
                     echo json_encode($checkmail);
                     break;
+
                 case '/checkvalidation':
                     if (isset($_GET['username'])) {
                         $checkinput = $this->Select("users", array("username" => $_REQUEST['username']));
                     } else if (isset($_GET['email'])) {
                         $checkinput = $this->Select("users", array("email" => $_REQUEST['email']));
-                    } else{
+                    } else {
                         $checkinput = $this->Select("users", array("phone" => $_REQUEST['phone']));
                     }
-                    
+
                     echo json_encode($checkinput);
+                    break;
+                case '/todoadd':
+
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    $InsertRes = $this->Insert('todo', $data);
+                    echo json_encode($InsertRes);
+
+                    break;
+                case '/showalltodo':
+                    $Showalltodo = $this->Select('todo');
+                    echo json_encode($Showalltodo);
+
                     break;
 
                 default:

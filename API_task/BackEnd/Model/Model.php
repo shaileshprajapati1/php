@@ -40,4 +40,23 @@ class Model
         }
         return $Responce;
     }
+
+    function Insert($tbl,$data){
+        $clm = implode(",",array_keys($data));
+        $val = implode("','",$data);
+        $SQL = " INSERT INTO $tbl ($clm) VALUES ('$val')";
+        // echo $SQL;
+        $SQLEx = $this->connection->query($SQL);
+        if($SQLEx > 0){
+            $Responce['Code'] = "1";
+            $Responce['Msg'] = "Success";
+            $Responce['Data'] = "1";
+        }else {
+            $Responce['Data'] = "0";
+            $Responce['Code'] = "0";
+            $Responce['Msg'] = "Try Again";
+        }
+        return $Responce;
+
+    }
 }
