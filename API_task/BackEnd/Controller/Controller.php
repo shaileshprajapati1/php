@@ -43,6 +43,11 @@ class Controller extends Model
                     echo json_encode($Showalltodo);
 
                     break;
+                case '/selecttodo':
+                    $Selecttodobyid = $this->Select('todo',array("id"=>$_GET['id']));
+                    echo json_encode($Selecttodobyid);
+
+                    break;
 
                 default:
                     # code...

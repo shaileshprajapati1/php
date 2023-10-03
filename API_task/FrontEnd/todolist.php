@@ -85,12 +85,14 @@
                     </tr>`
                 });
                 document.getElementById('showtodo').innerHTML = $htmlRes
-
-
-
-
             }
             showalltodo();
+
+            async function editbytodo(id){
+                // console.log("called "+id);
+                let Selecttodo = await fetch(`http://localhost/php/php/API_task/BackEnd/selecttodo?id=${id}`)
+            }
+
         </script>
 
 
