@@ -56,6 +56,8 @@ class Controller extends Model
 
                     break;
                 case '/deletetodo':
+                    $Deletetodobyid = $this->Delete("todo",array("id"=>$_GET['id']));
+                    echo json_encode($Deletetodobyid);
                     
 
                     break;

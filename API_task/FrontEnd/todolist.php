@@ -37,6 +37,7 @@
         <hr>
         <table class="table table-striped">
             <thead>
+                <th>Sr.No</th>
                 <th>Title</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -72,17 +73,20 @@
                 let ShowdataRes = await Showdata.json()
                 // console.log(ShowdataRes.Data);
                 var $htmlRes = ""
+                var no = 1
                 ShowdataRes.Data.forEach((element) => {
                     console.log(element);
                     $htmlRes += `<tr>
+                    <td> ${no} </td>
                     <td> ${element.title} </td>
                     <td> ${element.status} </td>   
                     <td>
-                    <button onclick ="editbytodo(${element.id})">Edit</button>&nbsp;
-                    <button onclick ="deletebytodo(${element.id})">Delete</button>
+                    <button onclick ="editbytodo(${element.id})"class="btn btn-success" >Edit</button>&nbsp;
+                    <button onclick ="deletebytodo(${element.id})"class="btn btn-danger">Delete</button>
                      </td>   
 
                     </tr>`
+                    no++
                 });
                 document.getElementById('showtodo').innerHTML = $htmlRes
             }
@@ -121,6 +125,25 @@
                         showalltodo();
                     }))
                 })
+            }
+            async function deletebytodo(id) {
+                // console.log(id);
+                if (confirm("Are You Sure??")) {
+
+                    let Deletetodo = await fetch(`http://localhost/php/php/API_task/BackEnd/deletetodo?id=${id}`, {
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'delete': 'yes'
+                        },
+                        method: 'DELETE',
+
+                    })
+                    let deletebytodoRes = await Deletetodo.json().then((res) => {
+                        // console.log(deletebytodoRes);
+                        showalltodo();
+                    })
+                }
             }
         </script>
 
