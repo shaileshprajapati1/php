@@ -88,14 +88,40 @@
             }
             showalltodo();
 
-            async function editbytodo(id){
+            async function editbytodo(id) {
                 // console.log("called "+id);
                 let Selecttodo = await fetch(`http://localhost/php/php/API_task/BackEnd/selecttodo?id=${id}`)
                 // console.log(Selecttodo);
                 let SelecttodoRes = await Selecttodo.json()
                 console.log(SelecttodoRes.Data[0]);
-            }
 
+                document.getElementById("title").value = SelecttodoRes.Data[0].title
+                document.getElementById("status").value = SelecttodoRes.Data[0].status
+                document.getElementById('addtodo').setAttribute('onclick', `showHide(${SelecttodoRes.Data[0].id})`);
+                document.getElementById('addtodo').value = "Update";
+                document.getElementById('formdata').id = "updateform";
+            }
+            async function showHide(id) {
+
+                $("#updateform").on("submit", function(event) {
+                    event.preventDefault();
+                    var result = {};
+                    $.each($('#updateform').serializeArray(), function() {
+                        result[this.name] = this.value;
+                    });
+                    console.log(result);
+                    fetch(`http://localhost/php/php/API_task/BackEnd/updatetodo?id=${id}`, {
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        method: "PUT",
+                        body: JSON.stringify(result)
+                    }).then((res) => res.json()).then((Response => {
+                        showalltodo();
+                    }))
+                })
+            }
         </script>
 
 

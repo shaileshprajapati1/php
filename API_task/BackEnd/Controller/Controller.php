@@ -48,6 +48,17 @@ class Controller extends Model
                     echo json_encode($Selecttodobyid);
 
                     break;
+                case '/updatetodo':
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    $updatetodobyid = $this->Update('todo',$data,array("id"=>$_GET['id']));
+                    // print_r($updatetodobyid);
+                    echo json_encode($updatetodobyid);
+
+                    break;
+                case '/deletetodo':
+                    
+
+                    break;
 
                 default:
                     # code...
