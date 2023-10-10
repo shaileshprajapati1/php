@@ -51,6 +51,14 @@
                         <input type="radio" name="gender" id="Female" value="Female"><label for="Female">Female</label>
                     </div>
                 </div>
+                <div class="row ">
+                    <div class="col" class="form-check">
+                        <label for="hobby">Hobby</label><br>
+                        <input type="checkbox" name="hobby[]" class="form-check-input" id="crickect" value="crickect"><label class="form-check-label" for="crickect">crickect</label>
+                        <input type="checkbox" name="hobby[]" class="form-check-input" id="reading" value="reading"><label class="form-check-label" for="reading">reading</label>
+                        <input type="checkbox" name="hobby[]" class="form-check-input" id="music" value="music"><label class="form-check-label" for="music">music</label>
+                    </div>
+                </div>
                 <div class="row mb-2">
                     <label for="country" class="form-label">Country</label>
                     <select name="country" class="form-select" id="country">
