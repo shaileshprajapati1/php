@@ -114,20 +114,19 @@
          delete result['hobby[]']
             delete result['country']
             delete result['states']
-            console.log(result);
+            // console.log(result);
 
-            // fetch(`http://localhost/php/php/API_task/BackEnd/registerbyfetch`, {
-            //     headers: {
-            //         'Accept': 'application/json',
-            //         'Content-Type': 'application/json'
-            //     },
-            //     method: "POST",
-            //     body: JSON.stringify(result)
-            // }).then((res) => res.json()).then((Response) => {
-            //     console.log(Response);
-            // })
-
-
+            fetch(`http://localhost/php/php/API_task/BackEnd/registerbyfetch`, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(result)
+            }).then((res) => res.json()).then((Response) => {
+                // console.log(Response);
+                window.location.href='login.php';
+            })
         })
         //Register Fetch End
 
