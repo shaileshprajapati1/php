@@ -44,39 +44,43 @@ class Controller extends Model
 
                     break;
                 case '/selecttodo':
-                    $Selecttodobyid = $this->Select('todo',array("id"=>$_GET['id']));
+                    $Selecttodobyid = $this->Select('todo', array("id" => $_GET['id']));
                     echo json_encode($Selecttodobyid);
 
                     break;
                 case '/updatetodo':
                     $data = json_decode(file_get_contents('php://input'), true);
-                    $updatetodobyid = $this->Update('todo',$data,array("id"=>$_GET['id']));
-      
+                    $updatetodobyid = $this->Update('todo', $data, array("id" => $_GET['id']));
+
                     echo json_encode($updatetodobyid);
 
                     break;
                 case '/deletetodo':
-                    $Deletetodobyid = $this->Delete("todo",array("id"=>$_GET['id']));
+                    $Deletetodobyid = $this->Delete("todo", array("id" => $_GET['id']));
                     echo json_encode($Deletetodobyid);
-                    
+
 
                     break;
                 case '/allcountrybyid':
                     $Allcountry = $this->Select("country");
-                    echo json_encode($Allcountry);                  
+                    echo json_encode($Allcountry);
                     break;
                 case '/allstatesbyid':
-                    $Allstates = $this->Select("states",array("country_id"=>$_REQUEST['countryid']));
-                    echo json_encode($Allstates);                  
+                    $Allstates = $this->Select("states", array("country_id" => $_REQUEST['countryid']));
+                    echo json_encode($Allstates);
                     break;
                 case '/allcitiesbyid':
-                    $Allcities = $this->Select("cities",array("state_id"=>$_REQUEST['state_id']));
-                    echo json_encode($Allcities);                  
+                    $Allcities = $this->Select("cities", array("state_id" => $_REQUEST['state_id']));
+                    echo json_encode($Allcities);
                     break;
                 case '/registerbyfetch':
-                    $data = json_decode(file_get_contents("php://input"),true); 
-                    $registerbyfetchmethod = $this->Insert("users",$data); 
-                    echo json_encode($registerbyfetchmethod);        
+                    $data = json_decode(file_get_contents("php://input"), true);
+                    $registerbyfetchmethod = $this->Insert("users", $data);
+                    echo json_encode($registerbyfetchmethod);
+                    break;
+                case '/loginbyfetch':
+                    $loginbyfetchmethod = $this->Select("users",array("email"=>$_REQUEST['email'],"password"=>$_REQUEST['password']));
+                    echo json_encode($loginbyfetchmethod);
                     break;
 
                 default:

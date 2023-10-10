@@ -23,26 +23,26 @@
                 <div class="row">
                     <div class="col-6 offset-2">
                         <label for="fullname" class="form-label">Fullname</label>
-                        <input type="text" name="fullname" id="fullname" class="form-control">
+                        <input type="text" name="fullname" id="fullname" class="form-control" required>
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-6 offset-2">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" id="email" class="form-control">
+                        <input type="email" name="email" id="email" class="form-control"required>
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-6 offset-2">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" name="password" id="password" class="form-control">
+                        <input type="password" name="password" id="password" class="form-control"required>
                     </div>
                 </div>
 
                 <div class="row ">
                     <div class="col-6 offset-2">
                         <label for="phone" class="form-label">Phone</label>
-                        <input type="tel" name="phone" minlength="10" maxlength="10" id="phone" class="form-control">
+                        <input type="tel" name="phone" minlength="10" maxlength="10" id="phone" class="form-control"required>
                     </div>
                 </div>
                 <div class="row ">
