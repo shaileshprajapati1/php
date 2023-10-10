@@ -101,6 +101,7 @@
 
                 document.getElementById("title").value = SelecttodoRes.Data[0].title
                 document.getElementById("status").value = SelecttodoRes.Data[0].status
+                
                 document.getElementById('addtodo').setAttribute('onclick', `showHide(${SelecttodoRes.Data[0].id})`);
                 document.getElementById('addtodo').value = "Update";
                 document.getElementById('formdata').id = "updateform";

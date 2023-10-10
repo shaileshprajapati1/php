@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2023 at 10:12 AM
+-- Generation Time: Oct 10, 2023 at 07:48 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -52393,10 +52393,10 @@ CREATE TABLE `todo` (
 --
 
 INSERT INTO `todo` (`id`, `title`, `status`) VALUES
-(1, 'hello', 'complate'),
-(2, 'testing', 'pending'),
-(3, 'testing', 'pending'),
-(4, 'something', 'pending');
+(1, 'hello', 'complete'),
+(2, 'test', 'active'),
+(3, 'LARAVEL AJEX ', 'active'),
+(4, '', 'active');
 
 -- --------------------------------------------------------
 
@@ -52461,7 +52461,7 @@ INSERT INTO `users` (`id`, `fullname`, `username`, `email`, `phone`, `dob`, `gen
 (60, 'shiv prajapati', 'shailesh', 'Shaiileshshailesh966@yahoo.com', '9724668513', '0000-00-00', 'Male', '123', 'cricket,music,reading,carrom', NULL, 2, 783, '', '2023-07-26 17:38:19', '2023-07-26 17:38:19'),
 (61, 'shiv prajapati', 'shailesh', 'Shaiileshshailesh966@yahoo.com', '9724668513', '0000-00-00', 'Male', '123', 'cricket,music,reading,carrom', NULL, 2, 783, '', '2023-07-26 17:40:03', '2023-07-26 17:40:03'),
 (62, 'test', 'test', 'test@test.com', '8849668513', '0000-00-00', 'Male', '123', 'cricket,reading,carrom', NULL, 2, 41492, '', '2023-07-26 17:48:56', '2023-07-26 17:48:56'),
-(63, 'shailesh prajapati', 'shailesh', 'sh@gmail.com', '9724668513', '1994-08-01', '', '12345678', '', NULL, 2, 0, '', '2023-07-27 09:56:28', '2023-07-27 09:56:28'),
+(63, 'shailesh prajapati', 'shailesh', 'sh@gmail.com', '9724668513', '1994-08-01', 'Male', '12345678', 'cricket,reading,music,watching movies', NULL, 2, 783, '', '2023-08-08 07:14:44', '2023-07-27 09:56:28'),
 (64, 'shailesh prajapati', 'shailesh', 'sh@gmail.com', '9724668513', '1994-08-01', '', '12345678', '', NULL, 2, 0, '', '2023-07-27 09:56:29', '2023-07-27 09:56:29'),
 (65, 'shailesh prajapati', 'shailesh', 'Shaiileshshailesh966@yahoo.com', '9724668513', '2000-01-01', 'Male', '12345678', 'cricket,music', '', 2, 783, '', '2023-07-27 11:05:55', '2023-07-27 11:05:55'),
 (66, 'shailesh prajapati', 'shailesh', 'sh@gmail.com', '9724668513', '2000-01-01', 'Male', '12345678', 'cricket,music,reading', '', 2, 783, '', '2023-07-27 11:08:14', '2023-07-27 11:08:14'),
@@ -52480,10 +52480,7 @@ INSERT INTO `users` (`id`, `fullname`, `username`, `email`, `phone`, `dob`, `gen
 (79, 'shailesh prajapati', 'test', 'Shaiileshshailesh966@yahoo.com', '9724668513', '2000-01-01', 'Male', '202cb962ac59075b964b07152d234b70', 'watching movies', NULL, 2, 0, '', '2023-08-02 07:32:09', '2023-08-02 07:32:09'),
 (80, 'shailesh prajapati', 'test', 'Shaiileshshailesh966@yahoo.com', '9724668513', '2000-01-01', 'Male', '202cb962ac59075b964b07152d234b70', 'watching movies', NULL, 2, 0, '', '2023-08-02 07:32:44', '2023-08-02 07:32:44'),
 (81, 'jigar prajapati', 'jigar', 'jigar@gmail.com', '8846932522', '2000-01-01', 'Male', '202cb962ac59075b964b07152d234b70', 'cricket,reading,music,watching movies', NULL, 2, 993, '', '2023-08-02 11:43:02', '2023-08-02 11:41:21'),
-(82, 'jigar prajapati', 'jigar', 'jigar@gmail.com', '8849668513', '2000-01-01', 'Female', '123', 'watching movies', NULL, 2, 783, '', '2023-08-02 16:29:13', '2023-08-02 11:45:18'),
-(83, '', '', '', '', '0000-00-00', '', '', 'cricket', NULL, 2, 0, '', '2023-08-04 10:39:55', '2023-08-04 10:39:55'),
-(84, 'ranjitsingh', 'ranjit', 'ranjit@gmail.com', '88548963545', '2004-01-01', 'Male', '123', 'cricket,reading,music,watching movies', NULL, 2, 0, '', '2023-08-05 08:08:36', '2023-08-04 10:41:21'),
-(85, 'ranjitsingh', 'ranjit', 'ranjit@gmail.com', '88548963545', '2004-01-01', 'Male', '', 'cricket,watching movies', NULL, 2, 0, '', '2023-08-05 08:10:19', '2023-08-04 10:45:29');
+(82, 'jigar prajapati', 'jigar', 'jigar@gmail.com', '8849668513', '2000-01-01', 'Female', '123', 'watching movies', NULL, 2, 783, '', '2023-08-02 16:29:13', '2023-08-02 11:45:18');
 
 --
 -- Indexes for dumped tables
@@ -52551,7 +52548,7 @@ ALTER TABLE `todo`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
