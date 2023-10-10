@@ -14,7 +14,7 @@
 
 <body>
     <div class="container ">
-        <form method="post">
+        <form method="post" id="formdata">
 
             <h5 class="text-center mt-3" id="exampleModalLabel">Register</h5>
 
@@ -64,7 +64,7 @@
                 <div class="row  mb-2">
                     <div class="col-6 offset-2">
                         <label for="states" class="form-label">States</label>
-                        <select name="states"  onchange="citybystateid(this)" class="form-select" id="states">
+                        <select name="states" onchange="citybystateid(this)" class="form-select" id="states">
                         </select>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                     <div class="col-6 offset-2">
                         <label for="city" class="form-label">City</label>
                         <select name="city" class="form-select" id="city">
-                           
+
                         </select>
                     </div>
                 </div>
@@ -87,6 +87,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script>
+        // Country Fetch Start
         fetch(`http://localhost/php/php/API_task/BackEnd/allcountrybyid`).then((res) => res.json()).then((result) => {
             // console.log(result.Data);
             let htmlres = "<option value=''>Select Country</option>"
@@ -97,33 +98,37 @@
             })
             document.getElementById("country").innerHTML = htmlres
         })
+        // Country Fetch End
 
-      function statebycountyid(e){
-        // console.log(e.value);
-        fetch(`http://localhost/php/php/API_task/BackEnd/allstatesbyid?countryid=${e.value}`).then((res)=>res.json()).then((result)=>{
-            // console.log(result.Data);
-            let htmlres = "<option value=''>Select States</option>"
-            result.Data.map((data)=>{
-                // console.log(data);
-                htmlres += `<option value='${data.sid}'>${data.name}</option>` 
+        // States Fetch Start
+        function statebycountyid(e) {
+            // console.log(e.value);
+            fetch(`http://localhost/php/php/API_task/BackEnd/allstatesbyid?countryid=${e.value}`).then((res) => res.json()).then((result) => {
+                // console.log(result.Data);
+                let htmlres = "<option value=''>Select States</option>"
+                result.Data.map((data) => {
+                    // console.log(data);
+                    htmlres += `<option value='${data.sid}'>${data.name}</option>`
+                })
+                document.getElementById("states").innerHTML = htmlres
             })
-            document.getElementById("states").innerHTML = htmlres
-        })
-      }
-   
-      function citybystateid(e){
-        // console.log(e.value);
-        fetch(`http://localhost/php/php/API_task/BackEnd/allcitiesbyid?state_id=${e.value}`).then((res)=>res.json()).then((result)=>{
-            // console.log(result.Data);
-            let htmlres = "<option value=''>Select Cities</option>"
-            result.Data.map((data)=>{
-                // console.log(data);
-                htmlres += `<option value='${data.cid}'>${data.name}</option>` 
+        }
+        // States Fetch End
+
+        // Cities Fetch Start
+        function citybystateid(e) {
+            // console.log(e.value);
+            fetch(`http://localhost/php/php/API_task/BackEnd/allcitiesbyid?state_id=${e.value}`).then((res) => res.json()).then((result) => {
+                // console.log(result.Data);
+                let htmlres = "<option value=''>Select Cities</option>"
+                result.Data.map((data) => {
+                    // console.log(data);
+                    htmlres += `<option value='${data.cid}'>${data.name}</option>`
+                })
+                document.getElementById("city").innerHTML = htmlres
             })
-            document.getElementById("city").innerHTML = htmlres
-        })
-      }
-   
+        }
+        // Cities Fetch End
     </script>
 
 
