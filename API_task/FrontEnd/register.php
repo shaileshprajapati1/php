@@ -104,7 +104,9 @@
             hobbylist = hobbylist.substring(0,(hobbylist.length-1));
             // console.log(hobbylist);
             result['hobby'] = hobbylist
+            delete result['hobby[]']
             
+
         })
 
 
