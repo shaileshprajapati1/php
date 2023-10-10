@@ -74,9 +74,9 @@ class Controller extends Model
                     echo json_encode($Allcities);                  
                     break;
                 case '/registerbyfetch':
-                    // $data = json_decode(file_get_contents("php://input"),true); 
-                    // $registerbyfetchmethod = $this->Insert("users",$data); 
-                    // echo json_encode($registerbyfetchmethod);        
+                    $data = json_decode(file_get_contents("php://input"),true); 
+                    $registerbyfetchmethod = $this->Insert("users",$data); 
+                    echo json_encode($registerbyfetchmethod);        
                     break;
 
                 default:
