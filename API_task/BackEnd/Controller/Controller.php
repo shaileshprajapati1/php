@@ -61,6 +61,18 @@ class Controller extends Model
                     
 
                     break;
+                case '/allcountrybyid':
+                    $Allcountry = $this->Select("country");
+                    echo json_encode($Allcountry);                  
+                    break;
+                case '/allstatesbyid':
+                    $Allstates = $this->Select("states",array("country_id"=>$_REQUEST['countryid']));
+                    echo json_encode($Allstates);                  
+                    break;
+                case '/allcitiesbyid':
+                    $Allcities = $this->Select("cities",array("state_id"=>$_REQUEST['state_id']));
+                    echo json_encode($Allcities);                  
+                    break;
 
                 default:
                     # code...
