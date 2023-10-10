@@ -14,10 +14,10 @@
 
 <body>
     <div class="container ">
-        <form method="post" id="formdata">
 
-            <h5 class="text-center mt-3" id="exampleModalLabel">Login</h5>
+        <h5 class="text-center mt-3" id="exampleModalLabel">Login</h5>
 
+        <Form method="post" id="loginform">
             <div class="modal-body">
 
                 <div class="row ">
@@ -39,12 +39,47 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </Form>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <script>
-fetch().then().then()
+        let button = document.getElementById("loginform").addEventListener("submit", (e) => {
+            e.preventDefault();
+            // console.log(document.getElementById("loginform"));
+            const Email = e.target.email.value;
+            const Password = e.target.password.value;
+            // console.log(Email);
+            // console.log(Password);
+           
+
+            fetch(`http://localhost/php/php/API_task/BackEnd/loginbyfetch?email=${Email}&password=${Password}`, {
+                    method: "POST",
+                    headers: {
+                        Accept: "application/json, text/plain, */*",
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: Email,
+                        password: Password,
+                    }),
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    // code here //
+                    if (data.error) {
+                        alert("Error Password or Username"); /*displays error message*/
+                    } else {
+                        window.open(
+                            "target.html"
+                        ); /*opens the target page while Id & password matches*/
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        });
     </script>
 </body>
