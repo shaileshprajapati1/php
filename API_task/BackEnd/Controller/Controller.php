@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("Model/Model.php");
 class Controller extends Model
 {
@@ -82,6 +83,7 @@ class Controller extends Model
                     $loginbyfetchmethod = $this->Select("users",array("email"=>$_REQUEST['email'],"password"=>$_REQUEST['password']));
                     echo json_encode($loginbyfetchmethod);
                     break;
+              
 
                 default:
                     # code...

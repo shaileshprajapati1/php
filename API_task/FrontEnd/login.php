@@ -45,13 +45,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <script>
-        let button = document.getElementById("loginform").addEventListener("submit", (e) => {
+         document.getElementById("loginform").addEventListener("submit", (e) => {
             e.preventDefault();
             // console.log(document.getElementById("loginform"));
             const Email = e.target.email.value;
             const Password = e.target.password.value;
-            // console.log(Email);
-            // console.log(Password);
+
+          let emailsession= sessionStorage.Email = e.target.email.value;
+          let passwordsession= sessionStorage.Password = e.target.password.value;
+            console.log(emailsession);
+            console.log(passwordsession);
            
 
             fetch(`http://localhost/php/php/API_task/BackEnd/loginbyfetch?email=${Email}&password=${Password}`, {
@@ -69,17 +72,19 @@
                 .then((data) => {
                     console.log(data);
                     // code here //
-                    if (data.error) {
-                        alert("Error Password or Username"); /*displays error message*/
+                    if (data.Code != 1) {
+                        alert("Error Correct Password or Username"); /*displays error message*/
                     } else {
-                        window.open(
-                            "target.html"
-                        ); /*opens the target page while Id & password matches*/
+                        alert("Login Success"); /*opens the target page while Id & password matches*/
+                        window.location.href='homepage.php';
                     }
                 })
                 .catch((err) => {
                     console.log(err);
                 });
         });
+
+       
+
     </script>
 </body>
