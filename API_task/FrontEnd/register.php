@@ -78,15 +78,37 @@
                 </div>
                 <div class="row ">
                     <div class="col-6 offset-4">
-                        <button type="submit" name="register" id="register" class="btn btn-primary">register</button>
+                        <input type="submit" name="register" id="register" value="Register" class="btn btn-primary">
                     </div>
                 </div>
             </div>
         </form>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script>
+        $("#formdata").on("submit", function(e) {
+            e.preventDefault();
+            var result = {};
+            $.each($('#formdata').serializeArray(), function() {
+                result[this.name] = this.value;
+            });
+            console.log(result);
+
+            var hobbylist = "";
+            $('input[type=checkbox]').each(function() {
+                if(this.checked){
+                    hobbylist += $(this).val()+",";
+                }
+            });
+            hobbylist = hobbylist.substring(0,(hobbylist.length-1));
+            // console.log(hobbylist);
+            result['hobby'] = hobbylist
+            
+        })
+
+
+
         // Country Fetch Start
         fetch(`http://localhost/php/php/API_task/BackEnd/allcountrybyid`).then((res) => res.json()).then((result) => {
             // console.log(result.Data);
