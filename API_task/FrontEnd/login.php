@@ -51,10 +51,10 @@
             const Email = e.target.email.value;
             const Password = e.target.password.value;
 
-          let emailsession= sessionStorage.Email = e.target.email.value;
-          let passwordsession= sessionStorage.Password = e.target.password.value;
-            console.log(emailsession);
-            console.log(passwordsession);
+        //   let emailsession= sessionStorage.Email = e.target.email.value;
+        //   let passwordsession= sessionStorage.Password = e.target.password.value;
+        //     console.log(emailsession);
+        //     console.log(passwordsession);
            
 
             fetch(`http://localhost/php/php/API_task/BackEnd/loginbyfetch?email=${Email}&password=${Password}`, {
