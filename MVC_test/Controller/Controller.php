@@ -34,9 +34,38 @@ class Controller extends Model
 
                     break;
                 case '/edituser':
-                 $Viewuser =$this->Select("users",array("id"=>$_GET['userid']));
+                    $Viewuser = $this->Select("users", array("id" => $_GET['userid']));
                     include_once("Views/header.php");
                     include_once("Views/edituser.php");
+                    if (isset($_POST['update'])) {
+                        array_pop($_POST);
+                        $HobbyDataString = implode(",", $_POST['hobby']);
+                        unset($_POST['hobby']);
+                        $data = array_merge($_POST, array("hobby" => $HobbyDataString));
+                        $UpdateUserRes = $this->Update("users", $data, array("id" => $_GET['userid']));
+                        // echo "<pre>";
+                        // print_r($UpdateUserRes);
+                        // echo "</pre>";
+
+                        if ($UpdateUserRes['Code'] == 1) {
+                            echo " <script>
+                                alert('Data Update Success');
+                                window.location.href='viewallusers';
+                                </script>";
+                        }
+                    }
+                    break;
+
+                case '/deleteuser':
+                    include_once("Views/header.php");
+                    include_once("Views/viewallusers.php");
+                    $DeleteUsers = $this->Delete("users",array("id"=>$_GET['userid']));
+                    if($DeleteUsers['Code'] == 1){
+                        echo " <script>
+                        alert('Data Delete Successfully');
+                        window.location.href='viewallusers';
+                        </script>";
+                    }
 
                     break;
 
@@ -102,6 +131,8 @@ class Controller extends Model
                     # code...
                     break;
             }
+        } else {
+            header("location:home");
         }
     }
 }

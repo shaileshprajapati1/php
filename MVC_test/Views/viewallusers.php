@@ -47,7 +47,7 @@ if (!isset($_SESSION['Userdata'])) {
                             <td><?php echo $value->hobby; ?></td>
                             <td>
                                 <a href="edituser?userid=<?php echo $value->id; ?>" class="btn btn-primary me-md-2">Edit</a> &nbsp;&nbsp;
-                                <a href="deleteuser?userid=<?php echo $value->id; ?>"class="btn btn-danger me-md-2">Delete</a>
+                                <a href="deleteuser?userid=<?php echo $value->id; ?>"class="btn btn-danger me-md-2" onclick="return Delete()">Delete</a>
                             </td>
                         </tr>
                     <?php   }
@@ -60,6 +60,11 @@ if (!isset($_SESSION['Userdata'])) {
             </tbody>
         </table>
     </div>
+    <script>
+       function Delete() {
+            return confirm('Are you Sure Want to Delete Data?');
+        }
+    </script>
 </body>
 
 </html>

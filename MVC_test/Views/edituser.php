@@ -31,13 +31,33 @@
                 <input type="radio" name="gender" id="Male" value="Male" <?php if ($Viewuser['Data'][0]->gender == "Male") {
                                                                                 echo "checked";
                                                                             } ?>><label for="Male">Male</label>
-                <input type="radio" name="gender" id="Female" value="Female"><label for="Female">Female</label>
+                <input type="radio" name="gender" id="Female" value="Female" <?php if ($Viewuser['Data'][0]->gender == "Female") {
+                                                                                    echo "checked";
+                                                                                } ?>><label for="Female">Female</label>
             </div>
             <div class="col-md-6 offset-3">
+                <?php
+                // echo   $Viewuser['Data'][0]->hobby;
+                $HobbyData = explode(",", $Viewuser['Data'][0]->hobby);
+                // echo "<pre>";
+                // print_r($HobbyData);
+                ?>
                 <label for="hobby" class="form-label">Hobby</label><br>
-                <input type="checkbox" name="hobby[]" id="Cricket" value="Cricket"><label for="Cricket">Cricket</label>
-                <input type="checkbox" name="hobby[]" id="Music" value="Music"><label for="Music">Music</label>
-                <input type="checkbox" name="hobby[]" id="Reading" value="Reading"><label for="Reading">Reading</label>
+                <input type="checkbox" name="hobby[]" id="Cricket" value="Cricket" <?php if (isset($Viewuser['Data'])) {
+                                                                                        if (in_array("Cricket", $HobbyData)) {
+                                                                                            echo "Checked";
+                                                                                        }
+                                                                                    } ?>><label for="Cricket">Cricket</label>
+                <input type="checkbox" name="hobby[]" id="Music" value="Music" <?php if (isset($Viewuser['Data'])) {
+                                                                                    if (in_array("Music", $HobbyData)) {
+                                                                                        echo "Checked";
+                                                                                    }
+                                                                                } ?>><label for="Music">Music</label>
+                <input type="checkbox" name="hobby[]" id="Reading" value="Reading" <?php if (isset($Viewuser['Data'])) {
+                                                                                        if (in_array("Reading", $HobbyData)) {
+                                                                                            echo "Checked";
+                                                                                        }
+                                                                                    } ?>><label for="Reading">Reading</label>
             </div>
 
 
