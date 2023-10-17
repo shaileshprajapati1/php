@@ -70,7 +70,7 @@
                 })
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log(data);
+                    // console.log(data);
                     // code here //
                     if (data.Code != 1) {
                         alert("Error Correct Password or Username"); /*displays error message*/

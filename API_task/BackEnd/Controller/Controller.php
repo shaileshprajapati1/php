@@ -80,7 +80,9 @@ class Controller extends Model
                     echo json_encode($registerbyfetchmethod);
                     break;
                 case '/loginbyfetch':
+
                     $loginbyfetchmethod = $this->Select("users",array("email"=>$_REQUEST['email'],"password"=>$_REQUEST['password']));
+                    $_SESSION['UserData']=$loginbyfetchmethod;
                     echo json_encode($loginbyfetchmethod);
                     break;
               
