@@ -87,6 +87,7 @@
 
             }).then((res) => res.json()).then((responce) => {
                 // console.log(responce);
+                alert('Registration Success');
                 window.location.href='login.php';
             })
 

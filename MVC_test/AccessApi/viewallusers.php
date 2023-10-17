@@ -31,15 +31,38 @@
                 <th>Hobby</th>
                 <th>Action</th>
             </thead>
-            <tbody>
-               
-               
+            <tbody id="showalldata">
+
+
             </tbody>
         </table>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        function selectalldata() {
+            // console.log("call");
+            fetch(`http://localhost/php/php/MVC_test/bankend/viewallusersapi`).then((res) => res.json()).then((responce) => {
+                // console.log(responce);
 
+                var Htmlres = ""
+                responce.Data.forEach(element => {
+                    console.log(element);
+                    Htmlres += `<tr>
+                   <td>${element.id}</td>
+                   <td>${element.username}</td>
+                   <td>${element.email}</td>
+                   <td>${element.phone}</td>
+                   <td>${element.gender}</td>
+                   <td>${element.hobby}</td>
+                   <td>${element.id}</td>
+                   </tr>`
+                });
+                document.getElementById("showalldata").innerHTML = Htmlres
+            })
+        }
+        selectalldata()
+    </script>
 </body>
 
 </html>

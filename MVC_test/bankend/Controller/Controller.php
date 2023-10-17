@@ -22,6 +22,16 @@ class Controller extends Model
                  
                     echo json_encode($InsertDatabyApiRes);
                     break;
+                case '/loginbyapi':
+                    $LoginDatabyApiRes = $this->Select("users",array("email"=>$_POST['email'],"password"=>$_POST['password']));
+                                 
+                    echo json_encode($LoginDatabyApiRes);
+                    break;
+                case '/viewallusersapi':
+                    $viewallDatabyApiRes = $this->Select("users",);
+                                 
+                    echo json_encode($viewallDatabyApiRes);
+                    break;
                     // case '/home':
                     //     include_once("Views/header.php");
                     //     include_once("Views/home.php");
