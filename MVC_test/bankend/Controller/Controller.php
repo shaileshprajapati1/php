@@ -32,6 +32,11 @@ class Controller extends Model
                                  
                     echo json_encode($viewallDatabyApiRes);
                     break;
+                case '/edituserbyapi':
+                    $EdituserApiRes = $this->Select("users",array("id"=>$_GET['id']));
+                                 
+                    echo json_encode($EdituserApiRes);
+                    break;
                     // case '/home':
                     //     include_once("Views/header.php");
                     //     include_once("Views/home.php");
