@@ -47,7 +47,7 @@
 
                 var Htmlres = ""
                 responce.Data.forEach(element => {
-                    console.log(element);
+                    // console.log(element);
                     Htmlres += `<tr>
                    <td>${element.id}</td>
                    <td>${element.username}</td>
@@ -55,7 +55,10 @@
                    <td>${element.phone}</td>
                    <td>${element.gender}</td>
                    <td>${element.hobby}</td>
-                   <td>${element.id}</td>
+                   <td>
+                   <button onclick="editbyid(${element.id})" class="btn btn-success">Edit</button>
+                   <button onclick="deletebyid(${element.id})" class="btn btn-danger">Delete</button>
+                   </td>
                    </tr>`
                 });
                 document.getElementById("showalldata").innerHTML = Htmlres
