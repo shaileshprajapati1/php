@@ -103,8 +103,29 @@
             document.getElementById("username").value = fetchdatajson.Data[0].username
             document.getElementById("email").value = fetchdatajson.Data[0].email
             document.getElementById("phone").value = fetchdatajson.Data[0].phone
+
+            // Check the corresponding radio button
+            const selectedOption = fetchdatajson.Data[0].gender;
+
+            const radioButtons = document.querySelectorAll('input[name="gender"]');
+            radioButtons.forEach(button => {
+                if (button.value === selectedOption) {
+                    button.checked = true;
+                }
+            });
+
+            
+            const hobby = document.querySelectorAll('input[type="checkbox"]');
+            
+            console.log(hobby.value);
+           
+            const checkboxOption = fetchdatajson.Data[0].hobby;
+            const hobbyarray = checkboxOption.split(',');
+            console.log(hobbyarray);
            
            
+
+
         }
 
 
