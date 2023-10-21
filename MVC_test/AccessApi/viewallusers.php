@@ -26,7 +26,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                        <button onclick="hidemodel()"> X </button>
                     </div>
                     <div class="modal-body">
                         <form id="updateform" method="post">
@@ -113,27 +114,23 @@
                     button.checked = true;
                 }
             });
-
-            
-            const hobby = document.querySelectorAll('input[type="checkbox"]');
-            
-            console.log(hobby.value);
-           
             const checkboxOption = fetchdatajson.Data[0].hobby;
             const hobbyarray = checkboxOption.split(',');
             console.log(hobbyarray);
-           
-           
-
-
+            hobbyarray.forEach(element => {
+                document.getElementById(element).checked = true;
+            })
         }
 
+        function hidemodel(params) {
 
-
-
-
-
-
+            let hobbyInp = document.getElementsByName("hobby[]")
+            hobbyInp.forEach((element, i) => {
+                element.checked = false;
+            });
+            $("#exampleModal").modal('hide');
+        }
+       
 
         function selectalldata() {
             // console.log("call");
