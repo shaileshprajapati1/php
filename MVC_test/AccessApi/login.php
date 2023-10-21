@@ -38,7 +38,7 @@
             // console.log(e.target.email.value);
             let Emailbyid =e.target.email.value
             let Passwordbyid =e.target.password.value
-            fetch(`http://localhost/php/php/API_task/BackEnd/loginbyfetch?email=${Emailbyid}&password=${Passwordbyid}`,{
+            fetch(`http://localhost/php/php/MVC_test/bankend/loginbyapi`,{
                 method: "POST", // *GET, POST, PUT, DELETE, etc.
                 mode: "cors", // no-cors, *cors, same-origin
                 cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -55,7 +55,7 @@
                 }),
 
             }).then((res)=>res.json()).then((responce)=>{
-                // console.log(responce);
+                console.log(responce);
                 alert('Login Success');
                 window.location.href='viewallusers.php';
                 

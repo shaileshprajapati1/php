@@ -23,7 +23,11 @@ class Controller extends Model
                     echo json_encode($InsertDatabyApiRes);
                     break;
                 case '/loginbyapi':
-                    $LoginDatabyApiRes = $this->Select("users",array("email"=>$_POST['email'],"password"=>$_POST['password']));
+                    $data = json_decode(file_get_contents('php://input'),true);
+                    // echo "<pre>";
+                    // print_r($data);
+                    // echo "</pre>";
+                    $LoginDatabyApiRes = $this->Select("users",array("email"=>$data['email'],"password"=>$data['password']));
                                  
                     echo json_encode($LoginDatabyApiRes);
                     break;
