@@ -17,35 +17,41 @@ class Controller extends Model
             switch ($_SERVER['PATH_INFO']) {
 
                 case '/registerbyapi':
-                    $data = json_decode(file_get_contents('php://input'),true);
+                    $data = json_decode(file_get_contents('php://input'), true);
                     $InsertDatabyApiRes = $this->Insert("users", $data);
-                 
+
                     echo json_encode($InsertDatabyApiRes);
                     break;
                 case '/loginbyapi':
-                    $data = json_decode(file_get_contents('php://input'),true);
+                    $data = json_decode(file_get_contents('php://input'), true);
                     // echo "<pre>";
                     // print_r($data);
                     // echo "</pre>";
-                    $LoginDatabyApiRes = $this->Select("users",array("email"=>$data['email'],"password"=>$data['password']));
-                                 
+                    $LoginDatabyApiRes = $this->Select("users", array("email" => $data['email'], "password" => $data['password']));
+
                     echo json_encode($LoginDatabyApiRes);
                     break;
                 case '/viewallusersapi':
                     $viewallDatabyApiRes = $this->Select("users",);
-                                 
+
                     echo json_encode($viewallDatabyApiRes);
                     break;
                 case '/edituserbyapi':
-                    $EdituserApiRes = $this->Select("users",array("id"=>$_GET['id']));
-                                 
+                    $EdituserApiRes = $this->Select("users", array("id" => $_GET['id']));
+
                     echo json_encode($EdituserApiRes);
                     break;
                 case '/updateuserbyapi':
-                    $data = json_decode(file_get_contents('php://input'),true);
-                    $updateuserApiRes = $this->Update("users",$data,array("id"=>$_GET['id']));
-                                 
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    $updateuserApiRes = $this->Update("users", $data, array("id" => $_GET['id']));
+
                     echo json_encode($updateuserApiRes);
+                    break;
+                case '/deleteuserbyapi':
+
+                    $deleteuserApiRes = $this->Delete("users", array("id" => $_GET['id']));
+
+                    echo json_encode($deleteuserApiRes);
                     break;
                     // case '/home':
                     //     include_once("Views/header.php");

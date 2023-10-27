@@ -109,12 +109,12 @@
                 console.log(result);
 
                 var hobby = [];
-               
-                    $(':checkbox:checked').each(function(i) {
-                        hobby[i] = $(this).val();
-                       
-                    });
-                
+
+                $(':checkbox:checked').each(function(i) {
+                    hobby[i] = $(this).val();
+
+                });
+
                 // console.log(hobby);
                 hobby = hobby.toString();
 
@@ -165,12 +165,10 @@
             const checkboxOption = fetchdatajson.Data[0].hobby;
             const hobbyarray = checkboxOption.split(',');
             // console.log(h1obbyarray);
-            if (hobbyarray != null || hobbyarray == true  ) {
+            if (hobbyarray != null || hobbyarray == true) {
                 hobbyarray.forEach(element => {
                     document.getElementById(element).checked = true;
                 })
-            } else {
-                document.getElementById(element).checked = false;
             }
             document.getElementById("update").setAttribute("onclick", `updatebyid(${fetchdatajson.Data[0].id})`)
         }
@@ -218,6 +216,23 @@
             })
         }
         selectalldata()
+
+        function deletebyid(id) {
+            if (confirm("Are You Sure??")) {
+                fetch(`http://localhost/php/php/MVC_test/bankend/deleteuserbyapi?id=${id}`, {
+                    method: "DELETE", // *GET, POST, PUT, DELETE, etc.
+
+                    headers: {
+                        "Content-Type": "application/json",
+                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                    }
+
+                }).then((res) => res.json()).then((responce) => {
+                    window.location.href = "viewallusers.php";
+                })
+            }
+
+        }
     </script>
 </body>
 
