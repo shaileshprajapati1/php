@@ -41,6 +41,12 @@ class Controller extends Model
                                  
                     echo json_encode($EdituserApiRes);
                     break;
+                case '/updateuserbyapi':
+                    $data = json_decode(file_get_contents('php://input'),true);
+                    $updateuserApiRes = $this->Update("users",$data,array("id"=>$_GET['id']));
+                                 
+                    echo json_encode($updateuserApiRes);
+                    break;
                     // case '/home':
                     //     include_once("Views/header.php");
                     //     include_once("Views/home.php");

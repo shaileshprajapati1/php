@@ -29,8 +29,8 @@
                         <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                         <button onclick="hidemodel()"> X </button>
                     </div>
-                    <div class="modal-body">
-                        <form id="updateform" method="post">
+                    <form id="updateform" method="post">
+                        <div class="modal-body">
                             <div class="row ">
                                 <div class="col">
                                     <label for="username" class="lable-control">Username</label>
@@ -64,13 +64,12 @@
                                     <input type="checkbox" name="hobby[]" id="Reading" value="Reading"> <label for="Reading"> Reading</label>
                                 </div>
                             </div>
+                            <input type="submit" value="Update" id="update" name="update" class="btn btn-success">
 
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Update</button>
-                    </div>
+
+
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -96,6 +95,55 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
+        function updatebyid(id) {
+            // console.log("call");
+            $("#updateform").on("submit", function(e) {
+                e.preventDefault();
+                // console.log(e.target);
+                let result = {};
+                $.each($("#updateform").serializeArray(), function() {
+                    // console.log(this);
+                    result[this.name] = this.value
+
+                })
+                console.log(result);
+
+                var hobby = [];
+               
+                    $(':checkbox:checked').each(function(i) {
+                        hobby[i] = $(this).val();
+                       
+                    });
+                
+                // console.log(hobby);
+                hobby = hobby.toString();
+
+                result['hobby'] = hobby;
+                delete result['hobby[]']
+                console.log(result);
+
+                fetch(`http://localhost/php/php/MVC_test/bankend/updateuserbyapi?id=${id}`, {
+                    method: "POST", // *GET, POST, PUT, DELETE, etc.
+                    mode: "cors", // no-cors, *cors, same-origin
+                    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+                    credentials: "same-origin", // include, *same-origin, omit
+                    headers: {
+                        "Content-Type": "application/json",
+                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    redirect: "follow", // manual, *follow, error
+                    referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                    body: JSON.stringify(result),
+
+                }).then((res) => res.json()).then((responce) => {
+                    // console.log(responce);
+                    window.location.href = "viewallusers.php";
+                })
+
+            })
+        }
+
+
         async function editbyid(id) {
             // console.log(id);
             const fetchdata = await fetch(`http://localhost/php/php/MVC_test/bankend/edituserbyapi?id=${id}`);
@@ -116,11 +164,17 @@
             });
             const checkboxOption = fetchdatajson.Data[0].hobby;
             const hobbyarray = checkboxOption.split(',');
-            console.log(hobbyarray);
-            hobbyarray.forEach(element => {
-                document.getElementById(element).checked = true;
-            })
+            // console.log(h1obbyarray);
+            if (hobbyarray != null || hobbyarray == true  ) {
+                hobbyarray.forEach(element => {
+                    document.getElementById(element).checked = true;
+                })
+            } else {
+                document.getElementById(element).checked = false;
+            }
+            document.getElementById("update").setAttribute("onclick", `updatebyid(${fetchdatajson.Data[0].id})`)
         }
+
 
         function hidemodel(params) {
 
@@ -130,7 +184,9 @@
             });
             $("#exampleModal").modal('hide');
         }
-       
+
+
+
 
         function selectalldata() {
             // console.log("call");
