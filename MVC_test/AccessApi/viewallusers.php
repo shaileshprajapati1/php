@@ -124,15 +124,12 @@
 
                 fetch(`http://localhost/php/php/MVC_test/bankend/updateuserbyapi?id=${id}`, {
                     method: "POST", // *GET, POST, PUT, DELETE, etc.
-                    mode: "cors", // no-cors, *cors, same-origin
-                    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-                    credentials: "same-origin", // include, *same-origin, omit
+
                     headers: {
                         "Content-Type": "application/json",
                         // 'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    redirect: "follow", // manual, *follow, error
-                    referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+
                     body: JSON.stringify(result),
 
                 }).then((res) => res.json()).then((responce) => {
@@ -164,12 +161,17 @@
             });
             const checkboxOption = fetchdatajson.Data[0].hobby;
             const hobbyarray = checkboxOption.split(',');
-            // console.log(h1obbyarray);
-            if (hobbyarray != null || hobbyarray == true) {
-                hobbyarray.forEach(element => {
-                    document.getElementById(element).checked = true;
-                })
-            }
+            // console.log("checkboxOption",checkboxOption);
+            // console.log("hobbyarray",hobbyarray);
+            // console.log("hobbyarray",hobbyarray.length);
+            // console.log("hobbyarray",hobbyarray[0]);
+            if (hobbyarray[0] != "") {
+                if (hobbyarray != null || hobbyarray == true || hobbyarray[0] != null) {
+                    hobbyarray.forEach(element => {
+                        document.getElementById(element).checked = true;
+                    })
+                }
+            } 
             document.getElementById("update").setAttribute("onclick", `updatebyid(${fetchdatajson.Data[0].id})`)
         }
 
